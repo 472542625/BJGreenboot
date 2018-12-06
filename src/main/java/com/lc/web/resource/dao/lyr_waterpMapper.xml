@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.web.resource.dao.lyr_waterpMapper">
+  <resultMap id="BaseResultMap" type="com.lc.web.resource.entity.lyr_waterp">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="greenname" jdbcType="VARCHAR" property="greenname" />
+    <result column="greentype" jdbcType="VARCHAR" property="greentype" />
+    <result column="street" jdbcType="VARCHAR" property="street" />
+    <result column="village" jdbcType="VARCHAR" property="village" />
+    <result column="greenowner" jdbcType="VARCHAR" property="greenowner" />
+    <result column="buildyear" jdbcType="VARCHAR" property="buildyear" />
+    <result column="property" jdbcType="VARCHAR" property="property" />
+    <result column="manager" jdbcType="VARCHAR" property="manager" />
+    <result column="manag_pro" jdbcType="VARCHAR" property="managPro" />
+    <result column="sum_tub" jdbcType="NUMERIC" property="sumTub" />
+    <result column="sum_lvdi" jdbcType="NUMERIC" property="sumLvdi" />
+    <result column="sum_qita" jdbcType="NUMERIC" property="sumQita" />
+    <result column="sum_rofe" jdbcType="NUMERIC" property="sumRofe" />
+    <result column="sumlhf" jdbcType="NUMERIC" property="sumlhf" />
+    <result column="orig_fid" jdbcType="INTEGER" property="origFid" />
+    <result column="geom" jdbcType="VARCHAR" property="geom" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    gid, greenname, greentype, street, village, greenowner, buildyear, property, manager, 
+    manag_pro, sum_tub, sum_lvdi, sum_qita, sum_rofe, sumlhf, orig_fid, st_astext(geom) as geom
+  </sql>
+  <select id="selectByExample" parameterType="com.lc.web.resource.entity.lyr_waterpExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lyr_waterp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lyr_waterp
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lyr_waterp
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lc.web.resource.entity.lyr_waterpExample">
+    delete from lyr_waterp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lc.web.resource.entity.lyr_waterp">
+    insert into lyr_waterp (gid, greenname, greentype, 
+      street, village, greenowner, 
+      buildyear, property, manager, 
+      manag_pro, sum_tub, sum_lvdi, 
+      sum_qita, sum_rofe, sumlhf, 
+      orig_fid, geom)
+    values (#{gid,jdbcType=INTEGER}, #{greenname,jdbcType=VARCHAR}, #{greentype,jdbcType=VARCHAR}, 
+      #{street,jdbcType=VARCHAR}, #{village,jdbcType=VARCHAR}, #{greenowner,jdbcType=VARCHAR}, 
+      #{buildyear,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, #{manager,jdbcType=VARCHAR}, 
+      #{managPro,jdbcType=VARCHAR}, #{sumTub,jdbcType=NUMERIC}, #{sumLvdi,jdbcType=NUMERIC}, 
+      #{sumQita,jdbcType=NUMERIC}, #{sumRofe,jdbcType=NUMERIC}, #{sumlhf,jdbcType=NUMERIC}, 
+      #{origFid,jdbcType=INTEGER}, #{geom,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.web.resource.entity.lyr_waterp">
+    insert into lyr_waterp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="greenname != null">
+        greenname,
+      </if>
+      <if test="greentype != null">
+        greentype,
+      </if>
+      <if test="street != null">
+        street,
+      </if>
+      <if test="village != null">
+        village,
+      </if>
+      <if test="greenowner != null">
+        greenowner,
+      </if>
+      <if test="buildyear != null">
+        buildyear,
+      </if>
+      <if test="property != null">
+        property,
+      </if>
+      <if test="manager != null">
+        manager,
+      </if>
+      <if test="managPro != null">
+        manag_pro,
+      </if>
+      <if test="sumTub != null">
+        sum_tub,
+      </if>
+      <if test="sumLvdi != null">
+        sum_lvdi,
+      </if>
+      <if test="sumQita != null">
+        sum_qita,
+      </if>
+      <if test="sumRofe != null">
+        sum_rofe,
+      </if>
+      <if test="sumlhf != null">
+        sumlhf,
+      </if>
+      <if test="origFid != null">
+        orig_fid,
+      </if>
+      <if test="geom != null">
+        geom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="greenname != null">
+        #{greenname,jdbcType=VARCHAR},
+      </if>
+      <if test="greentype != null">
+        #{greentype,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null">
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="greenowner != null">
+        #{greenowner,jdbcType=VARCHAR},
+      </if>
+      <if test="buildyear != null">
+        #{buildyear,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="managPro != null">
+        #{managPro,jdbcType=VARCHAR},
+      </if>
+      <if test="sumTub != null">
+        #{sumTub,jdbcType=NUMERIC},
+      </if>
+      <if test="sumLvdi != null">
+        #{sumLvdi,jdbcType=NUMERIC},
+      </if>
+      <if test="sumQita != null">
+        #{sumQita,jdbcType=NUMERIC},
+      </if>
+      <if test="sumRofe != null">
+        #{sumRofe,jdbcType=NUMERIC},
+      </if>
+      <if test="sumlhf != null">
+        #{sumlhf,jdbcType=NUMERIC},
+      </if>
+      <if test="origFid != null">
+        #{origFid,jdbcType=INTEGER},
+      </if>
+      <if test="geom != null">
+        #{geom,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lc.web.resource.entity.lyr_waterpExample" resultType="java.lang.Long">
+    select count(*) from lyr_waterp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lyr_waterp
+    <set>
+      <if test="record.gid != null">
+        gid = #{record.gid,jdbcType=INTEGER},
+      </if>
+      <if test="record.greenname != null">
+        greenname = #{record.greenname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.greentype != null">
+        greentype = #{record.greentype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.street != null">
+        street = #{record.street,jdbcType=VARCHAR},
+      </if>
+      <if test="record.village != null">
+        village = #{record.village,jdbcType=VARCHAR},
+      </if>
+      <if test="record.greenowner != null">
+        greenowner = #{record.greenowner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildyear != null">
+        buildyear = #{record.buildyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null">
+        property = #{record.property,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manager != null">
+        manager = #{record.manager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managPro != null">
+        manag_pro = #{record.managPro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sumTub != null">
+        sum_tub = #{record.sumTub,jdbcType=NUMERIC},
+      </if>
+      <if test="record.sumLvdi != null">
+        sum_lvdi = #{record.sumLvdi,jdbcType=NUMERIC},
+      </if>
+      <if test="record.sumQita != null">
+        sum_qita = #{record.sumQita,jdbcType=NUMERIC},
+      </if>
+      <if test="record.sumRofe != null">
+        sum_rofe = #{record.sumRofe,jdbcType=NUMERIC},
+      </if>
+      <if test="record.sumlhf != null">
+        sumlhf = #{record.sumlhf,jdbcType=NUMERIC},
+      </if>
+      <if test="record.origFid != null">
+        orig_fid = #{record.origFid,jdbcType=INTEGER},
+      </if>
+      <if test="record.geom != null">
+        geom = #{record.geom,jdbcType=OTHER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lyr_waterp
+    set gid = #{record.gid,jdbcType=INTEGER},
+      greenname = #{record.greenname,jdbcType=VARCHAR},
+      greentype = #{record.greentype,jdbcType=VARCHAR},
+      street = #{record.street,jdbcType=VARCHAR},
+      village = #{record.village,jdbcType=VARCHAR},
+      greenowner = #{record.greenowner,jdbcType=VARCHAR},
+      buildyear = #{record.buildyear,jdbcType=VARCHAR},
+      property = #{record.property,jdbcType=VARCHAR},
+      manager = #{record.manager,jdbcType=VARCHAR},
+      manag_pro = #{record.managPro,jdbcType=VARCHAR},
+      sum_tub = #{record.sumTub,jdbcType=NUMERIC},
+      sum_lvdi = #{record.sumLvdi,jdbcType=NUMERIC},
+      sum_qita = #{record.sumQita,jdbcType=NUMERIC},
+      sum_rofe = #{record.sumRofe,jdbcType=NUMERIC},
+      sumlhf = #{record.sumlhf,jdbcType=NUMERIC},
+      orig_fid = #{record.origFid,jdbcType=INTEGER},
+      geom = #{record.geom,jdbcType=OTHER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.web.resource.entity.lyr_waterp">
+    update lyr_waterp
+    <set>
+      <if test="greenname != null">
+        greenname = #{greenname,jdbcType=VARCHAR},
+      </if>
+      <if test="greentype != null">
+        greentype = #{greentype,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null">
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        village = #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="greenowner != null">
+        greenowner = #{greenowner,jdbcType=VARCHAR},
+      </if>
+      <if test="buildyear != null">
+        buildyear = #{buildyear,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null">
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="managPro != null">
+        manag_pro = #{managPro,jdbcType=VARCHAR},
+      </if>
+      <if test="sumTub != null">
+        sum_tub = #{sumTub,jdbcType=NUMERIC},
+      </if>
+      <if test="sumLvdi != null">
+        sum_lvdi = #{sumLvdi,jdbcType=NUMERIC},
+      </if>
+      <if test="sumQita != null">
+        sum_qita = #{sumQita,jdbcType=NUMERIC},
+      </if>
+      <if test="sumRofe != null">
+        sum_rofe = #{sumRofe,jdbcType=NUMERIC},
+      </if>
+      <if test="sumlhf != null">
+        sumlhf = #{sumlhf,jdbcType=NUMERIC},
+      </if>
+      <if test="origFid != null">
+        orig_fid = #{origFid,jdbcType=INTEGER},
+      </if>
+      <if test="geom != null">
+        geom = #{geom,jdbcType=OTHER},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.web.resource.entity.lyr_waterp">
+    update lyr_waterp
+    set greenname = #{greenname,jdbcType=VARCHAR},
+      greentype = #{greentype,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR},
+      village = #{village,jdbcType=VARCHAR},
+      greenowner = #{greenowner,jdbcType=VARCHAR},
+      buildyear = #{buildyear,jdbcType=VARCHAR},
+      property = #{property,jdbcType=VARCHAR},
+      manager = #{manager,jdbcType=VARCHAR},
+      manag_pro = #{managPro,jdbcType=VARCHAR},
+      sum_tub = #{sumTub,jdbcType=NUMERIC},
+      sum_lvdi = #{sumLvdi,jdbcType=NUMERIC},
+      sum_qita = #{sumQita,jdbcType=NUMERIC},
+      sum_rofe = #{sumRofe,jdbcType=NUMERIC},
+      sumlhf = #{sumlhf,jdbcType=NUMERIC},
+      orig_fid = #{origFid,jdbcType=INTEGER},
+      geom = #{geom,jdbcType=OTHER}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>

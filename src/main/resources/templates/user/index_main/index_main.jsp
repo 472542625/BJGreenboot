@@ -1,0 +1,213 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- jq-->
+    <script type="text/javascript" src="<%=path%>/lib/jquery/jquery-3.3.1.min.js"></script>
+
+
+    <!--bootstrap3-->
+    <script src="<%=path%>/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/BJGreen/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <!--图标-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <!--echarts-->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <script src="<%=path%>/lib/echarts/echarts.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="<%=path%>/page/user/index_main/index_echarts.js"></script>
+
+
+
+</head>
+<body style="width:100%; overflow:hidden;text-align:center;">
+
+<div class="row">
+    <div class="col-md-7"
+         style=" font-size:29px; font-family:Microsoft YaHei  ;cursor:pointer;text-align:left">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-graduation-cap" style="font-size:36px"></i>北京市园林绿化生态环境指标监测及决策
+
+        </div>
+    </div>
+    <div class="col-md-5"
+         style=" font-size:24px;font-family:STKaiti  ;cursor:pointer;text-align:right;line-height: 200%">
+        <div style="position: relative;left: -10px"><a href="<%=path%>/page/gis_main/mlayui.jsp">GIS系统</a> <a>系统管理</a> 2018年7月18 pm3:40
+
+
+        </div>
+    </div>
+
+</div>
+<div class="row " style="">
+    <div class="col-md-4"
+         style="background: rgb(36,123,160) ;font-size:36px;color:white;font-family:Microsoft YaHei; cursor:pointer;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden;
+            "
+         onclick="javascript:red1();">
+
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div style=""><i
+                        class="fa fa-graduation-cap" style="font-size:36px"></i><a style="color:white;text-decoration:none;" href="<%=path%>/page/user/second_main/1.jsp">规划体检监测</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row ">
+
+
+            <div class="col-md-6">
+                <div id="container1" style="height: 150% "></div>
+            </div>
+            <div class="col-md-6">
+                <div id="container2" style="height: 150% "></div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-md-4"
+         style="background: rgb(155,197,61) ;height:300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 20px"><i
+                class="fa fa-envira" style="font-size:36px"></i>森林监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">森林火险等级：3级
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">森林碳储量：3.67万立方米
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">年预测生长量：0.3万立方米
+        </div>
+    </div>
+    <div class="col-md-4"
+         style="background: rgb(253,203,77) ;height: 300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 20px"><i
+                class="fa fa-industry" style="font-size:36px"></i>山体监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">山体滑坡预测：3级
+        </div>
+
+    </div>
+</div>
+<div class="row" style=" ">
+    <div class="col-md-4"
+         style="background: rgb(91,192,235) ;height: 300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-chrome" style="font-size:36px"></i>水体监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">水资源面积：3256m2
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">水体污染等级：3级
+        </div>
+    </div>
+    <div class="col-md-4"
+         style="background: rgb(229,89,52) ;height: 300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-navicon" style="font-size:36px"></i>农田监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">病虫害等级：2级
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">植被监测：查看详情
+        </div>
+    </div>
+    <div class="col-md-4"
+         style="background: rgb(255,22,84) ;height:  300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-fire" style="font-size:36px"></i>草地监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">草地面积：1360m2
+
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">草原退化率：4.3%
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4"
+         style="background: rgb(112,193,179) ;height:300px;font-size:36px ;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-photo" style="font-size:36px"></i>土壤监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">土壤PH值：9
+
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">顶层碳含量：4g/L
+
+        </div>
+    </div>
+    <div class="col-md-4"
+         style="background: rgb(250,121,33) ;height: 300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-asterisk" style="font-size:36px"></i>气象监测
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">PM2.5浓度：328
+
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">温度：28°C
+
+        </div>
+    </div>
+    <div class="col-md-4"
+         style="background: rgb(241,219,1) ;height: 300px;font-size:36px;color:white;font-family:Microsoft YaHei;position: relative; padding-bottom: 18%;
+            height: 0;
+            overflow: hidden">
+        <div style="position: relative;left: 10px"><i
+                class="fa fa-edit" style="font-size:36px"></i>智慧园林服务
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">当前入园人数：1432人
+
+
+        </div>
+        <div style="position: relative;left: 20px;font-size:24px;">应急避难场所：33处
+
+        </div>
+    </div>
+</div>
+
+ 
+<script type="text/javascript">
+
+    $(function () {
+
+        addcontainer_index("container1", "/BJGreen/data/test1.json", "绿地率");
+        addcontainer_index("container2", "/BJGreen/data/test1.json", "人均公园绿地面积");
+
+    })
+
+</script>
+
+</body>
+</html>

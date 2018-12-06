@@ -1,0 +1,83 @@
+/*********图例类***/
+.legend table tr td i {
+	display: block;
+	height: 12px;
+	width: 90%;
+}
+
+.legend table {
+	width: 100%;
+}
+
+.legend table,tr,td {
+	border-collapse: collapse;
+	text-indent: .3em;
+	font-size: 12px;
+	color: #DDD;
+}
+
+.legend table th {
+	font-size: .85rem;
+	text-align: left;
+	font-weight: normal;
+	width: 100px;
+}
+
+.legend table tr {
+	height: 18px;
+}
+
+.legend table tr td i {
+	display: block;
+	height: 12px;
+	width: 90%;
+}
+
+.legend_climate {
+	height: 300px;
+}
+
+.legend_climate img {
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+/**点击popup的样式
+#feeature_properties_table tbody tr:nth-child(even) {background: red}
+#feeature_properties_table tbody tr:nth-child(odd) {background: blue}**/
+#feeature_properties_talbe_tbody tr:nth-child(odd) {
+	background-color: rgba(255, 255, 255, .2);
+	height: 30px
+}
+
+#feeature_properties_talbe_tbody tr:nth-child(even) {
+	height: 30px
+}
+
+#feeature_properties_talbe_tbody a {
+	color:yellow;
+	cursor:pointer;
+	text-decoration:underline; 
+}
+#feeature_properties_talbe  {
+	  font-size: 12px;
+    text-align: center;
+        text-indent: .3em;
+    
+}
+  
+
+#other_feeature_properties_talbe_tbody tr:nth-child(odd) {
+	background-color: rgba(255, 255, 255, .2);
+	height: 30px
+}
+
+#other_feeature_properties_talbe_tbody tr:nth-child(even) {
+	height: 30px
+}

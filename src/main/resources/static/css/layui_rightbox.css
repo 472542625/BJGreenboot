@@ -1,0 +1,230 @@
+/**绿视率视频窗口**/
+#greerate_r_box {
+    width: 290px;
+    /*height: calc(100% - 50px);*/
+    z-index: 99999;
+    position: absolute;
+    bottom: 20%;
+    right: 20px;
+    display: none;
+    /*height: 100%;*/
+    /*background-color: rgba(0, 155, 0, .25);*/
+}
+
+#greerate_r_box .se-area {
+    width: 100%;
+    padding: 5px;
+    background: rgba(0, 0, 0, .8);
+    box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+#greerate_r_box .se-title {
+    height: 40px;
+    line-height: 30px;
+    color: white;
+    text-indent: 1em;
+    font-size: 17px;
+}
+
+
+
+
+#greerate_r_box .se-cont {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#greerate_r_box img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+/**********table***/
+
+
+#greerate_r_box table {
+    width: 100%;
+}
+#greerate_r_box table,
+tr,
+td {
+    border-collapse: collapse;
+    text-indent: .3em;
+    font-size: 12px;
+    color: #DDD;
+}
+
+#greerate_r_box table tr {
+    height: 25px;
+    text-align: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*监测专题右侧窗口*/
+
+#monitor {
+    width: 290px;
+    /*height: calc(100% - 50px);*/
+    z-index: 99999;
+    position: absolute;
+    top: 130px;
+    right: 20px;
+    display: none;
+    /*height: 100%;*/
+    /*background-color: rgba(0, 155, 0, .25);*/
+}
+
+#monitor .se-area {
+    width: 100%;
+    padding: 5px;
+    background: rgba(0, 0, 0, .8);
+    box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+#monitor .se-title {
+    height: 40px;
+    line-height: 30px;
+    color: white;
+    text-indent: 1em;
+    font-size: 17px;
+}
+
+
+
+
+#monitor .se-cont {
+   /** background: rgba(0, 0, 0, 0.6);*/
+
+}
+
+#monitor img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+/**********table***/
+
+
+#monitor table {
+    width: 100%;
+}
+#monitor table,
+tr,
+td {
+    border-collapse: collapse;
+    text-indent: .3em;
+    font-size: 12px;
+    color: #DDD;
+}
+
+#monitor table tr {
+    height: 25px;
+    text-align: center;
+
+}
+
+
+/*应急管理--报警预警--右侧窗口*/
+
+#alarm_warning_box {
+    width: 400px;
+    /*height: calc(100% - 50px);*/
+    z-index: 99999;
+    position: absolute;
+    top: 130px;
+    right: 20px;
+   display: none;
+    /*height: 100%;*/
+    /*background-color: rgba(0, 155, 0, .25);*/
+}
+
+#alarm_warning_box .se-area {
+    width: 100%;
+    padding: 5px;
+    background: rgba(0, 0, 0, .8);
+    box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+#alarm_warning_box .se-title {
+    height: 40px;
+    line-height: 30px;
+    color: white;
+    text-indent: 1em;
+    font-size: 17px;
+}
+
+
+
+
+#alarm_warning_box .se-cont {
+   /** background: rgba(0, 0, 0, 0.6);*/
+
+}
+
+#alarm_warning_box img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+/**********table***/
+
+
+#alarm_warning_box table {
+    width: 100%;
+}
+#alarm_warning_box table,
+tr,
+td {
+    border-collapse: collapse;
+    text-indent: .3em;
+    font-size: 12px;
+    color: #DDD;
+}
+
+#alarm_warning_box table tr {
+    height: 25px;
+    text-align: center;
+
+}
+
+
+
+
+
+
+
+

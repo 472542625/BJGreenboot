@@ -52,7 +52,7 @@
 
 
 
-		<!--postgresql 123-->
+		<!--postgresql-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>

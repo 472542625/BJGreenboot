@@ -1,0 +1,561 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- jq-->
+    <script type="text/javascript" src="<%=path%>/lib/jquery/jquery-3.3.1.min.js"></script>
+    <!--bootstrap3-->
+    <script src="<%=path%>/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="<%=path%>/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <!--图标
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">-->
+
+    <!--openlayer4 -->
+    <script src="<%=path%>/lib/ol4/v4.6.4/v4.6.4/build/ol.js"></script>
+    <link rel="stylesheet" href="<%=path%>/lib/ol4/v4.6.4/v4.6.4/css/ol.css">
+
+    <!--绿化专题-->
+    <script src="<%=path%>/page/topic/examination_plan/BJ_green84_jz1_layer.js"></script>
+    <script src="<%=path%>/page/topic/examination_plan/BJ_lhfg_layer.js"></script>
+    <script src="<%=path%>/page/topic/examination_plan/BJ_ldl_layer.js"></script>
+    <script src="<%=path%>/page/topic/examination_plan/BJ_Graden_500Mbuffer_layer.js"></script>
+    <script src="<%=path%>/page/topic/examination_plan/BJ_luliang.js"></script>
+
+    <script src="<%=path%>/page/topic/examination_plan/olmap_init.js"></script>
+
+    <!--图标
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">-->
+
+
+    <!--自定义样式-->
+    <link rel="stylesheet" href="<%=path%>/css/mlayui.css">
+    <link rel="stylesheet" href="<%=path%>/css/layui_rightbox.css">
+
+</head>
+
+<body style="width:100%; overflow:hidden; height:1100px;background-image: url('<%=path%>/images/bg/bg2.jpg');background-repeat:no-repeat; background-size:100% 100%;
+">
+
+
+<div class="row">
+    <div class="col-md-2"
+         style=" font-size:29px; font-family:Microsoft YaHei  ;cursor:pointer;text-align:left">
+        <div style="position: relative;left: 10px;color: white"><i
+                class="fa fa-graduation-cap" style="font-size:36px;"></i>监测及决策
+
+        </div>
+    </div>
+    <div class="col-md-10"
+         style=" font-size:24px;font-family:STKaiti  ;cursor:pointer;text-align:right;line-height: 200%">
+        <div style="position: relative;left: -10px;color: white; "><a href="<%=path%>/page/gis_main/mlayui.jsp"
+                                                                      style=" text-decoration:none;color: white;position:relative;right: 20px">GIS系统</a>
+
+            <!--&lt;!&ndash;<a id="green_rate" style=" text-decoration:none;color: white">绿视率</a> &ndash;&gt;-->
+
+            <!--<a id="BJ_lhfg"-->
+                                                                                     <!--style=" text-decoration:none;color: white">绿化覆盖率</a>-->
+            <!--<a id="BJ_ldl" style=" text-decoration:none;color: white">绿地率</a> <a id="BJ_Graden_500mbuffer"-->
+                                                                                 <!--style=" text-decoration:none;color: white">公园绿地500米辐射范围</a>-->
+            <!--<a id="green_count" style=" text-decoration:none;color: white">绿量</a> -->
+            <a
+                    style=" text-decoration:none;color: white;position:relative;right: 10px">系统管理       </a> 2018年7月18 pm3:40
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-4"
+         style="position: relative; padding-bottom: 80%;
+            height: 0;
+           overflow: hidden; ">
+        <div id="map1" style="width: 100%;height:1200px">
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <div id="BJ_ldl_legend1" class="legend"
+                 style="position: absolute; z-index: 99999;top: 10px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;;color: white;display: none">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿地率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:rgb(236,252,204)"></i></td>
+                        <td>0~7</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(218,240,158)"></i></td>
+                        <td>7~20</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(199,227,113)"></i></td>
+                        <td>20~40</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(180,217,69)"></i></td>
+                        <td>40~70</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(157,204,16)"></i></td>
+                        <td>70~100</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <div id="green_rate_legend1" class="legend"
+                 style="position: absolute; z-index: 99999;top: 150px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿视率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:#B0E000"></i></td>
+                        <td>很好(>35%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#FFAA01"></i></td>
+                        <td>较好(25%-35%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#38A700"></i></td>
+                        <td>一般(15%-25%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#FE0000"></i></td>
+                        <td>较差(0-15%)</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <div id="BJ_lhfg_legend1" class="legend"
+                 style="position: absolute; z-index: 99999;top: 10px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿化覆盖率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:rgb(204,255,204)"></i></td>
+                        <td>0~10</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(164,245,157)"></i></td>
+                        <td>10~30</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(123,232,111)"></i></td>
+                        <td>30~60</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(77,217,67)"></i></td>
+                        <td>60~90</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(14,204,14)"></i></td>
+                        <td>90~400</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="select_year_layer1" style="position:absolute;left: 100px;top:20px;z-index: 999"><select>
+                <option value="volvo">2017年</option>
+                <option value="saab">2016年</option>
+                <option value="saab">2018年</option>
+            </select></div>
+
+            <div id="layer_select1"
+                 style="position: absolute; z-index: 99999;top:50px ;left: 98px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.01);padding: 10px;color: white;">
+                <table>
+
+                    <tbody>
+                    <tr>
+
+
+                        <td width="50" style="position:relative;left: -10px;"><input type="checkbox" id="BJ_green84_jz1_checkbox1" ></td>
+                        <td style="position:relative;left: -10px">绿视率</td>
+                    </tr>
+                    <tr>
+
+
+                        <td width="50" style="position:relative;left: -10px;"><input type="checkbox" id="BJ_lhfg_checkbox1"></td>
+                        <td style="position:relative;left: -10px">绿化覆盖率</td>
+                    </tr>
+                    <tr>
+
+
+                        <td width="50" style="position:relative;left: -10px;"><input type="checkbox" id="BJ_ldl_checkbox1" checked="checked"></td>
+                        <td style="position:relative;left: -10px">绿地率</td>
+                    </tr>
+                    <tr>
+
+
+                        <td width="50" style="position:relative;left: -10px;"><input type="checkbox" id="BJ_Graden_500Mbuffer_checkbox1"></td>
+                        <td style="position:relative;left: -10px">公园500米辐射范围</td>
+                    </tr>
+                    <tr>
+
+
+                        <td width="50" style="position:relative;left: -10px;"><input type="checkbox" id="BJ_luliang_checkbox1"></td>
+                        <td style="position:relative;left: -10px">绿量</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="map1_info" style="position:absolute;width: 95.5%;height: 80px;background-color: rgba(219,238,255,0.5);top: 50%;z-index: 1200;font-family: Microsoft YaHei ;font-size: 25px;text-align: center">
+
+2017年绿地面积为1071公顷<br>绿地率为25.58%
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-md-4"
+         style=" position: relative; padding-bottom: 80%;
+            height: 0;
+           overflow: hidden;  ">
+
+        <div id="map2" style="width: 100%;height:1200px">
+
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <div id="BJ_ldl_legend2" class="legend"
+                 style="position: absolute; z-index: 99999;top: 10px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;;color: white;display: none">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿地率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:rgb(236,252,204)"></i></td>
+                        <td>0~7</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(218,240,158)"></i></td>
+                        <td>7~20</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(199,227,113)"></i></td>
+                        <td>20~40</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(180,217,69)"></i></td>
+                        <td>40~70</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(157,204,16)"></i></td>
+                        <td>70~100</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <div id="green_rate_legend2" class="legend"
+                 style="position: absolute; z-index: 99999;top: 150px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿视率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:#B0E000"></i></td>
+                        <td>很好(>35%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#FFAA01"></i></td>
+                        <td>较好(25%-35%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#38A700"></i></td>
+                        <td>一般(15%-25%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#FE0000"></i></td>
+                        <td>较差(0-15%)</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <div id="BJ_lhfg_legend2" class="legend"
+                 style="position: absolute; z-index: 99999;top: 10px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿化覆盖率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:rgb(204,255,204)"></i></td>
+                        <td>0~10</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(164,245,157)"></i></td>
+                        <td>10~30</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(123,232,111)"></i></td>
+                        <td>30~60</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(77,217,67)"></i></td>
+                        <td>60~90</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(14,204,14)"></i></td>
+                        <td>90~400</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="select_year_layer2" style="position:absolute;left: 100px;top:20px;z-index: 999">
+
+
+                <select>
+                    <option value="volvo">2018年</option>
+                    <option value="saab">2016年</option>
+                    <option value="saab">2017年</option>
+                </select>
+
+
+
+            </div>
+
+            <div id="map2_info" style="position:absolute;width: 95.5%;height: 80px;background-color: rgba(219,238,255,0.5);top: 50%;z-index: 1200;font-family: Microsoft YaHei ;font-size: 25px;text-align: center">
+
+                2018年绿地面积为1090公顷<br>绿地率为26.31%
+
+            </div>
+            <!--<div id="layer_select2"-->
+                 <!--style="position: absolute; z-index: 99999;top:200px ;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.01);padding: 10px;color: white;">-->
+                <!--<table>-->
+
+                    <!--<tbody>-->
+                    <!--<tr>-->
+
+
+                        <!--<td width="50" style="position:relative;left: -10px;"><input type="checkbox" id="green_rate_checkbox2"></td>-->
+                        <!--<td style="position:relative;left: -10px">绿视率</td>-->
+                    <!--</tr>-->
+
+
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+
+    <div class="col-md-4"
+         style=" position: relative; padding-bottom: 80%;
+            height: 0;
+           overflow: hidden;  ">
+
+        <div id="map3" style="width: 100%;height:1200px">
+
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <!--绿地率图例栏-->
+            <div id="BJ_ldl_legend3" class="legend"
+                 style="position: absolute; z-index: 99999;top: 10px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;;color: white;display: none">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿地率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:rgb(236,252,204)"></i></td>
+                        <td>0~7</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(218,240,158)"></i></td>
+                        <td>7~20</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(199,227,113)"></i></td>
+                        <td>20~40</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(180,217,69)"></i></td>
+                        <td>40~70</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(157,204,16)"></i></td>
+                        <td>70~100</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <!--绿视率图例栏-->
+            <div id="green_rate_legend3" class="legend"
+                 style="position: absolute; z-index: 99999;top: 150px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿视率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:#B0E000"></i></td>
+                        <td>很好(>35%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#FFAA01"></i></td>
+                        <td>较好(25%-35%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#38A700"></i></td>
+                        <td>一般(15%-25%)</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:#FE0000"></i></td>
+                        <td>较差(0-15%)</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <!--绿化覆盖率图例栏-->
+            <div id="BJ_lhfg_legend3" class="legend"
+                 style="position: absolute; z-index: 99999;top: 10px;right: 20px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th colspan="2">绿化覆盖率(单位:%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="50"><i style="background:rgb(204,255,204)"></i></td>
+                        <td>0~10</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(164,245,157)"></i></td>
+                        <td>10~30</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(123,232,111)"></i></td>
+                        <td>30~60</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(77,217,67)"></i></td>
+                        <td>60~90</td>
+                    </tr>
+                    <tr>
+                        <td><i style="background:rgb(14,204,14)"></i></td>
+                        <td>90~400</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="select_year_layer3" style="position:absolute;left: 100px;top:20px;z-index: 999">
+
+
+                <select>
+                    <option value="volvo">规划</option>
+                    <option value="saab">2016年</option>
+                </select>
+
+
+
+            </div>
+            <div id="map3_info" style="position:absolute;width: 95.5%;height: 80px;background-color: rgba(219,238,255,0.5);top: 50%;z-index: 1200;font-family: Microsoft YaHei ;font-size: 25px;text-align: center">
+
+                2020年规划绿地面积为1491公顷<br>规划绿地率为26.31%
+
+            </div>
+        
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+
+
+</html>

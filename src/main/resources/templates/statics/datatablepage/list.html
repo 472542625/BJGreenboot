@@ -1,0 +1,565 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+
+    pageContext.setAttribute("basePath", basePath);
+%>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <!-- jq-->
+    <script type="text/javascript"
+            src="${basePath}/lib/jquery/jquery-3.3.1.min.js"></script>
+
+    <link rel="stylesheet" href="${basePath}/lib/layui/css/layui.css">
+    <script type="text/javascript" src="${basePath}/lib/layui/layui.js"></script>
+    <!--bootstrap3-->
+    <script
+            src="${basePath}/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet"
+          href="${basePath}/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+
+
+    <script src="${basePath}/page/statics/datatablepage/list.js"></script>
+    <script src="${basePath}/page/statics/datatablepage/edit.js"></script>
+    <script src="${basePath}/page/statics/datatablepage/delete.js"></script>
+    <script src="${basePath}/page/statics/datatablepage/add.js"></script>
+
+
+    <title>空间数据管理</title>
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!--
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        -->
+
+</head>
+
+<body>
+<!-- 批量修改模块 -->
+<div class="modal fade" id="pointBatchEditModal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">批量数据修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="pointx_batchedit_input"
+                               class="col-sm-2 control-label">经度</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="x"
+                                   id="pointx_batchedit_input" placeholder="经度">
+                        </div>
+                        <label for="pointy_batchedit_input"
+                               class="col-sm-2 control-label">纬度</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="y"
+                                   id="pointy_batchedit_input" placeholder="纬度">
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pointarea_batchedit_input"
+                               class="col-sm-2 control-label">地区</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="area"
+                                   id="pointarea_batchedit_input" placeholder="地区">
+                        </div>
+                        <label for="pointcontractor_batchedit_input"
+                               class="col-sm-2 control-label">承包人</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractor"
+                                   id="pointcontractor_batchedit_input" placeholder="承包人">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pointcontractorid_batchedit_input"
+                               class="col-sm-2 control-label">承包编号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointcontractorid_batchedit_input" placeholder="承包编号">
+                        </div>
+                        <label for="pointvisitage_batchedit_input"
+                               class="col-sm-2 control-label">访问龄</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointvisitage_batchedit_input" placeholder="访问龄">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pointtreeage_batchedit_input"
+                               class="col-sm-2 control-label">树龄</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treeage"
+                                   id="pointtreeage_batchedit_input" placeholder="树龄">
+                        </div>
+                        <label for="pointtreeheight_batchedit_input"
+                               class="col-sm-2 control-label">树高</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointtreeheight_batchedit_input" placeholder="树高">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="pointgrounddiameter_batchedit_input"
+                               class="col-sm-2 control-label">地径</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treeage"
+                                   id="pointgrounddiameter_batchedit_input" placeholder="地径">
+                        </div>
+                        <label for="pointtreearea_batchedit_input"
+                               class="col-sm-2 control-label">树冠面积</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treearea"
+                                   id="pointtreearea_batchedit_input" placeholder="树冠面积">
+                        </div>
+
+                    </div>
+
+
+                    <!-- gid,oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,geom -->
+                    <div class="form-group">
+                        <label for="pointTreespeciesBatchEdit_select"
+                               class="col-sm-2 control-label">树种</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="treespeciesId"
+                                    id="pointTreespeciesBatchEdit_select">
+
+                            </select>
+                        </div>
+                        <label for="pointgrowingPotentialBatchEdit_select"
+                               class="col-sm-2 control-label">生长势</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="gpId"
+                                    id="pointgrowingPotentialBatchEdit_select">
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary"
+                        id="point_Batchupdate_Btn">保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 员工修改模块 -->
+<div class="modal fade" id="pointEditModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">数据修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="pointx_edit_input" class="col-sm-2 control-label">经度</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="x"
+                                   id="pointx_edit_input" placeholder="经度">
+                        </div>
+                        <label for="pointy_edit_input" class="col-sm-2 control-label">纬度</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="y"
+                                   id="pointy_edit_input" placeholder="纬度">
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pointarea_edit_input" class="col-sm-2 control-label">地区</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="area"
+                                   id="pointarea_edit_input" placeholder="地区">
+                        </div>
+                        <label for="pointcontractor_edit_input"
+                               class="col-sm-2 control-label">承包人</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractor"
+                                   id="pointcontractor_edit_input" placeholder="承包人">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pointcontractorid_edit_input"
+                               class="col-sm-2 control-label">地区编号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointcontractorid_edit_input" placeholder="承包编号">
+                        </div>
+                        <label for="pointvisitage_edit_input"
+                               class="col-sm-2 control-label">访问龄</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointvisitage_edit_input" placeholder="访问龄">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pointtreeage_edit_input"
+                               class="col-sm-2 control-label">树龄</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treeage"
+                                   id="pointtreeage_edit_input" placeholder="树龄">
+                        </div>
+                        <label for="pointtreeheight_edit_input"
+                               class="col-sm-2 control-label">树高</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointtreeheight_edit_input" placeholder="树高">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="pointgrounddiameter_edit_input"
+                               class="col-sm-2 control-label">地径</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treeage"
+                                   id="pointgrounddiameter_edit_input" placeholder="地径">
+                        </div>
+                        <label for="pointtreearea_edit_input"
+                               class="col-sm-2 control-label">树冠面积</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treearea"
+                                   id="pointtreearea_edit_input" placeholder="树冠面积">
+                        </div>
+
+                    </div>
+
+
+                    <!-- gid,oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,geom -->
+                    <div class="form-group">
+                        <label for="pointTreespeciesEdit_select"
+                               class="col-sm-2 control-label">树种</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="treespeciesId"
+                                    id="pointTreespeciesEdit_select">
+
+                            </select>
+                        </div>
+                        <label for="pointgrowingPotentialEdit_select"
+                               class="col-sm-2 control-label">生长势</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="gpId"
+                                    id="pointgrowingPotentialEdit_select">
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="point_update_Btn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal数据添加弹出框 -->
+<div class="modal fade" id="pointAddModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">数据添加</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="pointx_add_input" class="col-sm-2 control-label">经度</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="x"
+                                   id="pointx_add_input" placeholder="经度">
+                        </div>
+                        <label for="pointy_add_input" class="col-sm-2 control-label">纬度</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="y"
+                                   id="pointy_add_input" placeholder="纬度">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pointarea_add_input" class="col-sm-2 control-label">地区</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="area"
+                                   id="pointarea_add_input" placeholder="地区">
+                        </div>
+                        <label for="pointcontractor_add_input"
+                               class="col-sm-2 control-label">承包人</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractor"
+                                   id="pointcontractor_add_input" placeholder="承包人">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pointcontractorid_add_input"
+                               class="col-sm-2 control-label">地区编号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="contractorid"
+                                   id="pointcontractorid_add_input" placeholder="地区编号">
+                        </div>
+                        <label for="pointvisitage_add_input"
+                               class="col-sm-2 control-label">访问龄</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="visitage"
+                                   id="pointvisitage_add_input" placeholder="访问龄">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pointtreeage_add_input"
+                               class="col-sm-2 control-label">树龄</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treeage"
+                                   id="pointtreeage_add_input" placeholder="树龄">
+                        </div>
+                        <label for="pointtreeheight_add_input"
+                               class="col-sm-2 control-label">树高</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treeheight"
+                                   id="pointtreeheight_add_input" placeholder="树高">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="pointgrounddiameter_add_input"
+                               class="col-sm-2 control-label">地径</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="grounddiameter"
+                                   id="pointgrounddiameter_add_input" placeholder="地径">
+                        </div>
+                        <label for="pointtreearea_add_input"
+                               class="col-sm-2 control-label">树冠面积</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="treearea"
+                                   id="pointtreearea_add_input" placeholder="树冠面积">
+                        </div>
+
+                    </div>
+
+
+                    <!-- gid,oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,geom -->
+                    <div class="form-group">
+                        <label for="pointTreespeciesAdd_select"
+                               class="col-sm-2 control-label">树种</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="treespeciesId"
+                                    id="pointTreespeciesAdd_select">
+
+                            </select>
+                        </div>
+                        <label for="pointgrowingPotentialAdd_select"
+                               class="col-sm-2 control-label">生长势</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="gpId"
+                                    id="pointgrowingPotentialAdd_select">
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="point_add_Btn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 分页数据显示模块-->
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12  ">
+            <h1>统计分析</h1>
+            <ul class="nav nav-list">
+                <li class="divider"></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <form class="form-horizontal" id="statics_select_form" >
+            <div class="form-group">
+                <div class="col-md-1">
+                    <label for="greentype1"
+                           class="control-label text-center">绿地类型</label>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" name="greentype1"
+                            id="greentype1">
+                    </select>
+                </div>
+                <label for="greentype"
+                       class="col-md-1 control-label">绿地性质</label>
+                <div class="col-md-2">
+                    <select class="form-control" name="greentype"
+                            id="greentype">
+                    </select>
+                </div>
+                <label for="street"
+                       class="col-md-1 control-label">街道</label>
+                <div class="col-md-2">
+                    <select class="form-control" name="street"
+                            id="street">
+                    </select>
+                </div>
+                <label for="greenname"
+                       class="col-md-1 control-label text-center">名称</label>
+                <div class="col-md-2">
+                    <select class="form-control" name="greenname"
+                            id="greenname">
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-11 "></div>
+
+                    <div class="col-md-1 ">
+                        <button type="button"  class="btn btn-primary" id="statics_select_Btn">查询</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover" id="points_table"
+                       style="cursor:pointer">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="check_all"/></th>
+                        <th  >编号</th>
+                        <th >街道</th>
+                        <th >面积</th>
+                        <th>个数</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <!--  oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,st_asgeojson(st_astext(geom))
+        as geom-->
+
+                </table>
+            </div>
+
+        </div>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-md-6" id="page_info_area"></div>
+
+            <div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>
+        </div>
+    </div>
+</div>
+</div>
+    <script type="text/javascript">
+        $(function () {
+
+            $("#check_all").click(function () {
+
+                //prop获取原生属性，attr获取自定义属性
+
+                $(".check_item").prop("checked", $(this).prop("checked"));
+            })
+
+            //判断当前选中的元素是不是选满了，满选check_all也勾上
+            $("#check_item")
+                .click(
+                    function () {
+                        //prop获取原生属性，attr获取自定义属性
+                        var flag = $(".check_item:checked").length == $(".check_item").length;
+                        if (flag) {
+
+                            $("#check_item").prop("checked", flag);
+
+                        }
+                    })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.web.resource.dao.bj_tbpMapper">
+  <resultMap id="BaseResultMap" type="com.lc.web.resource.entity.bj_tbp">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="green_id" jdbcType="VARCHAR" property="greenId" />
+    <result column="map_area" jdbcType="NUMERIC" property="mapArea" />
+    <result column="greentype" jdbcType="VARCHAR" property="greentype" />
+    <result column="sum_lvdi" jdbcType="NUMERIC" property="sumLvdi" />
+    <result column="sumlhf" jdbcType="NUMERIC" property="sumlhf" />
+    <result column="lvdir" jdbcType="NUMERIC" property="lvdir" />
+    <result column="fugair" jdbcType="NUMERIC" property="fugair" />
+    <result column="orig_fid" jdbcType="INTEGER" property="origFid" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    gid, green_id, map_area, greentype, sum_lvdi, sumlhf, lvdir, fugair, orig_fid, st_astext(geom) as geom
+  </sql>
+  <select id="selectByExample" parameterType="com.lc.web.resource.entity.bj_tbpExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bj_tbp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bj_tbp
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bj_tbp
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lc.web.resource.entity.bj_tbpExample">
+    delete from bj_tbp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lc.web.resource.entity.bj_tbp">
+    insert into bj_tbp (gid, green_id, map_area, 
+      greentype, sum_lvdi, sumlhf, 
+      lvdir, fugair, orig_fid, 
+      geom)
+    values (#{gid,jdbcType=INTEGER}, #{greenId,jdbcType=VARCHAR}, #{mapArea,jdbcType=NUMERIC}, 
+      #{greentype,jdbcType=VARCHAR}, #{sumLvdi,jdbcType=NUMERIC}, #{sumlhf,jdbcType=NUMERIC}, 
+      #{lvdir,jdbcType=NUMERIC}, #{fugair,jdbcType=NUMERIC}, #{origFid,jdbcType=INTEGER}, 
+      #{geom,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.web.resource.entity.bj_tbp">
+    insert into bj_tbp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="greenId != null">
+        green_id,
+      </if>
+      <if test="mapArea != null">
+        map_area,
+      </if>
+      <if test="greentype != null">
+        greentype,
+      </if>
+      <if test="sumLvdi != null">
+        sum_lvdi,
+      </if>
+      <if test="sumlhf != null">
+        sumlhf,
+      </if>
+      <if test="lvdir != null">
+        lvdir,
+      </if>
+      <if test="fugair != null">
+        fugair,
+      </if>
+      <if test="origFid != null">
+        orig_fid,
+      </if>
+      <if test="geom != null">
+        geom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="greenId != null">
+        #{greenId,jdbcType=VARCHAR},
+      </if>
+      <if test="mapArea != null">
+        #{mapArea,jdbcType=NUMERIC},
+      </if>
+      <if test="greentype != null">
+        #{greentype,jdbcType=VARCHAR},
+      </if>
+      <if test="sumLvdi != null">
+        #{sumLvdi,jdbcType=NUMERIC},
+      </if>
+      <if test="sumlhf != null">
+        #{sumlhf,jdbcType=NUMERIC},
+      </if>
+      <if test="lvdir != null">
+        #{lvdir,jdbcType=NUMERIC},
+      </if>
+      <if test="fugair != null">
+        #{fugair,jdbcType=NUMERIC},
+      </if>
+      <if test="origFid != null">
+        #{origFid,jdbcType=INTEGER},
+      </if>
+      <if test="geom != null">
+        #{geom,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lc.web.resource.entity.bj_tbpExample" resultType="java.lang.Long">
+    select count(*) from bj_tbp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bj_tbp
+    <set>
+      <if test="record.gid != null">
+        gid = #{record.gid,jdbcType=INTEGER},
+      </if>
+      <if test="record.greenId != null">
+        green_id = #{record.greenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mapArea != null">
+        map_area = #{record.mapArea,jdbcType=NUMERIC},
+      </if>
+      <if test="record.greentype != null">
+        greentype = #{record.greentype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sumLvdi != null">
+        sum_lvdi = #{record.sumLvdi,jdbcType=NUMERIC},
+      </if>
+      <if test="record.sumlhf != null">
+        sumlhf = #{record.sumlhf,jdbcType=NUMERIC},
+      </if>
+      <if test="record.lvdir != null">
+        lvdir = #{record.lvdir,jdbcType=NUMERIC},
+      </if>
+      <if test="record.fugair != null">
+        fugair = #{record.fugair,jdbcType=NUMERIC},
+      </if>
+      <if test="record.origFid != null">
+        orig_fid = #{record.origFid,jdbcType=INTEGER},
+      </if>
+      <if test="record.geom != null">
+        geom = #{record.geom,jdbcType=OTHER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bj_tbp
+    set gid = #{record.gid,jdbcType=INTEGER},
+      green_id = #{record.greenId,jdbcType=VARCHAR},
+      map_area = #{record.mapArea,jdbcType=NUMERIC},
+      greentype = #{record.greentype,jdbcType=VARCHAR},
+      sum_lvdi = #{record.sumLvdi,jdbcType=NUMERIC},
+      sumlhf = #{record.sumlhf,jdbcType=NUMERIC},
+      lvdir = #{record.lvdir,jdbcType=NUMERIC},
+      fugair = #{record.fugair,jdbcType=NUMERIC},
+      orig_fid = #{record.origFid,jdbcType=INTEGER},
+      geom = #{record.geom,jdbcType=OTHER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.web.resource.entity.bj_tbp">
+    update bj_tbp
+    <set>
+      <if test="greenId != null">
+        green_id = #{greenId,jdbcType=VARCHAR},
+      </if>
+      <if test="mapArea != null">
+        map_area = #{mapArea,jdbcType=NUMERIC},
+      </if>
+      <if test="greentype != null">
+        greentype = #{greentype,jdbcType=VARCHAR},
+      </if>
+      <if test="sumLvdi != null">
+        sum_lvdi = #{sumLvdi,jdbcType=NUMERIC},
+      </if>
+      <if test="sumlhf != null">
+        sumlhf = #{sumlhf,jdbcType=NUMERIC},
+      </if>
+      <if test="lvdir != null">
+        lvdir = #{lvdir,jdbcType=NUMERIC},
+      </if>
+      <if test="fugair != null">
+        fugair = #{fugair,jdbcType=NUMERIC},
+      </if>
+      <if test="origFid != null">
+        orig_fid = #{origFid,jdbcType=INTEGER},
+      </if>
+      <if test="geom != null">
+        geom = #{geom,jdbcType=OTHER},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.web.resource.entity.bj_tbp">
+    update bj_tbp
+    set green_id = #{greenId,jdbcType=VARCHAR},
+      map_area = #{mapArea,jdbcType=NUMERIC},
+      greentype = #{greentype,jdbcType=VARCHAR},
+      sum_lvdi = #{sumLvdi,jdbcType=NUMERIC},
+      sumlhf = #{sumlhf,jdbcType=NUMERIC},
+      lvdir = #{lvdir,jdbcType=NUMERIC},
+      fugair = #{fugair,jdbcType=NUMERIC},
+      orig_fid = #{origFid,jdbcType=INTEGER},
+      geom = #{geom,jdbcType=OTHER}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>

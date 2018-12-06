@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 我不喜欢用别名，这个mapper的namespace属性表示对应映射的com.web.test.dao.StudentMapper，里面的list方法和StudentMapper里面的方法同名 -->
+<!-- Point.xml需要和PointMapper放在同一个包下面，并且namespace必须写PointMapper的完整类名 -->
+<mapper namespace="com.lc.web.resource.dao.bj_yj_jkd_PointMapper">
+	<sql id="Base_Column_List">
+
+	</sql>
+
+	<!-- <resultMap type="com.lc.web.resource.entity.TemperatureZone"
+		id="TemperatureZone"> <id column="tempid" jdbcType="INTEGER" property="tempid" 
+		/> <result column="tempname" jdbcType="VARCHAR" property="tempname" /> <result 
+		column="treespecies" jdbcType="VARCHAR" property="treespecies" /> </resultMap> -->
+	<resultMap type="com.lc.web.resource.entity.bj_yj_jkd_Point"
+		id="bj_yj_jkd_PointList">
+		<id column="gid" jdbcType="INTEGER" property="gid" />
+		<result column="temp" jdbcType="VARCHAR" property="temp" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="yj_temp" jdbcType="DOUBLE" property="yj_temp" />
+		<result column="geom" jdbcType="VARCHAR" property="geom" />
+	</resultMap>
+
+	<resultMap type="com.lc.web.resource.entity.bj_yj_wz_Point"
+		id="bj_yj_wz_PointList">
+		<id column="gid" jdbcType="INTEGER" property="gid" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="jhc" jdbcType="INTEGER" property="jhc" />
+		<result column="mhq" jdbcType="INTEGER" property="mhq" />
+		<result column="zp" jdbcType="INTEGER" property="zp" />
+		<result column="geom" jdbcType="VARCHAR" property="geom" />
+		<result column="distance" jdbcType="INTEGER" property="distance" />
+	</resultMap>
+
+	<resultMap type="com.lc.web.resource.entity.bj_yj_space_Point"
+		id="bj_yj_space_PointList">
+		<id column="gid" jdbcType="INTEGER" property="gid" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="area" jdbcType="INTEGER" property="area" />
+		<result column="population" jdbcType="INTEGER" property="population" />
+		<result column="bz" jdbcType="VARCHAR" property="bz" />
+		<result column="geom" jdbcType="VARCHAR" property="geom" />
+		<result column="distance" jdbcType="INTEGER" property="distance" />
+	</resultMap>
+
+	<select id="listpointByBuffer" parameterType="int"
+		resultMap="bj_yj_wz_PointList">
+		select jhc,mhq,zp,gid,name,st_astext(geom) as
+		geom,ST_Distance as distance from
+		(select jhc,mhq,zp,gid,name,geom
+		,st_contains
+
+		(st_buffer( (st_astext
+		(st_transform
+		(st_geometryfromtext((select st_astext(geom) from bj_yj_jkd where gid
+		=#{gid} ),4326),3857)
+		)
+		),1000),
+
+		st_geometryfromtext
+		(st_astext
+		(st_transform
+		(st_geometryfromtext(st_astext(geom),4326),3857)
+		)
+		)
+		),
+		ST_Distance(
+		(st_transform
+		(st_geometryfromtext(( st_astext(geom)
+		),4326),3857)
+		)
+		,(select (st_transform
+		(st_geometryfromtext((
+		st_astext(geom) ),4326),3857)
+		) from bj_yj_jkd where gid=#{gid}))
+		from
+		bj_yj_wz)
+		as a where st_contains = 't'
+	</select>
+
+
+
+	<select id="list_bj_yj_jkd_pointAll" resultMap="bj_yj_jkd_PointList">
+		select
+		gid,temp,name,yj_temp,st_astext(geom)as geom from bj_yj_jkd
+	</select>
+
+	<select id="list_bj_yj_wz_pointAll" resultMap="bj_yj_wz_PointList">
+		select
+		gid,name,jhc,mhq,zp,st_astext(geom)as geom from bj_yj_wz
+	</select>
+
+	<select id="list_bj_yj_space_pointAll" resultMap="bj_yj_space_PointList">
+		select
+		gid,name,area,population,bz,st_astext(geom)as geom from bj_yj_space
+	</select>
+
+
+
+
+
+
+</mapper>

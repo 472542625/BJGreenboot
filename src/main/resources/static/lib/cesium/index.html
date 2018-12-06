@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8">
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>HelloWorld</title>
+    <script src="Build/Cesium/Cesium.js"></script>
+    <style>
+        @import url(Build/Cesium/Widgets/widgets.css);
+        html,
+        body,
+        #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+            baseLayerPicker: false, //背景选项
+            timeline: false,
+             homeButton:false,
+            fullscreenButton: false,
+             infoBox:false, ////是否显示点击要素后显示信息
+             sceneModePicker:false,
+             navigationInstructionsInitiallyVisible:false,
+            navigationHelpButton: false,
+             geocoder:false,
+            animation: false,
+             selectionIndicator:false,
+            vrButton:false
+        });
+        var tileset = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+            url: 'Build/Cesium/Assets/Tileset.json',
+            //maximumScreenSpaceError: 2,
+            //maximumNumberOfLoadedTiles: 100,
+        }));
+
+        tileset.readyPromise.then(function (tileset) {
+            viewer.scene.primitives.add(tileset);
+            viewer.zoomTo(tileset, new Cesium.HeadingPitchRange(0.5, -0.2, tileset.boundingSphere.radius * 4.0));
+        }).otherwise(function (error) {
+            console.log(error);
+        });
+
+        viewer._cesiumWidget._creditContainer.style.display = "none";
+    </script>
+</body>
+
+</html>

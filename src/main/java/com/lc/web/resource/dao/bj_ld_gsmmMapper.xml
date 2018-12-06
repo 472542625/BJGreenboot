@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.web.resource.dao.bj_ld_gsmmMapper">
+  <resultMap id="BaseResultMap" type="com.lc.web.resource.entity.bj_ld_gsmm">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="ordinate" jdbcType="DOUBLE" property="ordinate" />
+    <result column="abscisa" jdbcType="DOUBLE" property="abscisa" />
+    <result column="treeid" jdbcType="VARCHAR" property="treeid" />
+    <result column="treetype" jdbcType="VARCHAR" property="treetype" />
+    <result column="town" jdbcType="VARCHAR" property="town" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="height" jdbcType="NUMERIC" property="height" />
+    <result column="diameter" jdbcType="NUMERIC" property="diameter" />
+    <result column="crown" jdbcType="NUMERIC" property="crown" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="environmen" jdbcType="VARCHAR" property="environmen" />
+    <result column="ghdw" jdbcType="VARCHAR" property="ghdw" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="hl" jdbcType="VARCHAR" property="hl" />
+    <result column="zc" jdbcType="VARCHAR" property="zc" />
+    <result column="fdsd" jdbcType="VARCHAR" property="fdsd" />
+    <result column="sc" jdbcType="VARCHAR" property="sc" />
+    <result column="sg" jdbcType="VARCHAR" property="sg" />
+    <result column="oldnum" jdbcType="VARCHAR" property="oldnum" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    gid, ordinate, abscisa, treeid, treetype, town, location, height, diameter, crown, 
+    state, environmen, ghdw, owner, level, hl, zc, fdsd, sc, sg, oldnum, st_astext(geom) as geom
+  </sql>
+  <select id="selectByExample" parameterType="com.lc.web.resource.entity.bj_ld_gsmmExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bj_ld_gsmm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bj_ld_gsmm
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByLimit1000" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bj_ld_gsmm limit 1000;
+ 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bj_ld_gsmm
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lc.web.resource.entity.bj_ld_gsmmExample">
+    delete from bj_ld_gsmm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lc.web.resource.entity.bj_ld_gsmm">
+    insert into bj_ld_gsmm (gid, ordinate, abscisa, 
+      treeid, treetype, town, 
+      location, height, diameter, 
+      crown, state, environmen, 
+      ghdw, owner, level, 
+      hl, zc, fdsd, sc, 
+      sg, oldnum, geom)
+    values (#{gid,jdbcType=INTEGER}, #{ordinate,jdbcType=DOUBLE}, #{abscisa,jdbcType=DOUBLE}, 
+      #{treeid,jdbcType=VARCHAR}, #{treetype,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{height,jdbcType=NUMERIC}, #{diameter,jdbcType=NUMERIC}, 
+      #{crown,jdbcType=NUMERIC}, #{state,jdbcType=VARCHAR}, #{environmen,jdbcType=VARCHAR}, 
+      #{ghdw,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{hl,jdbcType=VARCHAR}, #{zc,jdbcType=VARCHAR}, #{fdsd,jdbcType=VARCHAR}, #{sc,jdbcType=VARCHAR}, 
+      #{sg,jdbcType=VARCHAR}, #{oldnum,jdbcType=VARCHAR}, #{geom,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.web.resource.entity.bj_ld_gsmm">
+    insert into bj_ld_gsmm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="ordinate != null">
+        ordinate,
+      </if>
+      <if test="abscisa != null">
+        abscisa,
+      </if>
+      <if test="treeid != null">
+        treeid,
+      </if>
+      <if test="treetype != null">
+        treetype,
+      </if>
+      <if test="town != null">
+        town,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="diameter != null">
+        diameter,
+      </if>
+      <if test="crown != null">
+        crown,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="environmen != null">
+        environmen,
+      </if>
+      <if test="ghdw != null">
+        ghdw,
+      </if>
+      <if test="owner != null">
+        owner,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="hl != null">
+        hl,
+      </if>
+      <if test="zc != null">
+        zc,
+      </if>
+      <if test="fdsd != null">
+        fdsd,
+      </if>
+      <if test="sc != null">
+        sc,
+      </if>
+      <if test="sg != null">
+        sg,
+      </if>
+      <if test="oldnum != null">
+        oldnum,
+      </if>
+      <if test="geom != null">
+        geom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="ordinate != null">
+        #{ordinate,jdbcType=DOUBLE},
+      </if>
+      <if test="abscisa != null">
+        #{abscisa,jdbcType=DOUBLE},
+      </if>
+      <if test="treeid != null">
+        #{treeid,jdbcType=VARCHAR},
+      </if>
+      <if test="treetype != null">
+        #{treetype,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=NUMERIC},
+      </if>
+      <if test="diameter != null">
+        #{diameter,jdbcType=NUMERIC},
+      </if>
+      <if test="crown != null">
+        #{crown,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="environmen != null">
+        #{environmen,jdbcType=VARCHAR},
+      </if>
+      <if test="ghdw != null">
+        #{ghdw,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="hl != null">
+        #{hl,jdbcType=VARCHAR},
+      </if>
+      <if test="zc != null">
+        #{zc,jdbcType=VARCHAR},
+      </if>
+      <if test="fdsd != null">
+        #{fdsd,jdbcType=VARCHAR},
+      </if>
+      <if test="sc != null">
+        #{sc,jdbcType=VARCHAR},
+      </if>
+      <if test="sg != null">
+        #{sg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldnum != null">
+        #{oldnum,jdbcType=VARCHAR},
+      </if>
+      <if test="geom != null">
+        #{geom,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lc.web.resource.entity.bj_ld_gsmmExample" resultType="java.lang.Long">
+    select count(*) from bj_ld_gsmm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bj_ld_gsmm
+    <set>
+      <if test="record.gid != null">
+        gid = #{record.gid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordinate != null">
+        ordinate = #{record.ordinate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.abscisa != null">
+        abscisa = #{record.abscisa,jdbcType=DOUBLE},
+      </if>
+      <if test="record.treeid != null">
+        treeid = #{record.treeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.treetype != null">
+        treetype = #{record.treetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null">
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null">
+        height = #{record.height,jdbcType=NUMERIC},
+      </if>
+      <if test="record.diameter != null">
+        diameter = #{record.diameter,jdbcType=NUMERIC},
+      </if>
+      <if test="record.crown != null">
+        crown = #{record.crown,jdbcType=NUMERIC},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.environmen != null">
+        environmen = #{record.environmen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ghdw != null">
+        ghdw = #{record.ghdw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null">
+        owner = #{record.owner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hl != null">
+        hl = #{record.hl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zc != null">
+        zc = #{record.zc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fdsd != null">
+        fdsd = #{record.fdsd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sc != null">
+        sc = #{record.sc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sg != null">
+        sg = #{record.sg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldnum != null">
+        oldnum = #{record.oldnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.geom != null">
+        geom = #{record.geom,jdbcType=OTHER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bj_ld_gsmm
+    set gid = #{record.gid,jdbcType=INTEGER},
+      ordinate = #{record.ordinate,jdbcType=DOUBLE},
+      abscisa = #{record.abscisa,jdbcType=DOUBLE},
+      treeid = #{record.treeid,jdbcType=VARCHAR},
+      treetype = #{record.treetype,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      height = #{record.height,jdbcType=NUMERIC},
+      diameter = #{record.diameter,jdbcType=NUMERIC},
+      crown = #{record.crown,jdbcType=NUMERIC},
+      state = #{record.state,jdbcType=VARCHAR},
+      environmen = #{record.environmen,jdbcType=VARCHAR},
+      ghdw = #{record.ghdw,jdbcType=VARCHAR},
+      owner = #{record.owner,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=VARCHAR},
+      hl = #{record.hl,jdbcType=VARCHAR},
+      zc = #{record.zc,jdbcType=VARCHAR},
+      fdsd = #{record.fdsd,jdbcType=VARCHAR},
+      sc = #{record.sc,jdbcType=VARCHAR},
+      sg = #{record.sg,jdbcType=VARCHAR},
+      oldnum = #{record.oldnum,jdbcType=VARCHAR},
+      geom = #{record.geom,jdbcType=OTHER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.web.resource.entity.bj_ld_gsmm">
+    update bj_ld_gsmm
+    <set>
+      <if test="ordinate != null">
+        ordinate = #{ordinate,jdbcType=DOUBLE},
+      </if>
+      <if test="abscisa != null">
+        abscisa = #{abscisa,jdbcType=DOUBLE},
+      </if>
+      <if test="treeid != null">
+        treeid = #{treeid,jdbcType=VARCHAR},
+      </if>
+      <if test="treetype != null">
+        treetype = #{treetype,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=NUMERIC},
+      </if>
+      <if test="diameter != null">
+        diameter = #{diameter,jdbcType=NUMERIC},
+      </if>
+      <if test="crown != null">
+        crown = #{crown,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="environmen != null">
+        environmen = #{environmen,jdbcType=VARCHAR},
+      </if>
+      <if test="ghdw != null">
+        ghdw = #{ghdw,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="hl != null">
+        hl = #{hl,jdbcType=VARCHAR},
+      </if>
+      <if test="zc != null">
+        zc = #{zc,jdbcType=VARCHAR},
+      </if>
+      <if test="fdsd != null">
+        fdsd = #{fdsd,jdbcType=VARCHAR},
+      </if>
+      <if test="sc != null">
+        sc = #{sc,jdbcType=VARCHAR},
+      </if>
+      <if test="sg != null">
+        sg = #{sg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldnum != null">
+        oldnum = #{oldnum,jdbcType=VARCHAR},
+      </if>
+      <if test="geom != null">
+        geom = #{geom,jdbcType=OTHER},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.web.resource.entity.bj_ld_gsmm">
+    update bj_ld_gsmm
+    set ordinate = #{ordinate,jdbcType=DOUBLE},
+      abscisa = #{abscisa,jdbcType=DOUBLE},
+      treeid = #{treeid,jdbcType=VARCHAR},
+      treetype = #{treetype,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      height = #{height,jdbcType=NUMERIC},
+      diameter = #{diameter,jdbcType=NUMERIC},
+      crown = #{crown,jdbcType=NUMERIC},
+      state = #{state,jdbcType=VARCHAR},
+      environmen = #{environmen,jdbcType=VARCHAR},
+      ghdw = #{ghdw,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      hl = #{hl,jdbcType=VARCHAR},
+      zc = #{zc,jdbcType=VARCHAR},
+      fdsd = #{fdsd,jdbcType=VARCHAR},
+      sc = #{sc,jdbcType=VARCHAR},
+      sg = #{sg,jdbcType=VARCHAR},
+      oldnum = #{oldnum,jdbcType=VARCHAR},
+      geom = #{geom,jdbcType=OTHER}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>
