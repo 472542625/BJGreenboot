@@ -1,44 +1,36 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-
-<!DOCTYPE html>
-<html>
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <!-- jq-->
-    <script type="text/javascript" src="<%=path%>/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery/jquery-3.3.1.min.js"></script>
     <!--bootstrap3-->
-    <script src="<%=path%>/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="<%=path%>/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
     <!--图标
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">-->
 
     <!--openlayer4 -->
-    <script src="<%=path%>/lib/ol4/v4.6.4/v4.6.4/build/ol.js"></script>
-    <link rel="stylesheet" href="<%=path%>/lib/ol4/v4.6.4/v4.6.4/css/ol.css">
+    <script src="/lib/ol4/v4.6.4/v4.6.4/build/ol.js"></script>
+    <link rel="stylesheet" href="/lib/ol4/v4.6.4/v4.6.4/css/ol.css">
 
     <!--绿化专题-->
-    <script src="<%=path%>/page/topic/examination_plan/BJ_green84_jz1_layer.js"></script>
-    <script src="<%=path%>/page/topic/examination_plan/BJ_lhfg_layer.js"></script>
-    <script src="<%=path%>/page/topic/examination_plan/BJ_ldl_layer.js"></script>
-    <script src="<%=path%>/page/topic/examination_plan/BJ_Graden_500Mbuffer_layer.js"></script>
-    <script src="<%=path%>/page/topic/examination_plan/BJ_luliang.js"></script>
+    <script src="/js/topic/examination_plan/BJ_green84_jz1_layer.js"></script>
+    <script src="/js/topic/examination_plan/BJ_lhfg_layer.js"></script>
+    <script src="/js/topic/examination_plan/BJ_ldl_layer.js"></script>
+    <script src="/js/topic/examination_plan/BJ_Graden_500Mbuffer_layer.js"></script>
+    <script src="/js/topic/examination_plan/BJ_luliang.js"></script>
 
-    <script src="<%=path%>/page/topic/examination_plan/olmap_init.js"></script>
+    <script src="/js/topic/examination_plan/olmap_init.js"></script>
 
     <!--图标
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">-->
 
 
     <!--自定义样式-->
-    <link rel="stylesheet" href="<%=path%>/css/mlayui.css">
-    <link rel="stylesheet" href="<%=path%>/css/layui_rightbox.css">
+    <link rel="stylesheet" href="/css/mlayui.css">
+    <link rel="stylesheet" href="/css/layui_rightbox.css">
 
 </head>
 
@@ -56,7 +48,7 @@
     </div>
     <div class="col-md-10"
          style=" font-size:24px;font-family:STKaiti  ;cursor:pointer;text-align:right;line-height: 200%">
-        <div style="position: relative;left: -10px;color: white; "><a href="<%=path%>/page/gis_main/mlayui.jsp"
+        <div style="position: relative;left: -10px;color: white; "><a href="/index"
                                                                       style=" text-decoration:none;color: white;position:relative;right: 20px">GIS系统</a>
 
             <!--&lt;!&ndash;<a id="green_rate" style=" text-decoration:none;color: white">绿视率</a> &ndash;&gt;-->

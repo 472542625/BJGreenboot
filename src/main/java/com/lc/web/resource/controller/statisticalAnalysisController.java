@@ -17,6 +17,20 @@ public class statisticalAnalysisController {
 	@Autowired
 	lyr_ld_gardenpServiceImpl lyr_ld_gardenppointService;
 
+	@RequestMapping(value = "/statisticalAnalysisIndex")
+	public String statisticalAnalysisIndex() {
+
+		return "index/mlayui_statis";
+
+	}
+	@RequestMapping(value = "/statisticalAnalysisDataTable")
+	public String statisticalAnalysisDataTable() {
+
+		return "statics/datatablepage/list";
+
+	}
+
+
 	@RequestMapping(value = "/selectStatisticalAnalysis/{pn}", method = RequestMethod.GET)
 	public @ResponseBody
 	JsonMsg selectStatisticalAnalysis(lyr_ld_gardenp lyr_ld_gardenp,@RequestParam(value = "pn", defaultValue = "1") Integer pn) {

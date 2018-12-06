@@ -1,0 +1,75 @@
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+
+
+
+</head>
+<body>
+<div   th:fragment="header" class="layui-header "
+     style="background-image:  url('/images/layui_header_bg/bg.jpg')">
+    <div class="layui-logo"
+         style="font-family:STKaiti ;font-size: 30px; color: white">
+        <i class="fa fa-gg" style="font-size:30px"></i>GIS展示系统
+    </div>
+
+    <!-- 头部区域（可配合layui已有的水平导航）color: palevioletred; -->
+    <ul class="layui-nav layui-layout-left" style=" ">
+
+    </ul>
+    <ul class="layui-nav layui-layout-right" style="">
+        <li class="layui-nav-item"><a href="index.html"
+                                      style="font-size:15px">欢迎用户[admin]</a></li>
+        <li class="layui-nav-item"><a
+                href="/index"
+                style="font-size: 15px"><i class="fa fa-home"
+                                           style=" position: relative;right: 10px;top: 1px "></i>首页</a></li>
+        <li class="layui-nav-item"><a  id="statistical_analysis_a" style="font-size: 15px"><i
+                class="fa fa-bar-chart"
+                style=" position: relative;right: 10px;top: 1px"></i>统计汇总</a></li>
+        <li class="layui-nav-item"><a  id="gis_a" style="font-size: 15px"><i
+                class="fa fa-bar-chart"
+                style=" position: relative;right: 10px;top: 1px"></i>GIS系统</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 15px"><i
+                class="fa 	fa fa-gear"
+                style=" position: relative;right: 10px;top: 1px"></i>系统管理</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 15px"><i
+                class="fa fa-map-marker"
+                style=" position: relative;right: 10px;top: 1px"></i>地图服务</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a href="">高德地图</a>
+                </dd>
+                <dd>
+                    <a href="">百度地图</a>
+                </dd>
+                <dd>
+                    <a href="">谷歌地图</a>
+                </dd>
+                <dd>
+                    <a href="">OpenStreetMap地图</a>
+                </dd>
+            </dl></li>
+        <li class="layui-nav-item"><a href="javascript:;"
+                                      style="font-size: 15px"><i class="fa fa-globe"
+                                                                 style=" position: relative;right: 10px;top: 1px"></i>三维系统</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a id="3D_load">三维模型</a>
+                </dd>
+                <dd>
+                    <a id="3D_close">X</a>
+                </dd>
+                <dd>
+                    <a href="">X</a>
+                </dd>
+            </dl></li>
+        <li class="layui-nav-item"><a href="/signOut"
+                                      style="font-size: 15px"> 注销</a></li>
+        <li class="layui-nav-item"><a href="/index"
+                                      style="font-size: 15px"> 修改密码</a></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+
+
+
+</head>
+<body>
+
+<div th:fragment="div" >
+    <!--pm25图例栏-->
+    <div id="BJ_PM25_legend" class="legend legend_climate"
+         style="position: absolute; z-index: 99999;bottom: 10px;right: 10px;border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+        <img src="/images/topic/climate_topic/pm25leg.png">
+    </div>
+    <!--pm10图例栏-->
+    <div id="BJ_PM10_legend" class="legend legend_climate"
+         style="position: absolute; z-index: 99999;bottom: 10px;right: 10px;  border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;">
+        <img src="/images/topic/climate_topic/pm10leg.png">
+    </div>
+
+</div>
+</body>
+</html>

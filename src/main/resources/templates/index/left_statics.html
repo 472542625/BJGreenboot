@@ -1,0 +1,35 @@
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+
+
+
+</head>
+<body>
+
+<div th:fragment="div"  class="layui-side layui-bg-cyan">
+    <div class="layui-side-scroll layui-bg-cyan "
+         style="background-color: #393D49">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree layui-bg-cyan "
+            style="background-color: #393D49" lay-filter="test" id ="leftside_ul">
+
+            <!--layui-nav-itemed 加上默认打开-->
+            <li class="layui-nav-item  "><a
+                    style="font-size: 15px">统计分析</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a >XXX</a>
+                    </dd>
+
+
+                </dl></li>
+
+
+
+        </ul>
+    </div>
+</div>
+</body>
+</html>

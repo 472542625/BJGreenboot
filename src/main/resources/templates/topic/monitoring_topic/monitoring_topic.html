@@ -1,0 +1,92 @@
+
+
+
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+
+
+
+</head>
+<body>
+
+<div th:fragment="div" >
+    <div id="monitor">
+        <!--<img src="../images/monitor.png" />-->
+        <div class="se-area">
+            <div class="se-title">站点监测信息</div>
+            <div class="se-cont" style="height:180px">
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <td colspan="2"
+                            style="text-align:center;font-weight: 300;font-size: 15px">温度</td>
+                        <td colspan="2" style=" font-weight: 300;font-size: 15px">空气质量</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" colspan="2"
+                            style="font-size: 25px;color: yellow;font-weight: 400;text-align: center"
+                            id="temper">30</td>
+                        <td rowspan="3" colspan="2"
+                            style="font-size:  25px;color: yellow;font-weight: 400" id="AQI">20</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td style="color: yellow">PM2.5</td>
+                        <td id="PM2_5">12</td>
+                        <td style="color: yellow">PM10</td>
+                        <td id="PM10">15</td>
+                    </tr>
+                    <tr>
+                        <td style="color: yellow">NO2</td>
+                        <td id="O3">16</td>
+                        <td style="color: yellow">SO2</td>
+                        <td id="NO2">29</td>
+                    </tr>
+                    <tr>
+                        <td style="color: yellow">O3</td>
+                        <td id="SO2">30</td>
+                        <td style="color: yellow">CO</td>
+                        <td id="CO">21</td>
+                    </tr>
+                    <!--<tr >-->
+                    <!--<td>指标C</td>-->
+                    <!--<td>244</td>-->
+                    <!--<td>指标G</td>-->
+                    <!--<td>93.5</td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="se-area">
+            <div class="se-title">站点监测视频</div>
+            <div class="se-cont" style="height:180px">
+                <img style="height: 100%"
+                     src="/images/topic/monitor_topic/气象检测站.jpg">
+            </div>
+        </div>
+        <div class="se-area">
+            <div class="se-title">
+                站点监测图表 <select
+                    style="background-color: black;color: white;position:relative;left: 40px">
+                <option value="volvo">温度</option>
+                <option value="saab">2016年</option>
+            </select>
+
+            </div>
+
+            <div>温度</div>
+            <div id="test12345" class="se-cont"
+                 style="height: 150px;margin: 0;color: white;"></div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
+

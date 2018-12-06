@@ -1,0 +1,279 @@
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+
+
+
+</head>
+<body>
+
+
+<div th:fragment="div"  class="layui-side layui-bg-cyan">
+    <div class="layui-side-scroll layui-bg-cyan "
+         style="background-color: #393D49">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree layui-bg-cyan "
+            style="background-color: #393D49" lay-filter="test" id ="leftside_ul">
+
+            <!--layui-nav-itemed 加上默认打开-->
+            <li class="layui-nav-item  "><a
+                    style="font-size: 15px">资源分类</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a id="LYR_LD_Garden_gongyuan">公园绿地</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_LD_Garden_fanghu">防护绿地</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_LD_Garden_guangchang">广场绿地</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_LD_Garden_quyu">区域绿地</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_LD_Garden_fushu">附属绿地</a>
+                    </dd>
+                    <dd>
+                        <a id="BJ_LD_GSMM">古树名木</a>
+                    </dd>
+                    <dd>
+                        <a id="BJ_LD_roof">屋顶绿化</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_Shan">山</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_Water">水</a>
+                    </dd>
+                    <dd>
+                        <a id="LYR_Tian">田</a>
+                    </dd>
+
+
+                </dl></li>
+
+
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>绿化指标专题</a>
+
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a id="green_rate">绿视率</a>
+                    </dd>
+
+                    <dd>
+                        <a id="BJ_lhfg">绿化覆盖率</a>
+                    </dd>
+                    <dd>
+                        <a id="BJ_ldl">绿地率</a>
+                    </dd>
+                    <dd>
+                        <a id="BJ_RJ">人均公园绿地面积</a>
+                    </dd>
+                    <dd>
+                        <a id="green_count">绿量</a>
+                    </dd>
+                    <dd>
+                        <a id="BJ_Graden_500mbuffer">公园绿地500米辐射范围</a>
+                    </dd>
+                    <dd>
+                        <a id="layer_clear">清除图层</a>
+                    </dd>
+
+
+                </dl></li>
+
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>林业指标专题</a>
+
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a>活立木蓄积量</a>
+                    </dd>
+
+                    <dd>
+                        <a>森林覆盖率</a>
+                    </dd>
+                    <dd>
+                        <a>林木绿化率</a>
+                    </dd>
+                    <dd>
+                        <a>森林蓄积量</a>
+                    </dd>
+
+
+                </dl></li>
+
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>气象指标专题</a>
+
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a id="BJ_PM25">pm2.5</a>
+                    </dd>
+
+                    <dd>
+                        <a id="BJ_PM10">pm10</a>
+                    </dd>
+
+
+                </dl></li>
+
+
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>应急管理</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a id="emergency_plan">应急预案</a>
+                    </dd>
+                    <dd>
+                        <a id="alarm_warning">报警预警</a>
+                    </dd>
+                    <dd>
+                        <a id="emergency_space">应急场所</a>
+                    </dd>
+                    <dd>
+                        <a id="emergency_supplies">应急物资</a>
+                    </dd>
+                </dl></li>
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>实时指标监测</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a id="BJ_JC_Air">气象监测</a>
+                    </dd>
+                    <dd>
+                        <a id="xx1">水源监测</a>
+                    </dd>
+                    <dd>
+                        <a id="xxx1">山体监测</a>
+                    </dd>
+                    <dd>
+                        <a id="xxxx1">农田监测</a>
+                    </dd>
+
+                    <dd>
+                        <a id="BJ_travel">游人监测</a>
+                    </dd>
+                </dl></li>
+            <li class="layui-nav-item  "><a class="" href="javascript:;"
+                                            style="font-size: 15px"><i class="fa fa-align-right"
+                                                                       style=" position: relative;right: 10px;top: 1px "></i>体检规划</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="<%=path%>/page/topic/examination_plan/image_comparison.jsp">体检规划</a>
+                    </dd>
+
+                </dl></li>
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>图层控制</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="javascript:;">X</a>
+                    </dd>
+                </dl></li>
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>工具</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="javascript:;">测量距离</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">测量面积</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">图例</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">多选</a>
+                    </dd>
+                </dl></li>
+
+
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>图层测试</a>
+
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="javascript:add_heatmap('heatdata2.json');">绿视率</a>
+                    </dd>
+
+                    <dd>
+                        <a href="javascript:add_wms_layer();">绿化覆盖率</a>
+                    </dd>
+
+
+                </dl></li>
+            <li class="layui-nav-item"><a style="font-size: 15px"><i
+                    class="fa fa-align-right"
+                    style=" position: relative;right: 10px;top: 1px "></i>测试</a>
+                <dl class="layui-nav-child">
+
+                    <dd>
+                        <a href="javascript:add_geojson_heatdata_point('heatdata2.json');">数据源Vector点</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:add_heatmap('heatdata2.json');">数据源Vector热力图</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:ajax_add_geometry();">几何图层加载</a>
+                    </dd>
+
+                    <dd>
+                        <a
+                                href="javascript:add_wfs_layer1();add_wfs_layer2();add_wfs_layer3();add_wfs_layer4(); ">加载矢量北京绿化率图</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:add_wfs_layer1(); ">加载矢量绿化率图级别1</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:add_wfs_layer2(); ">加载矢量绿化率图级别2</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:add_wfs_layer3(); ">加载矢量绿化率图级别3</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:add_wfs_layer4(); ">加载矢量绿化率图级别4</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:delete_layer(vector_bj_greenrate1_layer);">删除级别1</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:delete_layer(vector_bj_greenrate2_layer);">删除级别2</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:delete_layer(vector_bj_greenrate3_layer);">删除级别3</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:delete_layer(vector_bj_greenrate4_layer);">删除级别4</a>
+                    </dd>
+
+                    <dd>
+                        <a href="javascript: add_BJ_lhfg_layer1test();">add</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript: del_BJ_lhfg_layer1test();">del</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript: add_LYR_LD_GardenP_layertest()">add2</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript: del_LYR_LD_GardenP_layertest();">del2</a>
+                    </dd>
+
+                </dl></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
