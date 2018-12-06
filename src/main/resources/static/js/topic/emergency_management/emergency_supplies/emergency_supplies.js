@@ -15,7 +15,7 @@ function add_bj_yj_wz_layer() {
 	var featurearray = [];
 	$
 			.ajax({
-				url : "/BJGreen/list_bj_yj_wz_pointAll",
+				url : "/list_bj_yj_wz_pointAll",
 				type : "GET",
 				success : function(result) {
 					console.log(result);

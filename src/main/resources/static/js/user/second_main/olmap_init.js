@@ -30,7 +30,7 @@ function add_geojson_heatdata_point(dataurl) {
             //});
 
 
-            console.log(result);
+            //console.log(result);
             heatData = result;
 
             var vectorSource = new ol.source.Vector({
@@ -305,7 +305,7 @@ $(function () {
         delete_layer(osmLayer);
         map.addLayer(osmLayer);
 
-        console.log(map.getLayers());
+       // console.log(map.getLayers());
     })
     //影像底图
     $("#mapselect_image").click(function () {

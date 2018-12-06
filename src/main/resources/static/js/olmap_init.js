@@ -1020,7 +1020,7 @@ $(function() {
 																	"input[type='radio']:checked")
 																	.val();
 
-															window.location.href = '/BJGreen/page/topic/emergency_management/emergency_plan/'
+                                                            self.location = '/js/topic/emergency_management/emergency_plan/'
 																	+ pdfname
 																	+ '.pdf';
 

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/8/21/021.
  */
-var path = "${appPath}";
+
 var vector_BJ_JC_Air_layer;
 function add_BJ_JC_Air_layer() {
 
@@ -49,7 +49,7 @@ function add_BJ_JC_Air_layer() {
 											image : new ol.style.Icon(
 													{
 														// color: '#4271AE',
-														src : '/BJGreen/images/topic/monitor_topic/air_point.png',
+														src : '/images/topic/monitor_topic/air_point.png',
 														scale : 0.1
 													}),
 
