@@ -10,5 +10,6 @@ public class BjGreenbootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BjGreenbootApplication.class, args);
+
 	}
 }

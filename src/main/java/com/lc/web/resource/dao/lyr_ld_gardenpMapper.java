@@ -25,8 +25,8 @@ public interface lyr_ld_gardenpMapper {
 	List<lyr_ld_gardenp> selectByExampleLikeGreenNameLimit(String greenname);
 
 	lyr_ld_gardenp selectByPrimaryKey(Integer gid);
-	/*查询统计分析分页*/
-	List<lyr_ld_gardenpStatisticalAnalysis>  selectStatisticalAnalysis(lyr_ld_gardenp example);
+	/*查询统计分析分页(删除)*/
+//	List<lyr_ld_gardenpStatisticalAnalysis>  selectStatisticalAnalysis(lyr_ld_gardenp example);
 
 	/*查询绿地类型名称*/
 	List<String>  selectGreentype1();

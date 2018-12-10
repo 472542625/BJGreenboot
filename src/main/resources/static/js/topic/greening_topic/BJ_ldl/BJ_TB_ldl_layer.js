@@ -26,7 +26,7 @@ function add_vector_BJ_TB_ldl_layer() {
 					geometry : new ol.geom.Point(ol.proj
 							.fromLonLat(coordinates)),
 					绿地率 : features[i].lvdir,
-				 
+                    绿地名称 : features[i].greentype,
 					 
 				});
 				// console.log(ol.proj.fromLonLat(features[i].geometry.coordinates));

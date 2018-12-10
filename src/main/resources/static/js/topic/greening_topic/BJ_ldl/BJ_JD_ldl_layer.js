@@ -25,7 +25,10 @@ function add_vector_BJ_JD_ldl_layer() {
 					// ol.geom.Point(ol.proj.fromLonLat(features[i].geometry.coordinates)),
 					geometry : new ol.geom.Point(ol.proj
 							.fromLonLat(coordinates)),
+
+
 					绿地率 : features[i].lvdir,
+                    绿地名称 : features[i].streetname,
 				 
 					 
 				});

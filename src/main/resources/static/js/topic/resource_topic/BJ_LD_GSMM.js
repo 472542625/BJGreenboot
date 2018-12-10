@@ -22,27 +22,35 @@ var featurearray = [];
 					// ol.geom.Point(ol.proj.fromLonLat(features[i].geometry.coordinates)),
 					geometry : new ol.geom.Point(ol.proj
 							.fromLonLat(coordinates)),
-					ordinate : features[i].ordinate,
-					abscisa : features[i].abscisa,
-					treeid : features[i].treeid,
-					treetype : features[i].treetype,
-					town : features[i].town,
-					location: features[i].location,
-					height : features[i].height,
-					diameter : features[i].diameter,
-					crown : features[i].crown,
+                    古树编号 : features[i].treeid,
+                    树种 : features[i].treetype,
+                    乡镇 : features[i].town,
+                    小地名: features[i].location,
+                    原挂牌号 : features[i].oldnum,
+                    树高 : features[i].height+"m",
+                    胸径 : features[i].diameter+"cm",
+                    平均冠幅 : features[i].crown+"m<sup>2</sup>",
+                    生长势 : features[i].state,
+                    生长环境 : features[i].environmen,
+                    管护单位 : features[i].ghdw,
+                    管护人 : features[i].owner,
+                    等级 : features[i].level,
+                    护栏 : features[i].hl,
+                    支撑 : features[i].zc,
+                    封堵树洞 : features[i].fdsd,
+                    树池 : features[i].sc,
+                    树箍 : features[i].sg,
+
+
+
+
+
+
 				 
-					state : features[i].state,
-					environmen : features[i].environmen,
-					ghdw : features[i].ghdw,
-					owner : features[i].owner,
-					level : features[i].level,
-					hl : features[i].hl,
-					zc : features[i].zc,
-				    fdsd : features[i].fdsd,
-				    sc : features[i].sc,
-				    sg : features[i].sg,
-					oldnum : features[i].oldnum,
+
+
+
+
 					
 				});
 				// console.log(ol.proj.fromLonLat(features[i].geometry.coordinates));
@@ -55,7 +63,7 @@ var featurearray = [];
 					}),
 
 					text : new ol.style.Text({
-						text : "  " + features[i].location + "  ",
+						text : "  " + features[i].treetype + "  ",
 						fill : new ol.style.Fill({
 							color : 'white'
 						}),

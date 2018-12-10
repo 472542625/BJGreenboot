@@ -79,9 +79,7 @@
                     <dd>
                         <a id="BJ_Graden_500mbuffer">公园绿地500米辐射范围</a>
                     </dd>
-                    <dd>
-                        <a id="layer_clear">清除图层</a>
-                    </dd>
+
 
 
                 </dl></li>
@@ -163,15 +161,15 @@
                         <a id="BJ_travel">游人监测</a>
                     </dd>
                 </dl></li>
-            <li class="layui-nav-item  "><a class="" href="javascript:;"
-                                            style="font-size: 15px"><i class="fa fa-align-right"
-                                                                       style=" position: relative;right: 10px;top: 1px "></i>体检规划</a>
-                <dl class="layui-nav-child">
-                    <dd>
-                        <a href="<%=path%>/page/topic/examination_plan/image_comparison.jsp">体检规划</a>
-                    </dd>
+            <!--<li class="layui-nav-item  "><a class="" href="javascript:;"-->
+                                            <!--style="font-size: 15px"><i class="fa fa-align-right"-->
+                                                                       <!--style=" position: relative;right: 10px;top: 1px "></i>体检规划</a>-->
+                <!--<dl class="layui-nav-child">-->
+                    <!--<dd>-->
+                        <!--<a href="<%=path%>/page/topic/examination_plan/image_comparison.jsp">体检规划</a>-->
+                    <!--</dd>-->
 
-                </dl></li>
+                <!--</dl></li>-->
             <li class="layui-nav-item"><a style="font-size: 15px"><i
                     class="fa fa-align-right"
                     style=" position: relative;right: 10px;top: 1px "></i>图层控制</a>
@@ -199,79 +197,6 @@
                 </dl></li>
 
 
-            <li class="layui-nav-item"><a style="font-size: 15px"><i
-                    class="fa fa-align-right"
-                    style=" position: relative;right: 10px;top: 1px "></i>图层测试</a>
-
-                <dl class="layui-nav-child">
-                    <dd>
-                        <a href="javascript:add_heatmap('heatdata2.json');">绿视率</a>
-                    </dd>
-
-                    <dd>
-                        <a href="javascript:add_wms_layer();">绿化覆盖率</a>
-                    </dd>
-
-
-                </dl></li>
-            <li class="layui-nav-item"><a style="font-size: 15px"><i
-                    class="fa fa-align-right"
-                    style=" position: relative;right: 10px;top: 1px "></i>测试</a>
-                <dl class="layui-nav-child">
-
-                    <dd>
-                        <a href="javascript:add_geojson_heatdata_point('heatdata2.json');">数据源Vector点</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:add_heatmap('heatdata2.json');">数据源Vector热力图</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:ajax_add_geometry();">几何图层加载</a>
-                    </dd>
-
-                    <dd>
-                        <a
-                                href="javascript:add_wfs_layer1();add_wfs_layer2();add_wfs_layer3();add_wfs_layer4(); ">加载矢量北京绿化率图</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:add_wfs_layer1(); ">加载矢量绿化率图级别1</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:add_wfs_layer2(); ">加载矢量绿化率图级别2</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:add_wfs_layer3(); ">加载矢量绿化率图级别3</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:add_wfs_layer4(); ">加载矢量绿化率图级别4</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:delete_layer(vector_bj_greenrate1_layer);">删除级别1</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:delete_layer(vector_bj_greenrate2_layer);">删除级别2</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:delete_layer(vector_bj_greenrate3_layer);">删除级别3</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:delete_layer(vector_bj_greenrate4_layer);">删除级别4</a>
-                    </dd>
-
-                    <dd>
-                        <a href="javascript: add_BJ_lhfg_layer1test();">add</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript: del_BJ_lhfg_layer1test();">del</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript: add_LYR_LD_GardenP_layertest()">add2</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript: del_LYR_LD_GardenP_layertest();">del2</a>
-                    </dd>
-
-                </dl></li>
         </ul>
     </div>
 </div>

@@ -260,7 +260,7 @@ $(function() {
 		target : 'map',
 		layers : [ osmLayer ],
 		view : new ol.View({
-			center : ol.proj.fromLonLat([ 121.48, 31.22 ]),
+			center : ol.proj.fromLonLat([  116.409, 39.923 ]),
 			// center: [121.48, 31.22],
 			zoom : 10,
 			minZoom : 0,
@@ -522,17 +522,21 @@ $(function() {
 		delete_BJ_green84_jz1_layer();// 绿视率
 		document.getElementById("greerate_r_box").style.display = "none";
 		document.getElementById("green_rate_legend").style.display = "none";
+
         delete_wms_BJ_RJ_layer();//人均公园绿地
+        document.getElementById("BJ_RJ_layer_box").style.display = "none";
 		delete_BJ_JD_lhfg_layer();// 街道绿化覆盖率
 		delete_BJ_TB_lhfg_layer();// 图斑绿化覆盖率
 		delete_BJ_lhfg_layer();// 单位绿化覆盖率
 		document.getElementById("BJ_lhfg_legend").style.display = "none";// 绿化覆盖率
 		document.getElementById("greentitleSelect_lhfg").style.display = "none";
+        document.getElementById("BJ_lhfg_box").style.display = "none";
 		delete_BJ_JD_ldl_layer();// 街道绿地率
 		delete_BJ_TB_ldl_layer();// 图斑绿地率
 		delete_BJ_ldl_layer();// 单位绿地率
 		document.getElementById("BJ_ldl_legend").style.display = "none";// 绿地率
 		document.getElementById("greentitleSelect_ldl").style.display = "none";
+        document.getElementById("BJ_ldl_box").style.display = "none";
 		deleteBJ_Graden_500mbuffer_layer();// 公园绿地500米辐射范围
 
 		delete_layer(green_count_layer);// 绿量
@@ -779,13 +783,16 @@ $(function() {
 
 						add_BJ_lhfg_layer();
 						document.getElementById("BJ_lhfg_legend").style.display = "inline";
+                        document.getElementById("BJ_lhfg_box").style.display = "inline";
 						document.getElementById("greentitleSelect_lhfg").style.display = "inline";
+
 
 						map.getView().setCenter(
 								ol.proj.transform([ 116.409, 39.923 ],
 										'EPSG:4326', 'EPSG:3857'));
 						var view = map.getView();
 						view.setZoom(15);
+
 					})
 
 	$("#vector_BJ_lhfg_layer")
@@ -858,6 +865,7 @@ $(function() {
 						document.getElementById("BJ_ldl_legend").style.display = "inline";
 						document.getElementById("greentitleSelect_ldl").style.display = "inline";
 
+                        document.getElementById("BJ_ldl_box").style.display = "inline";
 						map.getView().setCenter(
 								ol.proj.transform([ 116.409, 39.923 ],
 										'EPSG:4326', 'EPSG:3857'));
@@ -933,6 +941,7 @@ $(function() {
 
 				addBJ_Graden_500mbuffer_layer();
 
+
 				map.getView().setCenter(
 						ol.proj.transform([ 116.409, 39.923 ], 'EPSG:4326',
 								'EPSG:3857'));
@@ -940,13 +949,13 @@ $(function() {
 				view.setZoom(15);
 			})
 
-    // 公园绿地500米辐射范围
+    // 人均公园绿地面积
     $("#BJ_RJ").click(
         function() {
             deleteallLayer();// 清空图层
 
             add_wms_BJ_RJ_layer();
-
+            document.getElementById("BJ_RJ_layer_box").style.display = "inline";
             map.getView().setCenter(
                 ol.proj.transform([ 116.409, 39.923 ], 'EPSG:4326',
                     'EPSG:3857'));
@@ -1019,10 +1028,10 @@ $(function() {
 															var pdfname = $(
 																	"input[type='radio']:checked")
 																	.val();
+                                                            window.open('/js/topic/emergency_management/emergency_plan/'
+                                                                + pdfname
+                                                                + '.pdf');
 
-                                                            self.location = '/js/topic/emergency_management/emergency_plan/'
-																	+ pdfname
-																	+ '.pdf';
 
 														}
 													});
@@ -1046,10 +1055,7 @@ $(function() {
 
 	})
 
-	// $("#click_property").click(function(){
-	//		
-	// alert('1221');
-	// })
+
 
 	$("#click_property").delegate("#alarm_warn_buf_qbtn", "click", function() {
 		var queryid = $(this).attr("query-id");
@@ -1089,9 +1095,11 @@ $(function() {
 
 	})
 	// 清除图层
-	$("#layer_clear").click(function() {
+	$("#clearAllLayer").click(function() {
 		deleteallLayer();// 清空图层
 
 	})
+
+
 
 })

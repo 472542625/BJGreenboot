@@ -138,12 +138,12 @@
 
   </select>
 
-  <select id="selectStatisticalAnalysis" parameterType="com.lc.web.resource.entity.lyr_ld_gardenp"  resultMap="lyr_ld_gardenpStatisticalAnalysis">
-    select
-  street,sum(sum_tub) as sum_area ,count(greenname) as count from lyr_ld_gardenp where greentype1 = #{greentype1} and greentype = #{greentype} and street =#{street} group by  street
+  <!--<select id="selectStatisticalAnalysis" parameterType="com.lc.web.resource.entity.lyr_ld_gardenp"  resultMap="lyr_ld_gardenpStatisticalAnalysis">-->
+    <!--select-->
+  <!--street,sum(sum_tub) as sum_area ,count(greenname) as count from lyr_ld_gardenp where greentype1 = #{greentype1} and greentype = #{greentype} and street =#{street} group by  street-->
 
 
-  </select>
+  <!--</select>-->
 
 
 

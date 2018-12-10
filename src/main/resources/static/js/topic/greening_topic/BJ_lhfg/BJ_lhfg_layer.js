@@ -27,7 +27,7 @@ function add_vector_BJ_lhfg_layer() {
 					geometry : new ol.geom.Point(ol.proj
 							.fromLonLat(coordinates)),
 					绿化覆盖率 : features[i].greencrate,
-				 
+                    绿地名称 : features[i].greenname,
 					 
 				});
 				// console.log(ol.proj.fromLonLat(features[i].geometry.coordinates));
