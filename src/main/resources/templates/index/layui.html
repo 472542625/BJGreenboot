@@ -10,7 +10,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <!-- popup ------------------------------------------->
-    <!--点击图层得到属性栏-->
+    <!--点击站点监测信息图层得到属性栏-->
     <div id="click_property"
          style="position: absolute; z-index: 99999;top: 200px;left: 240px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;width: 300px;color: white">
         <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">站点监测信息</div>
@@ -34,7 +34,7 @@
     <!--点击图层得到属性栏-->
     <div id="other_click_property"
          style="position: absolute; z-index: 99999;top: 200px;left: 240px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;width: 220px;color: white">
-        <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">地物信息</div>
+        <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">查询信息</div>
         <table id="other_feeature_properties_table" style="width: 100%">
 
             <tbody width="100px" id="other_feeature_properties_talbe_tbody" style="">
@@ -42,6 +42,36 @@
 
             </tbody>
         </table>
+
+
+    </div>
+
+    <div id="bj_tb_volp_plant_click_property"
+         style="position: absolute; z-index: 99999;top: 200px;left: 240px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;color: white;width: 400px;height: 400px;overflow-x: hidden;overflow-y: scroll;">
+
+
+        <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">查询信息</div>
+        <div >
+        <table id="bj_tb_volp_plant_click_property_table" style="width: 100%">
+
+
+
+            <thead>
+            <tr>
+                <!--<th><input type="checkbox" id="check_all"/></th>-->
+                <th style="width: 80px">树种</th>
+                <th style="width: 100px">类型</th>
+                <th style="width: 100px">面积(m<sup>2</sup>)</th>
+                <th>株数</th>
+                <th>径阶</th>
+                <th style="width: 100px">蓄积量(m<sup>3</sup>)</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
 
 
     </div>

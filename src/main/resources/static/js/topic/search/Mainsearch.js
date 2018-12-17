@@ -10,12 +10,15 @@ var featurearray = [];
 		url :  '/selectByExampleGreenName/'+$("#likeInputVal").val(),
 		type : "GET",
 		success : function(result) {
-		console.log(result);
+
+
 			var features = result;
 			for (var i = 0; i < features.length; i++) {
+
 				var geom = result[i].geom.substring(6,
 						result[i].geom.length - 1);
 				coordinates = geom.split(" ");
+
 				coordinates[0] = coordinates[0] * 1;
 				coordinates[1] = coordinates[1] * 1;
 				var point = new ol.Feature({

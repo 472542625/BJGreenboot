@@ -4,7 +4,6 @@ $(function() {
 
 
 
-
     $("#3D_load")
         .click(
             function () {
@@ -21,6 +20,7 @@ $(function() {
 
 
     $(document).on("click", "#statistical_analysis_a", function () {
+
 
         window.location = "/statisticalAnalysisIndex";
 

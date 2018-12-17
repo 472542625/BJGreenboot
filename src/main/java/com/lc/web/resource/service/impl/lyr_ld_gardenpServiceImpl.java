@@ -54,14 +54,60 @@ public class lyr_ld_gardenpServiceImpl implements lyr_ld_gardenpService {
 	}
 
 	@Override
+	public List<lyr_ld_gardenp> selectStatisticalAnalysis_detail(lyr_ld_gardenp lyr_ld_gardenp) {
+		lyr_ld_gardenpExample lyr_ld_gardenpExample = new lyr_ld_gardenpExample();
+		lyr_ld_gardenpExample.Criteria criteria =  lyr_ld_gardenpExample.createCriteria();
+
+
+
+		if(!lyr_ld_gardenp.getGreentype1().equals("全选")){
+
+
+
+			criteria.andGreentype1EqualTo(lyr_ld_gardenp.getGreentype1());
+		}
+
+		if(!lyr_ld_gardenp.getGreentype().equals("全选")){
+
+
+			criteria.andGreentypeEqualTo(lyr_ld_gardenp.getGreentype());
+		}
+		if(!lyr_ld_gardenp.getStreet().equals("全选")){
+
+
+			criteria.andStreetEqualTo(lyr_ld_gardenp.getStreet());
+		}
+		return pointmapper.selectByExample(lyr_ld_gardenpExample);
+	}
+
+	@Override
 	public List<lyr_ld_gardenpStatisticalAnalysis> selectStatisticalAnalysis(lyr_ld_gardenp lyr_ld_gardenp) {
 
 
+		lyr_ld_gardenpExample lyr_ld_gardenpExample = new lyr_ld_gardenpExample();
+		lyr_ld_gardenpExample.Criteria criteria =  lyr_ld_gardenpExample.createCriteria();
 
 
 
+		if(!lyr_ld_gardenp.getGreentype1().equals("全选")){
 
-		return pointmapper.selectStatisticalAnalysis(lyr_ld_gardenp);
+
+			criteria.andGreentype1EqualTo(lyr_ld_gardenp.getGreentype1());
+		}
+
+		if(!lyr_ld_gardenp.getGreentype().equals("全选")){
+
+
+			criteria.andGreentypeEqualTo(lyr_ld_gardenp.getGreentype());
+		}
+		if(!lyr_ld_gardenp.getStreet().equals("全选")){
+
+
+			criteria.andStreetEqualTo(lyr_ld_gardenp.getStreet());
+		}
+
+
+		return pointmapper.selectStatisticalAnalysis(lyr_ld_gardenpExample);
 
 
 	}
@@ -80,4 +126,11 @@ public class lyr_ld_gardenpServiceImpl implements lyr_ld_gardenpService {
 	public List<String> selectStreet() {
 		return  pointmapper.selectStreet();
 	}
+
+	@Override
+	public lyr_ld_gardenp selectStatisticalAnalysis_positioning_bygid(Integer gid) {
+		return pointmapper.selectByPrimaryKey(gid);
+	}
+
+
 }

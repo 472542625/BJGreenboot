@@ -1,6 +1,7 @@
 package com.lc.web.resource.service;
 
 import com.lc.web.resource.entity.lyr_ld_gardenp;
+import com.lc.web.resource.entity.lyr_ld_gardenpExample;
 import com.lc.web.resource.entity.lyr_ld_gardenpStatisticalAnalysis;
 
 import java.util.List;
@@ -18,11 +19,14 @@ public interface lyr_ld_gardenpService {
 
     public List<lyr_ld_gardenp> selectByExampleFY();
 
-
+	public List<lyr_ld_gardenp> selectStatisticalAnalysis_detail(lyr_ld_gardenp lyr_ld_gardenp);
 	public List<lyr_ld_gardenpStatisticalAnalysis> selectStatisticalAnalysis(lyr_ld_gardenp lyr_ld_gardenp);
 
 	public List<String>  selectGreentype1();
 	List<String>  selectGreentype(String greentype);
 	List<String>  selectStreet();
+
+
+	public lyr_ld_gardenp selectStatisticalAnalysis_positioning_bygid(Integer gid);
 
 }

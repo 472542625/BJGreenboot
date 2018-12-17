@@ -12,7 +12,7 @@ function add_vector_BJ_lhfg_layer() {
 		url :  '/selectByExample_bj_lhfg',
 		type : "GET",
 		success : function(result) {
-		console.log(result);
+		// console.log(result);
 			var features = result;
 			for (var i = 0; i < features.length; i++) {
 				var geom = result[i].geom.substring(6,

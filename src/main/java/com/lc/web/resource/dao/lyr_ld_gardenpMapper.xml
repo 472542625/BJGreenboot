@@ -112,6 +112,19 @@
     </if>
   </select>
 
+  <select id="selectStatisticalAnalysis" parameterType="com.lc.web.resource.entity.lyr_ld_gardenpExample" resultMap="lyr_ld_gardenpStatisticalAnalysis">
+    select
+    street,sum(sum_tub) as sum_area ,count(greenname) as count
+    from lyr_ld_gardenp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    group by  street
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
 
 
 

@@ -26,7 +26,7 @@ public interface lyr_ld_gardenpMapper {
 
 	lyr_ld_gardenp selectByPrimaryKey(Integer gid);
 	/*查询统计分析分页(删除)*/
-//	List<lyr_ld_gardenpStatisticalAnalysis>  selectStatisticalAnalysis(lyr_ld_gardenp example);
+ 	List<lyr_ld_gardenpStatisticalAnalysis>  selectStatisticalAnalysis(lyr_ld_gardenpExample example);
 
 	/*查询绿地类型名称*/
 	List<String>  selectGreentype1();

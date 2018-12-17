@@ -1,6 +1,17 @@
 /**
  * Created by Administrator on 2018/8/11/011.
  */
+
+function alerterror(info) {
+    layui.use('layer', function() { // 独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; // 独立版的layer无需执行这一句
+
+        layer.msg(info, {
+            icon : 2
+        });
+    })
+}
+
  function checkBox(obj) {
     // 只有当选中的时候才会去掉其他已经勾选的checkbox，所以这里只判断选中的情况
     if (obj.is(":checked")) {
@@ -12,7 +23,7 @@
     }
 }
 // var server_url="http://47.92.155.94:8185/";
-var server_url = "http://localhost:8185/";
+
 // var mvc_url = "http://47.92.155.94:8085/BJGreen/";
 
 // *****东城区影像底图加载WMS
@@ -370,6 +381,19 @@ $(function() {
 				document.getElementById("click_property").style.display = "inline";
 
 			}
+            /** ***判断是林业指标专题的活立木蓄积量图层**** */
+            else if (keys[1] == "greenId") {
+                // document.getElementById("click_property").style.display =
+                // "none";
+                // ****popup
+                pixel_coordinates = properties['geometry'].getCoordinates();
+
+                // var Id = $("<td></td>").append(properties['Id']);
+
+                select_bj_tb_volp_plant(properties['greenId']);
+               document.getElementById("bj_tb_volp_plant_click_property").style.display = "inline";
+
+            }
 
 			else if (keys[0] == "bj_yj_jkd") {
 
@@ -414,10 +438,28 @@ $(function() {
 
 			}
 			/** ***绿量图层**** */
-			else if (keys[1] == "古树编号") {
+			// else if (keys[1] == "古树编号") {
+            //
+			// }
+            /** ***聚合图层**** */
+            else if (keys[1] == "features") {
 
-			}
-			/** ***其他面专题图层**** */
+                for (var i = 2; i < keys.length; i++) {
+                    // info.innerHTML += keys[i] + ' ： ';
+                    // nfo.innerHTML += properties[keys[i]] + '<br>';
+                    var key = $("<td></td>").append(keys[i]);
+                    var property = $("<td></td>").append(properties[keys[i]]);
+                    $("<tr></tr>").append(key).append(property).appendTo(
+                        "#other_feeature_properties_talbe_tbody");
+
+                    // console.log(pixel_coordinates.length);
+                    document.getElementById("other_click_property").style.display = "inline";
+
+                }
+
+            }
+            //
+            /** ***其他面专题图层**** */
 			else {
 				for (var i = 1; i < keys.length; i++) {
 					// info.innerHTML += keys[i] + ' ： ';
@@ -435,6 +477,7 @@ $(function() {
 			}
 		} else {
 			// alert("none");
+            document.getElementById("bj_tb_volp_plant_click_property").style.display = "none";
 			document.getElementById("click_property").style.display = "none";
 			document.getElementById("other_click_property").style.display = "none";
 			document.getElementById("alarm_warning_box").style.display = "none";
@@ -524,6 +567,9 @@ $(function() {
 		document.getElementById("green_rate_legend").style.display = "none";
 
         delete_wms_BJ_RJ_layer();//人均公园绿地
+
+        // BJ_RJ_legend
+        document.getElementById("BJ_RJ_legend").style.display = "none";
         document.getElementById("BJ_RJ_layer_box").style.display = "none";
 		delete_BJ_JD_lhfg_layer();// 街道绿化覆盖率
 		delete_BJ_TB_lhfg_layer();// 图斑绿化覆盖率
@@ -541,6 +587,10 @@ $(function() {
 
 		delete_layer(green_count_layer);// 绿量
 
+
+        // ***************************************林业专题
+        deletebj_tb_vol_layer();//活立木蓄积量
+        document.getElementById("bj_tb_volp_plant_click_property").style.display = "none";
 		// ***************************************监测专题
 		deleteBJ_travel_layer();// 游人监测
 		deleteBJ_JC_Air_layer();// 气象监测
@@ -626,6 +676,19 @@ $(function() {
 				var view = map.getView();
 				view.setZoom(15);
 			})
+    $("#LYR_LD_Garden_fanghu").click(
+        function() {
+            deleteallLayer();// 清空图层
+
+            addLYR_LD_Garden_layer("LYR_LD_Fense", "防护绿地");
+
+            map.getView().setCenter(
+                ol.proj.transform([ 116.409, 39.923 ], 'EPSG:4326',
+                    'EPSG:3857'));
+
+            var view = map.getView();
+            view.setZoom(15);
+        })
 
 	$("#LYR_LD_Garden_fushu").click(
 			function() {
@@ -710,6 +773,28 @@ $(function() {
 				view.setZoom(15);
 			})
 
+    // 山
+    $("#LYR_Shan").click(
+        function() {
+            deleteallLayer();// 清空图层
+
+             alerterror("东城区无海拔超过50米的山");
+        })
+    // 田
+    $("#LYR_Tian").click(
+        function() {
+            deleteallLayer();// 清空图层
+
+            alerterror("东城区暂无农田");
+        })
+    /** 林业指标专题* */
+    // addbj_tb_vol_layer deletebj_tb_vol_layer
+    $("#bj_tb_vol").click(
+        function() {
+            deleteallLayer();// 清空图层
+
+            addbj_tb_vol_layer();
+        })
 	/** 气象指标专题* */
 
 	// pm2.5
@@ -786,6 +871,13 @@ $(function() {
                         document.getElementById("BJ_lhfg_box").style.display = "inline";
 						document.getElementById("greentitleSelect_lhfg").style.display = "inline";
 
+                        $("#vector_BJ_lhfg_layer").prop("checked", true);
+                        $("#vector_BJ_lhfg_TB_layer").prop("checked", false);
+
+                        $("#vector_BJ_lhfg_JD_layer").prop("checked", false);
+
+
+
 
 						map.getView().setCenter(
 								ol.proj.transform([ 116.409, 39.923 ],
@@ -806,6 +898,7 @@ $(function() {
 							add_BJ_lhfg_layer();
 							document.getElementById("BJ_lhfg_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_lhfg").style.display = "inline";
+
 
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
@@ -866,6 +959,12 @@ $(function() {
 						document.getElementById("greentitleSelect_ldl").style.display = "inline";
 
                         document.getElementById("BJ_ldl_box").style.display = "inline";
+
+
+                        $("#vector_BJ_ldl_layer").prop("checked", true);
+                        $("#vector_BJ_ldl_TB_layer").prop("checked", false);
+
+                        $("#vector_BJ_ldl_JD_layer").prop("checked", false);
 						map.getView().setCenter(
 								ol.proj.transform([ 116.409, 39.923 ],
 										'EPSG:4326', 'EPSG:3857'));
@@ -956,6 +1055,7 @@ $(function() {
 
             add_wms_BJ_RJ_layer();
             document.getElementById("BJ_RJ_layer_box").style.display = "inline";
+            document.getElementById("BJ_RJ_legend").style.display = "inline";
             map.getView().setCenter(
                 ol.proj.transform([ 116.409, 39.923 ], 'EPSG:4326',
                     'EPSG:3857'));

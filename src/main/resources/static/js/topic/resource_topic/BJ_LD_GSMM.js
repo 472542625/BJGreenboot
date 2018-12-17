@@ -8,7 +8,7 @@ var featurearray = [];
 		url : '/selectByExamplebj_ld_gsmm',
 		type : "GET",
 		success : function(result) {
-		console.log(result);
+		// console.log(result);
 			var features = result;
 			for (var i = 0; i < features.length; i++) {
 				var geom = result[i].geom.substring(6,

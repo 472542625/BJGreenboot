@@ -81,3 +81,18 @@
 #other_feeature_properties_talbe_tbody tr:nth-child(even) {
 	height: 30px
 }
+#bj_tb_volp_plant_click_property_table tbody tr:nth-child(odd) {
+	background-color: rgba(255, 255, 255, .2);
+	height: 30px
+}
+
+#bj_tb_volp_plant_click_property_table tbody tr:nth-child(even) {
+	height: 30px
+}
+
+
+
+
+#bj_tb_volp_plant_click_property::-webkit-scrollbar {
+	display: none;
+}

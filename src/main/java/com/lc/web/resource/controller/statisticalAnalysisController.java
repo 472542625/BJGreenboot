@@ -26,20 +26,48 @@ public class statisticalAnalysisController {
 	@RequestMapping(value = "/statisticalAnalysisDataTable")
 	public String statisticalAnalysisDataTable() {
 
-		return "statics/datatablepage/list";
+		return "statics/datatablepage/staticsAnalysisList";
 
 	}
 
+	@RequestMapping(value = "/selectStatisticalAnalysis_positioning_bygid", method = RequestMethod.GET)
+	public @ResponseBody
+	lyr_ld_gardenp selectStatisticalAnalysis_detail(Integer gid) {
 
-	@RequestMapping(value = "/selectStatisticalAnalysis/{pn}", method = RequestMethod.GET)
+
+		lyr_ld_gardenp  point = lyr_ld_gardenppointService.selectStatisticalAnalysis_positioning_bygid(gid);
+
+
+		return point;
+	}
+
+
+	@RequestMapping(value = "/selectStatisticalAnalysis_detail", method = RequestMethod.GET)
+	public @ResponseBody
+	JsonMsg selectStatisticalAnalysis_detail(lyr_ld_gardenp lyr_ld_gardenp,@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
+
+		PageHelper.startPage(pn, 10);
+		List<lyr_ld_gardenp> list = lyr_ld_gardenppointService.selectStatisticalAnalysis_detail(lyr_ld_gardenp);
+
+		// /使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行了，封装了详细的分页信息
+		// 传入连续显示的页数
+		PageInfo page = new PageInfo(list, 10);
+
+		//System.out.println(lyr_ld_gardenp.toString());
+		return JsonMsg.success().add("pageInfo", page);
+	}
+
+
+	@RequestMapping(value = "/selectStatisticalAnalysis", method = RequestMethod.GET)
 	public @ResponseBody
 	JsonMsg selectStatisticalAnalysis(lyr_ld_gardenp lyr_ld_gardenp,@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
 
-		PageHelper.startPage(pn, 5);
+		PageHelper.startPage(pn, 20);
 		List<lyr_ld_gardenpStatisticalAnalysis> list = lyr_ld_gardenppointService.selectStatisticalAnalysis(lyr_ld_gardenp);
+
 		// /使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行了，封装了详细的分页信息
 		// 传入连续显示的页数
-		PageInfo page = new PageInfo(list, 5);
+		PageInfo page = new PageInfo(list, 20);
 
 		return JsonMsg.success().add("pageInfo", page);
 	}

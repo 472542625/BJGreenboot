@@ -1,4 +1,4 @@
-
+var server_url = "http://localhost:8185/";
 ///加载WMS影像图函数
  function init_image_layer(layerName) {
 

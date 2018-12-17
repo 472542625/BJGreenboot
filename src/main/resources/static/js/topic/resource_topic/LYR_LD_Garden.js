@@ -113,7 +113,7 @@ function add_LYR_LD_GardenP_layer(greentype1) {
 					绿化覆盖面积 : features[i].sumlhf+"m<sup>2</sup>",
 					屋顶绿化面积 : features[i].sumRofe+"m<sup>2</sup>",
 					其他面积 : features[i].sumQita+"m<sup>2</sup>",
-					所属街道 : features[i].STREET,
+					所属街道 : features[i].street,
 					居委会 : features[i].village,
 					绿地归属 : features[i].greenowner,
 					建成时间 : features[i].buildyear,

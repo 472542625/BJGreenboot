@@ -14,12 +14,69 @@
           href="/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
 
 
-    <script src="/js/datatablepage/list.js"></script>
-    <script src="/js/datatablepage/edit.js"></script>
-    <script src="/js/datatablepage/delete.js"></script>
-    <script src="/js/datatablepage/add.js"></script>
+    <script src="/js/statistical/datatablepage/list.js"></script>
 
 
+
+    <!--echarts-->
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <script src="/lib/echarts/echarts.min.js"></script>
+
+
+    <!--自定义样式-->
+    <style>
+
+
+        #other_feeature_properties_talbe_tbody tr:nth-child(odd) {
+            background-color: rgba(255, 255, 255, .2);
+            height: 30px;
+            color: white;
+        }
+
+        #other_feeature_properties_talbe_tbody tr:nth-child(even) {
+            height: 30px;
+            color: white;
+        }
+    </style>
+    <!--openlayer4 -->
+    <script src="/lib/ol4/v4.6.4/v4.6.4/build/ol.js"></script>
+    <link rel="stylesheet" href="/lib/ol4/v4.6.4/v4.6.4/css/ol.css">
+
+    <script src="/js/statistical/olmap_init.js"></script>
+    <script src="/js/olmap_init_util.js"></script>
+    <!--解决Bootstrap 标签页（Tab）插件切换echarts不显示问题-->
+    <style>
+
+        /* tab panel 不显示Echarts  图表问题   */
+        /* bootstrap hack: fix content width inside hidden tabs */
+        .tab-content > .tab-pane,
+        .pill-content > .pill-pane {
+            display: block;     /* undo display:none          */
+            height: 0;          /* height:0 is also invisible */
+            overflow-y: hidden; /* no-overflow                */
+        }
+        .tab-content > .active,
+        .pill-content > .active {
+            height: auto;       /* let the content decide it  */
+        }
+
+    </style>
+
+    <script
+            src="/js/statistical/statistics_analysis_init.js"></script>
     <title>空间数据管理</title>
 
     <meta http-equiv="pragma" content="no-cache">
@@ -425,11 +482,11 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-12  ">
+        <div class="col-md-12  " style="right: 20px" >
             <h1>统计分析</h1>
-            <ul class="nav nav-list">
-                <li class="divider"></li>
-            </ul>
+            <!--<ul class="nav nav-list">-->
+                <!--<li class="divider"></li>-->
+            <!--</ul>-->
         </div>
     </div>
 
@@ -486,68 +543,275 @@
 
 
 
-<div class="row">
-    <div class="col-md-12">
+<!--<div class="row">-->
+    <!--<div class="col-md-12">-->
 
 
 
 
-        <div class="row">
+        <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+                <!--<table class="table table-hover" id="points_table"-->
+                       <!--style="cursor:pointer">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--&lt;!&ndash;<th><input type="checkbox" id="check_all"/></th>&ndash;&gt;-->
+                        <!--<th  >编号</th>-->
+                        <!--<th >街道</th>-->
+                        <!--<th >面积</th>-->
+                        <!--<th>个数</th>-->
+
+
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--</tbody>-->
+                    <!--&lt;!&ndash;  oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,st_asgeojson(st_astext(geom))-->
+        <!--as geom&ndash;&gt;-->
+
+                <!--</table>-->
+            <!--</div>-->
+
+        <!--</div>-->
+        <!--&lt;!&ndash; 分页 &ndash;&gt;-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6" id="page_info_area"></div>-->
+
+            <!--<div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="row" >
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#statistical_results" data-toggle="tab">
+                统计结果
+            </a>
+        </li>
+        <!--<li><a href="#statistical_echarts" data-toggle="tab">统计图</a></li>-->
+        <li class="dropdown">
+            <a href="#" id="myTabDrop1" class="dropdown-toggle"
+               data-toggle="dropdown">统计图
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                <li><a href="#statistical_echarts_area" tabindex="-1" data-toggle="tab">面积</a></li>
+                <li><a href="#statistical_echarts_count" tabindex="-1" data-toggle="tab">个数</a></li>
+            </ul>
+        </li>
+        <li><a href="#statistical_details" data-toggle="tab">详情</a></li>
+        <li><a href="#statistical_map" data-toggle="tab">可视化页面</a></li>
+
+    </ul>
+</div>
+    <div id="myTabContent" class="tab-content">
+        <!--<div class="tab-pane fade in active" id="home">-->
+            <!--<p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>-->
+        <!--</div>-->
+
+        <div class="row tab-pane fade in active" id="statistical_results">
             <div class="col-md-12">
-                <table class="table table-hover" id="points_table"
-                       style="cursor:pointer">
-                    <thead>
-                    <tr>
-                        <th><input type="checkbox" id="check_all"/></th>
-                        <th  >编号</th>
-                        <th >街道</th>
-                        <th >面积</th>
-                        <th>个数</th>
 
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                    <!--  oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,st_asgeojson(st_astext(geom))
-        as geom-->
 
-                </table>
+
+                <div class="row"  style="overflow-y:scroll;height: 400px ">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-condensed" id="statistical_result_table"
+                               style="cursor:pointer">
+                            <thead>
+                            <tr>
+                                <!--<th><input type="checkbox" id="check_all"/></th>-->
+                                <th  >编号</th>
+                                <th >街道</th>
+                                <th >面积(m<sup>2</sup>)</th>
+                                <th>个数</th>
+                                <th>详情</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                             <!--  oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,st_asgeojson(st_astext(geom))
+                as geom-->
+
+                        </table>
+                    </div>
+
+                </div>
+                <!-- 分页 -->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-6" id="page_info_area"></div>-->
+
+                    <!--<div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>-->
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="tab-pane fade  " id="statistical_echarts_area">
+            <div class="col-md-12">
+                <!--style="overflow-y:scroll;height: 400px "-->
+                <div id="statistical_echarts_area_box" style="height: 400px "></div>
             </div>
 
         </div>
-        <!-- 分页 -->
-        <div class="row">
-            <div class="col-md-6" id="page_info_area"></div>
+        <div class="tab-pane fade  " id="statistical_echarts_count">
+            <div class="col-md-12">
+                <!--style="overflow-y:scroll;height: 400px "-->
+                <div id="statistical_echarts_count_box" style="height: 400px "></div>
+            </div>
 
-            <div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>
         </div>
+        <div class="tab-pane fade" id="statistical_details">
+            <div class="col-md-12">
+
+
+
+
+                <div class="row"  style="overflow-y:scroll;height: 400px ">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-condensed" id="statistical_detail_table"
+                               style="cursor:pointer">
+                            <thead>
+                            <tr>
+                                <!--<th><input type="checkbox" id="check_all"/></th>-->
+                                <th  >序号</th>
+                                <th >绿地名称</th>
+                                <th >绿地类型</th>
+                                <th >绿地性质</th>
+                                <th>图斑面积(m<sup>2</sup>)</th>
+                                <th>绿化面积(m<sup>2</sup>)</th>
+                                <th>绿化覆盖面积(m<sup>2</sup>)</th>
+                                <!--<th>屋顶绿化面积</th>-->
+                                <!--<th>其他面积</th>-->
+                                <th>所属街道</th>
+                                <!--<th>居委会</th>-->
+                                <!--<th>绿地归属</th>-->
+                                <!--<th>建成时间</th>-->
+
+                                <!--<th>产权单位</th>-->
+                                <!--<th>管养单位</th>-->
+                                <!--<th>管养性质</th>-->
+                                <th>定位</th>
+                                <!--// 绿地名称 : features[i].greenname,-->
+                                <!--//     绿地性质 : features[i].greentype,-->
+                                <!--//     图斑面积 : features[i].sumTub+"m<sup>2</sup>",-->
+                                <!--//     绿化面积 : features[i].sumLvdi+"m<sup>2</sup>",-->
+                                <!--//     绿化覆盖面积 : features[i].sumlhf+"m<sup>2</sup>",-->
+                                <!--//     屋顶绿化面积 : features[i].sumRofe+"m<sup>2</sup>",-->
+                                <!--//     其他面积 : features[i].sumQita+"m<sup>2</sup>",-->
+                                <!--//     所属街道 : features[i].STREET,-->
+                                <!--//     居委会 : features[i].village,-->
+                                <!--//     绿地归属 : features[i].greenowner,-->
+                                <!--//     建成时间 : features[i].buildyear,-->
+                                <!--//     产权单位 : features[i].property,-->
+                                <!--//     管养单位 : features[i].manager,-->
+                                <!--//     管养性质 : features[i].managPro,-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <!--  oid_,area,x,y,contractor,recorder,treespecies,treeage,treeheight,grounddiameter,treearea,growingpotential,st_asgeojson(st_astext(geom))
+                as geom-->
+
+                        </table>
+                    </div>
+
+                </div>
+                <!-- 分页 -->
+                <div class="row">
+                    <div class="col-md-6" id="page_info_area"></div>
+
+                    <div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade  " id="statistical_map">
+            <div class="col-md-12">
+
+
+
+
+                <div class="row"  style="height: 800px ">
+                    <div class="col-md-12">
+                        <!--style="overflow-y:scroll;height: 400px "-->
+                        <div id="map"  ></div>
+                    </div>
+
+                </div>
+                <!-- 分页 -->
+                <!--<div class="row">-->
+                <!--<div class="col-md-6" id="page_info_area"></div>-->
+
+                <!--<div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>-->
+                <!--</div>-->
+            </div>
+
+
+
+        </div>
+
     </div>
+
 </div>
+
+
+<!-- popup ------------------------------------------->
+<!--点击图层得到属性栏-->
+
+<!--点击图层得到属性栏-->
+<div id="other_click_property"
+     style="position: absolute; z-index: 99999;top: 210px;left: 900px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;width: 320px;color: white">
+    <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">地物信息</div>
+    <table id="other_feeature_properties_table" style="width: 300px">
+
+        <tbody width="300px" id="other_feeature_properties_talbe_tbody" style="">
+
+
+        </tbody>
+    </table>
+
+
 </div>
+
     <script type="text/javascript">
-        $(function () {
+//        $(function () {
+//
+//            $("#check_all").click(function () {
+//
+//                //prop获取原生属性，attr获取自定义属性
+//
+//                $(".check_item").prop("checked", $(this).prop("checked"));
+//            })
+//
+//            //判断当前选中的元素是不是选满了，满选check_all也勾上
+//            $("#check_item")
+//                .click(
+//                    function () {
+//                        //prop获取原生属性，attr获取自定义属性
+//                        var flag = $(".check_item:checked").length == $(".check_item").length;
+//                        if (flag) {
+//
+//                            $("#check_item").prop("checked", flag);
+//
+//                        }
+//                    })
+//        })
 
-            $("#check_all").click(function () {
 
-                //prop获取原生属性，attr获取自定义属性
+$(function () {
 
-                $(".check_item").prop("checked", $(this).prop("checked"));
-            })
+    //addcontainer("container1", "<%=path%>/data/test1.json", "绿地率");
+    // addcontainer("container2", "<%=path%>/data/test2.json", "绿地率");
 
-            //判断当前选中的元素是不是选满了，满选check_all也勾上
-            $("#check_item")
-                .click(
-                    function () {
-                        //prop获取原生属性，attr获取自定义属性
-                        var flag = $(".check_item:checked").length == $(".check_item").length;
-                        if (flag) {
 
-                            $("#check_item").prop("checked", flag);
 
-                        }
-                    })
-        })
+
+
+
+
+})
     </script>
 </body>
 </html>

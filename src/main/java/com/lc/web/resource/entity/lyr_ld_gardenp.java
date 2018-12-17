@@ -192,4 +192,29 @@ public class lyr_ld_gardenp {
     public void setGeom(Object geom) {
         this.geom = geom;
     }
+
+    @Override
+    public String toString() {
+        return "lyr_ld_gardenp{" +
+                "gid=" + gid +
+                ", greenname='" + greenname + '\'' +
+                ", greentype='" + greentype + '\'' +
+                ", street='" + street + '\'' +
+                ", village='" + village + '\'' +
+                ", greenowner='" + greenowner + '\'' +
+                ", buildyear='" + buildyear + '\'' +
+                ", property='" + property + '\'' +
+                ", manager='" + manager + '\'' +
+                ", managPro='" + managPro + '\'' +
+                ", sumTub=" + sumTub +
+                ", sumLvdi=" + sumLvdi +
+                ", sumQita=" + sumQita +
+                ", sumRofe=" + sumRofe +
+                ", sumlhf=" + sumlhf +
+                ", greentype1='" + greentype1 + '\'' +
+                ", greentypeo='" + greentypeo + '\'' +
+                ", origFid=" + origFid +
+                ", geom=" + geom +
+                '}';
+    }
 }
