@@ -1,23 +1,16 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<!DOCTYPE >
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 
-<!DOCTYPE html>
-<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <!-- jq-->
-    <script type="text/javascript" src="<%=path%>/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery/jquery-3.3.1.min.js"></script>
 
 
     <!--bootstrap3-->
-    <script src="<%=path%>/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/BJGreen/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
     <!--图标-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 
@@ -29,8 +22,8 @@
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
-    <script src="<%=path%>/lib/echarts/echarts.min.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="<%=path%>/page/user/index_main/index_echarts.js"></script>
+    <script src="/lib/echarts/echarts.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/js/user/index_main/index_echarts.js"></script>
 
 
 
@@ -47,7 +40,7 @@
     </div>
     <div class="col-md-5"
          style=" font-size:24px;font-family:STKaiti  ;cursor:pointer;text-align:right;line-height: 200%">
-        <div style="position: relative;left: -10px"><a href="<%=path%>/page/gis_main/mlayui.jsp">GIS系统</a> <a>系统管理</a> 2018年7月18 pm3:40
+        <div style="position: relative;left: -10px"><a href="/index">GIS系统</a> <a>系统管理</a> 2018年7月18 pm3:40
 
 
         </div>
@@ -67,7 +60,7 @@
 
             <div class="col-md-12">
                 <div style=""><i
-                        class="fa fa-graduation-cap" style="font-size:36px"></i><a style="color:white;text-decoration:none;" href="<%=path%>/page/user/second_main/1.jsp">规划体检监测</a>
+                        class="fa fa-graduation-cap" style="font-size:36px"></i><a style="color:white;text-decoration:none;" href="/second_1">规划体检监测</a>
                 </div>
             </div>
 
@@ -202,8 +195,8 @@
 
     $(function () {
 
-        addcontainer_index("container1", "/BJGreen/data/test1.json", "绿地率");
-        addcontainer_index("container2", "/BJGreen/data/test1.json", "人均公园绿地面积");
+        addcontainer_index("container1", "/data/test1.json", "绿地率");
+        addcontainer_index("container2", "/data/test1.json", "人均公园绿地面积");
 
     })
 

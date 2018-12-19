@@ -1,18 +1,17 @@
-var image_BJ_lhfg_layer = init_image_layer("BJ_lhfg");
+
  
 
-var vector_BJ_lhfg_layer;
-function add_vector_BJ_lhfg_layer() {
+var vector_bj_dt_video_layer;
+function add_vector_bj_dt_video_layer() {
 
 	var featurearray = [];
 	var source;
 	// 矢量图层 获取gejson数据
 	$.ajax({
 		// url: "data/" + dataurl,
-		url :  '/selectByExample_bj_lhfg',
+		url : '/selectExamplebj_dt_video',
 		type : "GET",
 		success : function(result) {
-		// console.log(result);
 			var features = result;
 			for (var i = 0; i < features.length; i++) {
 				var geom = result[i].geom.substring(6,
@@ -26,8 +25,9 @@ function add_vector_BJ_lhfg_layer() {
 					// ol.geom.Point(ol.proj.fromLonLat(features[i].geometry.coordinates)),
 					geometry : new ol.geom.Point(ol.proj
 							.fromLonLat(coordinates)),
-					绿化覆盖率 : features[i].greencrate,
-                    绿地名称 : features[i].greenname,
+                    bj_dt_video:"bj_dt_video",
+                    path : features[i].path,
+                    name:features[i].name,
 					 
 				});
 				// console.log(ol.proj.fromLonLat(features[i].geometry.coordinates));
@@ -39,17 +39,17 @@ function add_vector_BJ_lhfg_layer() {
 						scale : 0.5
 					}),
 
-				//	text : new ol.style.Text({
-					//	text : "  " + features[i].greenname + "  ",
-					//	fill : new ol.style.Fill({
-				//			color : 'white'
-				//		}),
-				//		backgroundFill : new ol.style.Fill({
-				//			color : 'rgb(0,0,0)'
-				//		}),
-				//		offsetY : 45
+					text : new ol.style.Text({
+						text : "  " + features[i].name + "  ",
+						fill : new ol.style.Fill({
+							color : 'white'
+						}),
+						backgroundFill : new ol.style.Fill({
+							color : 'rgb(0,0,0)'
+						}),
+						offsetY : 45
 
-				//	}),
+					}),
 
 					fill : new ol.style.Fill({
 						color : '#ff0000'
@@ -64,11 +64,11 @@ function add_vector_BJ_lhfg_layer() {
 			var source = new ol.source.Vector({
 				features : featurearray
 			});
-			vector_BJ_lhfg_layer = new ol.layer.Vector({
+			vector_BJ_TB_ldl_layer = new ol.layer.Vector({
 				source : source,
 				zIndex : 1002
 			});
-				 map.addLayer(vector_BJ_lhfg_layer);
+			 map.addLayer(vector_BJ_TB_ldl_layer);
 		},
 		error : function() {
 			alert('error');
@@ -76,13 +76,14 @@ function add_vector_BJ_lhfg_layer() {
 	})
 	 
 }
-function add_BJ_lhfg_layer() {
+function add_bj_dt_video_layer() {
 
-	 map.addLayer(image_BJ_lhfg_layer);add_vector_BJ_lhfg_layer()
 
+	 add_vector_bj_dt_video_layer()
+ 
 }
 
-function delete_BJ_lhfg_layer() {
-    delete_layer(image_BJ_lhfg_layer);
-	delete_layer(vector_BJ_lhfg_layer);
+function delete_bj_dt_video_layer() {
+
+	delete_layer(vector_bj_dt_video_layer);
 }

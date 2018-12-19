@@ -27,12 +27,13 @@ $(function() {
 
     });
 
-    $(document).on("click", "#gis_a", function () {
-
-        window.location = "/index";
-
-
-    });
+    // $(document).on("click", "#gis_a", function () {
+    //
+    //
+    //     window.location = "/index";
+    //
+    //
+    // });
 
 
 })

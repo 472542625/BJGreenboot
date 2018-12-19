@@ -126,8 +126,8 @@ function add_vector_BJ_ldl_layer() {
 function add_BJ_ldl_layer() {
 
 	 map.addLayer(image_BJ_ldl_layer);add_vector_BJ_ldl_layer();
-	
- 
+
+
 }
 
 function delete_BJ_ldl_layer() {

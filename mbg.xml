@@ -35,7 +35,7 @@
 		</javaClientGenerator>
 		<!-- table表指定每个表的生成策略 -->
 
-		<table tableName="bj_tb_volp" domainObjectName="bj_tb_volp">
+		<table tableName="bj_dt_video" domainObjectName="bj_dt_video">
 
 		</table>
 

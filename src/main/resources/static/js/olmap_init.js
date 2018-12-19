@@ -323,24 +323,37 @@ $(function() {
 			var properties = feature.getProperties();
 
 			/** ***判断是绿视率图层**** */
-			if (keys[2] == "绿视率") {
+			if (keys[1] == "BJ_green84") {
 
 				document.getElementById("greerate_r_box").style.display = "inline";// 如果是绿视图就显示视屏
 				// ****popup
-				pixel_coordinates = properties['geometry'].getCoordinates();
-
-				popup(pixel_coordinates[0]);
-				for (var i = 1; i < keys.length; i++) {
+				// pixel_coordinates = properties['geometry'].getCoordinates();
+                //
+				// popup(pixel_coordinates[0]);
+				for (var i = 3; i < keys.length; i++) {
 					// info.innerHTML += keys[i] + ' ： ';
 					// nfo.innerHTML += properties[keys[i]] + '<br>';
 					var key = $("<td></td>").append(keys[i]);
 					var property = $("<td></td>").append(properties[keys[i]]);
 					$("<tr></tr>").append(key).append(property).appendTo(
-							"#feeature_properties_talbe_tbody");
+							"#other_feeature_properties_talbe_tbody");
 
 				}
-				document.getElementById("click_property").style.display = "inline";
+			 document.getElementById("BJ_green84_video").src="/data/topic/BJ_green84P/"+ properties['path'];
+                document.getElementById("BJ_green84_video").play();
+
+                document.getElementById("other_click_property").style.display = "inline";
 			}
+            /** ***判断是监测专题的视频监测图层**** */
+            else if (keys[1] == "bj_dt_video") {
+                document.getElementById("greerate_r_box").style.display = "inline";// 视频弹出框，和绿视率公用
+
+                document.getElementById("BJ_green84_video").src="/data/topic/monitor/video/"+ properties['path'];
+                document.getElementById("BJ_green84_video").play();
+
+
+
+            }
 			/** ***判断是气象监测专题图层**** */
 			else if (keys[3] == "PM2_5") {
 				// document.getElementById("click_property").style.display =
@@ -453,9 +466,10 @@ $(function() {
                         "#other_feeature_properties_talbe_tbody");
 
                     // console.log(pixel_coordinates.length);
-                    document.getElementById("other_click_property").style.display = "inline";
+
 
                 }
+                document.getElementById("other_click_property").style.display = "inline";
 
             }
             //
@@ -477,10 +491,12 @@ $(function() {
 			}
 		} else {
 			// alert("none");
-            document.getElementById("bj_tb_volp_plant_click_property").style.display = "none";
-			document.getElementById("click_property").style.display = "none";
-			document.getElementById("other_click_property").style.display = "none";
-			document.getElementById("alarm_warning_box").style.display = "none";
+            document.getElementById("bj_tb_volp_plant_click_property").style.display = "none";//活立木蓄积量
+			document.getElementById("click_property").style.display = "none";//点击得到popup弹框
+			document.getElementById("other_click_property").style.display = "none";//点击得到左上角固定弹窗
+			document.getElementById("alarm_warning_box").style.display = "none";//应急
+            // document.getElementById("BJ_green84_video").play();
+            document.getElementById("BJ_green84_video").pause();//停止播放视频，目前是绿视率和监测专题的视频监测公用
 
 			document.getElementById("greerate_r_box").style.display = "none";// 如果没点击绿视图的视屏影藏
 		}
@@ -562,7 +578,7 @@ $(function() {
 		deleteBJ_LD_roof_layer();// 屋顶绿化
 		deleteLYR_Water_layer();// 水
 		// /***************************************绿化指标专题
-		delete_BJ_green84_jz1_layer();// 绿视率
+        delete_BJ_green84_layer();// 绿视率
 		document.getElementById("greerate_r_box").style.display = "none";
 		document.getElementById("green_rate_legend").style.display = "none";
 
@@ -594,6 +610,7 @@ $(function() {
 		// ***************************************监测专题
 		deleteBJ_travel_layer();// 游人监测
 		deleteBJ_JC_Air_layer();// 气象监测
+        delete_bj_dt_video_layer();//视频监测
 		document.getElementById("monitor").style.display = "none";
 
 		// ***************************************气象专题
@@ -851,7 +868,7 @@ $(function() {
 					function() {
 						deleteallLayer();// 清空图层
 
-						add_BJ_green84_jz1_layer();
+                        add_BJ_green84_layer();
 						document.getElementById("green_rate_legend").style.display = "inline";
 
 						map.getView().setCenter(
@@ -1091,6 +1108,19 @@ $(function() {
 				var view = map.getView();
 				view.setZoom(15);
 			})
+
+    $("#bj_dt_video").click(
+        function() {
+            deleteallLayer();// 清空图层
+
+            add_bj_dt_video_layer();
+            map.getView().setCenter(
+                ol.proj.transform([ 116.409, 39.923 ],
+                    'EPSG:4326', 'EPSG:3857'));
+            var view = map.getView();
+            view.setZoom(15);
+
+        })
 	/** 应急管理* */
 	$("#emergency_plan")
 			.click(

@@ -10,7 +10,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <!-- popup ------------------------------------------->
-    <!--点击站点监测信息图层得到属性栏-->
+    <!--点击站点监测信息图层得到属性栏,这个是popup弹窗-->
     <div id="click_property"
          style="position: absolute; z-index: 99999;top: 200px;left: 240px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;width: 300px;color: white">
         <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">站点监测信息</div>
@@ -31,7 +31,7 @@
 
 
     </div>
-    <!--点击图层得到属性栏-->
+    <!--点击图层得到属性栏,这个是固定左上角弹窗-->
     <div id="other_click_property"
          style="position: absolute; z-index: 99999;top: 200px;left: 240px;background: rgba(0,0,0,.8); border-radius: 3px;box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .15);padding: 10px;display: none;width: 220px;color: white">
         <div  style="height: 40px; line-height: 30px;color: white;text-indent: 1em;font-size: 17px;">查询信息</div>
@@ -156,11 +156,11 @@
 <!-- 绿化指标专题选择 -->
 <div th:replace="/topic/greening_topic/greening_topic :: div"></div>
 <!-- cesium三维可视化 -->
-<div id="3D_load_box"
-     style="position:absolute;left:200px;top:300px;z-index: 1200;height: 500px;width: 400px;display: none">
-    <iframe style="height: 500px;width: 400px;"
-            src="/lib/cesium/index.html"></iframe>
-</div>
+<!--<div id="3D_load_box"-->
+     <!--style="position:absolute;left:200px;top:300px;z-index: 1200;height: 500px;width: 400px;display: none">-->
+    <!--<iframe style="height: 500px;width: 400px;"-->
+            <!--src="/lib/cesium/index.html"></iframe>-->
+<!--</div>-->
 
 
 <div id="clearAllLayer"

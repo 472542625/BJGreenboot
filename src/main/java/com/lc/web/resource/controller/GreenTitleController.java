@@ -1,9 +1,7 @@
 package com.lc.web.resource.controller;
 
-import com.lc.web.resource.entity.bj_jdp;
-import com.lc.web.resource.entity.bj_ldlp;
-import com.lc.web.resource.entity.bj_lhfgp;
-import com.lc.web.resource.entity.bj_tbp;
+import com.lc.web.resource.entity.*;
+import com.lc.web.resource.service.bj_green84pService;
 import com.lc.web.resource.service.impl.bj_jdpServiceImpl;
 import com.lc.web.resource.service.impl.bj_ldlpServiceImpl;
 import com.lc.web.resource.service.impl.bj_lhfgpServiceImpl;
@@ -58,5 +56,15 @@ public class GreenTitleController {
 
 		return bj_tbppointService.selectByExample();
 	}
+	@Autowired
+	bj_green84pService bj_green84pService;
+	@RequestMapping(value = "/selectByExample_BJ_green84", method = RequestMethod.GET)
+	public @ResponseBody
+	List<bj_green84p> selectByExample_BJ_green84() {
+
+		return bj_green84pService.selectByExample();
+	}
+
+
 
 }
