@@ -123,14 +123,14 @@ function select_bj_tb_volp_plant(greenid){
 
 
 
-                        var plantname = $("<td  align='right'></td>").append(item.plantname);
-                        var planttype = $("<td  align='right'></td>").append(item.planttype);
-                        var plantAr = $("<td  align='right'></td>").append(item.plantAr);
-                        var plantNum = $("<td  align='right'></td>").append(item.plantNum);
+                        var plantname = $("<td  align='center'></td>").append(item.plantname);
+                        var planttype = $("<td  align='center'></td>").append(item.planttype);
+                        var plantAr = $("<td  align='center'></td>").append(item.plantAr);
+                        var plantNum = $("<td  align='center'></td>").append(item.plantNum);
 
-                        var dbh = $("<td  align='right'></td>").append(item.dbh);
+                        var dbh = $("<td  align='center'></td>").append(item.dbh);
 
-                        var plantVol = $("<td  align='right'></td>").append(item.plantVol);
+                        var plantVol = $("<td  align='center'></td>").append(item.plantVol);
 
                         $("<tr class='info'></tr>").append(plantname)
                             .append(planttype).append(plantAr).append(plantNum).append(dbh).append(plantVol).appendTo("#bj_tb_volp_plant_click_property_table");

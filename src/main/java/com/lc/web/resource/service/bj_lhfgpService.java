@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface bj_lhfgpService {
 
-	public List<bj_lhfgp> selectByExample();
+	public List<bj_lhfgp> selectByExample(Double ldl1,Double ldl2);
 }

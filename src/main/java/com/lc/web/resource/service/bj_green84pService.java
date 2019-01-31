@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface bj_green84pService {
 
-    public List<bj_green84p> selectByExample();
+    public List<bj_green84p> selectByExample(String greenrate);
 }

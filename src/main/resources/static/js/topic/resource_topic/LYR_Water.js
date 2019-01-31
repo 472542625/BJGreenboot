@@ -91,11 +91,11 @@ function add_vector_LYR_Water_layer() {
 			var source = new ol.source.Vector({
 				features : featurearray
 			});
-			vector_LYR_LD_GardenP_layer = new ol.layer.Vector({
+            vector_LYR_Water_layer = new ol.layer.Vector({
 				source : source,
 				zIndex : 1002
 			});
-			map.addLayer(vector_LYR_LD_GardenP_layer);
+			map.addLayer(vector_LYR_Water_layer);
 		},
 		error : function() {
 			alert('error');

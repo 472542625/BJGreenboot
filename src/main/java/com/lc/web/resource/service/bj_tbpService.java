@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface bj_tbpService {
 
-	public List<bj_tbp> selectByExample();
+	public List<bj_tbp> selectByExample(Double ldl1,Double ldl2,String value) ;
 }

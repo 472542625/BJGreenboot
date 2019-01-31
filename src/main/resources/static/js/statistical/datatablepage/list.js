@@ -40,6 +40,17 @@ $(function () {
         // to_page_statistical_detail
 
     });
+    $(document).on("click", ".view_all_btn", function() {
+
+        to_page_statistical_detail(1,"全选");
+        // alert(street+","+greentype1+","+greentype);
+        $('#myTab a[href="#statistical_details"]').tab('show');
+
+        // to_page_statistical_detail
+
+    });
+
+
     // 点击跳转定位到可视化页面事件
     $(document).on("click", ".positioning_btn", function() {
         var gid = $(this).attr("positioning-id");
@@ -149,6 +160,8 @@ function to_page_statistical_reslut(pn) {
 function build_statistical_reslut_table(result) {
     $("#statistical_result_table tbody").empty();
     var points = result.extend.pageInfo.list;
+    var sum_area_all=0;
+    var count_all=0;
 
     $
         .each(
@@ -159,8 +172,11 @@ function build_statistical_reslut_table(result) {
                 var id = $("<td width='60px'></td>").append(index+1);
                 var street = $("<td width='200px'></td>")
                     .append(item.street);
+                sum_area_all = sum_area_all+item.sum_area;
                 var sum_area = $("<td width='100px'></td>").append(item.sum_area.toFixed(2));
+                count_all = count_all+item.count;
                 var count = $("<td width='100px'></td>").append(item.count);
+
 
 
                 // var editBtn = $("<button></button>")
@@ -197,6 +213,23 @@ function build_statistical_reslut_table(result) {
                     .append(street).append(sum_area).append(count).append(btn).appendTo("#statistical_result_table");
 
             });
+
+    var countAllblank =  $("<td width='60px'></td>").append("-");
+    var  countAll = $("<td width='200px'></td>").append("合计");
+    var sum_area_all_td = $("<td width='100px'></td>").append(sum_area_all.toFixed(2));
+    var count_all_td = $("<td width='100px'></td>").append(count_all);
+    var viewAllBtn = $("<button></button>")
+        .addClass(
+            "btn btn-primary btn-sm view_all_btn")
+        .append(
+            $("<span></span>")
+                .addClass(
+                    "glyphicon glyphicon-play-circle"));
+
+    var btnall = $("<td width='150px'></td>").append(viewAllBtn);
+    $("<tr class='info'></tr>").append(countAllblank)
+        .append(countAll).append(sum_area_all_td).append(count_all_td).append(btnall).appendTo("#statistical_result_table");
+
 }
 //分页查询左下角记录数模块
 function build_pages_info(result) {
@@ -363,6 +396,10 @@ function build_statistical_detail_table(result) {
                 append(STREET).append(btn).appendTo("#statistical_detail_table");
 
             });
+
+
+
+// <button type="button"  class="btn btn-primary" >批量导出</button>
 }
 
 

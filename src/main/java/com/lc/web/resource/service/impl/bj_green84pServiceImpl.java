@@ -17,9 +17,11 @@ public class bj_green84pServiceImpl implements bj_green84pService {
     @Autowired
     bj_green84pMapper bj_green84pmapper;
     @Override
-    public List<bj_green84p> selectByExample() {
+    public List<bj_green84p> selectByExample(String greenrate) {
         bj_green84pExample bj_green84pexample =  new bj_green84pExample();
         bj_green84pExample.Criteria criteria = bj_green84pexample.createCriteria();
+
+        criteria.andGreenRateEqualTo(greenrate);
 
         return bj_green84pmapper.selectByExample(bj_green84pexample);
     }

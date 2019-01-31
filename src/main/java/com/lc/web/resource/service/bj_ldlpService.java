@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface bj_ldlpService {
 
-	public List<bj_ldlp> selectByExample();
+	public List<bj_ldlp>  selectByExample(Double ldl1,Double ldl2);
 }

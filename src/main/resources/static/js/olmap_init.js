@@ -591,12 +591,17 @@ $(function() {
 		delete_BJ_TB_lhfg_layer();// 图斑绿化覆盖率
 		delete_BJ_lhfg_layer();// 单位绿化覆盖率
 		document.getElementById("BJ_lhfg_legend").style.display = "none";// 绿化覆盖率
+        document.getElementById("BJ_lhfg_legend").style.display = "none";// 绿地率
+        document.getElementById("BJ_lhfg_jd_legend").style.display = "none";// 绿地率
+        document.getElementById("BJ_lhfg_tb_legend").style.display = "none";// 绿地率
 		document.getElementById("greentitleSelect_lhfg").style.display = "none";
         document.getElementById("BJ_lhfg_box").style.display = "none";
 		delete_BJ_JD_ldl_layer();// 街道绿地率
 		delete_BJ_TB_ldl_layer();// 图斑绿地率
 		delete_BJ_ldl_layer();// 单位绿地率
 		document.getElementById("BJ_ldl_legend").style.display = "none";// 绿地率
+        document.getElementById("BJ_ldl_jd_legend").style.display = "none";// 绿地率
+        document.getElementById("BJ_ldl_tb_legend").style.display = "none";// 绿地率
 		document.getElementById("greentitleSelect_ldl").style.display = "none";
         document.getElementById("BJ_ldl_box").style.display = "none";
 		deleteBJ_Graden_500mbuffer_layer();// 公园绿地500米辐射范围
@@ -860,6 +865,7 @@ $(function() {
 
 				add_green_count_layer();
 
+
 				map.getView().setCenter(
 						ol.proj.transform([ 116.409, 39.923 ], 'EPSG:4326',
 								'EPSG:3857'));
@@ -875,13 +881,104 @@ $(function() {
 
                         add_BJ_green84_layer();
 						document.getElementById("green_rate_legend").style.display = "inline";
+                        $("#lvshilv_1").prop("checked", true);
+                        $("#lvshilv_2").prop("checked", true);
 
+                        $("#lvshilv_3").prop("checked", true);
+                        $("#lvshilv_4").prop("checked", true);
+                        $("#lvshilv_5").prop("checked", true);
 						map.getView().setCenter(
 								ol.proj.transform([ 116.409, 39.923 ],
 										'EPSG:4326', 'EPSG:3857'));
 						var view = map.getView();
 						view.setZoom(15);
 					})
+    $("#lvshilv_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lvshilv_1").is(':checked')) {
+
+                    add_vector_BJ_green84_layer_select_1("很好");
+                    map.addLayer(image_BJ_green84_layer_1);
+                }
+                else{
+                    delete_layer(vector_BJ_green84_layer_1);
+                    delete_layer(image_BJ_green84_layer_1);
+				}
+
+
+
+
+
+            })
+    $("#lvshilv_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lvshilv_2").is(':checked')) {
+
+                    add_vector_BJ_green84_layer_select_2("较好");
+                    map.addLayer(image_BJ_green84_layer_2);
+                }
+                else{
+                    delete_layer(vector_BJ_green84_layer_2);
+                    delete_layer(image_BJ_green84_layer_2);
+                }
+
+
+
+
+            })
+    $("#lvshilv_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lvshilv_3").is(':checked')) {
+                    map.addLayer(image_BJ_green84_layer_3);
+                    add_vector_BJ_green84_layer_select_3("一般");
+                }
+                else{
+                    delete_layer(vector_BJ_green84_layer_3);
+                    delete_layer(image_BJ_green84_layer_3);
+                }
+
+
+
+
+
+            })
+    $("#lvshilv_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lvshilv_4").is(':checked')) {
+                    map.addLayer(image_BJ_green84_layer_4);
+                    add_vector_BJ_green84_layer_select_4("较差");
+                }
+                else{
+                    delete_layer(vector_BJ_green84_layer_4);
+                    delete_layer(image_BJ_green84_layer_4);
+                }
+
+
+
+
+
+            })
+
 	// 绿化覆盖率
 	$("#BJ_lhfg")
 			.click(
@@ -898,9 +995,26 @@ $(function() {
 
                         $("#vector_BJ_lhfg_JD_layer").prop("checked", false);
 
+                        $("#lhfg_1").prop("checked", true);
+                        $("#lhfg_2").prop("checked", true);
+
+                        $("#lhfg_3").prop("checked", true);
+                        $("#lhfg_4").prop("checked", true);
+                        $("#lhfg_5").prop("checked", true);
 
 
+                        $("#lhfg_tb_1").prop("checked", true);
+                        $("#lhfg_tb_2").prop("checked", true);
 
+                        $("#lhfg_tb_3").prop("checked", true);
+                        $("#lhfg_tb_4").prop("checked", true);
+                        $("#lhfg_tb_5").prop("checked", true);
+                        $("#lhfg_jd_1").prop("checked", true);
+                        $("#lhfg_jd_2").prop("checked", true);
+
+                        $("#lhfg_jd_3").prop("checked", true);
+                        $("#lhfg_jd_4").prop("checked", true);
+                        $("#lhfg_jd_5").prop("checked", true);
 						map.getView().setCenter(
 								ol.proj.transform([ 116.409, 39.923 ],
 										'EPSG:4326', 'EPSG:3857'));
@@ -920,7 +1034,12 @@ $(function() {
 							add_BJ_lhfg_layer();
 							document.getElementById("BJ_lhfg_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_lhfg").style.display = "inline";
+                            $("#lhfg_1").prop("checked", true);
+                            $("#lhfg_2").prop("checked", true);
 
+                            $("#lhfg_3").prop("checked", true);
+                            $("#lhfg_4").prop("checked", true);
+                            $("#lhfg_5").prop("checked", true);
 
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
@@ -933,6 +1052,137 @@ $(function() {
                         }
 
 					})
+
+
+    $("#lhfg_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_1").is(':checked')) {
+
+                    add_vector_BJ_lhfg_layer_1(0,0.1);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_lhfg_layer_1);
+
+                }
+                else{
+                    delete_layer(image_BJ_lhfg_layer_1);
+                    delete_layer(vector_BJ_lhfg_layer_clusters_1);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_2").is(':checked')) {
+
+                    add_vector_BJ_lhfg_layer_2(0.1,0.3);
+
+
+                }
+                else{
+                    delete_layer(image_BJ_lhfg_layer_2);
+                    delete_layer(vector_BJ_lhfg_layer_clusters_2);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_3").is(':checked')) {
+
+
+                    add_vector_BJ_lhfg_layer_3(0.3,0.6);
+
+                    map.addLayer(image_BJ_lhfg_layer_3);
+
+                }
+                else{
+                    delete_layer(image_BJ_lhfg_layer_3);
+                    delete_layer(vector_BJ_lhfg_layer_clusters_3);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_4").is(':checked')) {
+
+
+                    add_vector_BJ_lhfg_layer_4(0.6,0.9);
+
+                    map.addLayer(image_BJ_lhfg_layer_4);
+
+                }
+                else{
+                    delete_layer(image_BJ_lhfg_layer_4);
+                    delete_layer(vector_BJ_lhfg_layer_clusters_4);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_5")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_5").is(':checked')) {
+
+
+                    add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_lhfg_layer_5);
+
+                }
+                else{
+                    delete_layer(image_BJ_lhfg_layer_5);
+                    delete_layer(vector_BJ_lhfg_layer_clusters_5);
+
+                }
+
+
+
+
+
+            })
 	$("#vector_BJ_lhfg_TB_layer")
 			.click(
 					function() {
@@ -941,9 +1191,14 @@ $(function() {
 							deleteallLayer();// 清空图层
 
 							add_BJ_TB_lhfg_layer();
-							document.getElementById("BJ_lhfg_legend").style.display = "inline";
+							document.getElementById("BJ_lhfg_tb_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_lhfg").style.display = "inline";
+                            $("#lhfg_tb_1").prop("checked", true);
+                            $("#lhfg_tb_2").prop("checked", true);
 
+                            $("#lhfg_tb_3").prop("checked", true);
+                            $("#lhfg_tb_4").prop("checked", true);
+                            $("#lhfg_tb_5").prop("checked", true);
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
 											'EPSG:4326', 'EPSG:3857'));
@@ -955,6 +1210,151 @@ $(function() {
                         }
 
 					})
+    $("#lhfg_tb_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_tb_1").is(':checked')) {
+
+
+                    add_vector_BJ_TB_lhfg_layer_1(0,0.1);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_TB_lhfg_layer_1);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_lhfg_layer_1);
+                    delete_layer(vector_BJ_TB_lhfg_layer_clusters_1);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_tb_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_tb_2").is(':checked')) {
+
+
+                    add_vector_BJ_TB_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_TB_lhfg_layer_2);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_lhfg_layer_2);
+                    delete_layer(vector_BJ_TB_lhfg_layer_clusters_2);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_tb_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_tb_3").is(':checked')) {
+
+
+                    add_vector_BJ_TB_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_TB_lhfg_layer_3);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_lhfg_layer_3);
+                    delete_layer(vector_BJ_TB_lhfg_layer_clusters_3);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_tb_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_tb_4").is(':checked')) {
+
+
+                    add_vector_BJ_TB_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_TB_lhfg_layer_4);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_lhfg_layer_4);
+                    delete_layer(vector_BJ_TB_lhfg_layer_clusters_4);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_tb_5")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_tb_5").is(':checked')) {
+
+
+                    add_vector_BJ_TB_lhfg_layer_5(0.9,4);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_TB_lhfg_layer_5);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_lhfg_layer_5);
+                    delete_layer(vector_BJ_TB_lhfg_layer_clusters_5);
+
+                }
+
+
+
+
+
+            })
 	$("#vector_BJ_lhfg_JD_layer")
 			.click(
 					function() {
@@ -963,9 +1363,14 @@ $(function() {
 							deleteallLayer();// 清空图层
 
 							add_BJ_JD_lhfg_layer();
-							document.getElementById("BJ_lhfg_legend").style.display = "inline";
+							document.getElementById("BJ_lhfg_jd_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_lhfg").style.display = "inline";
+                            $("#lhfg_jd_1").prop("checked", true);
+                            $("#lhfg_jd_2").prop("checked", true);
 
+                            $("#lhfg_jd_3").prop("checked", true);
+                            $("#lhfg_jd_4").prop("checked", true);
+                            $("#lhfg_jd_5").prop("checked", true);
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
 											'EPSG:4326', 'EPSG:3857'));
@@ -977,6 +1382,152 @@ $(function() {
                         }
 
 					})
+
+    $("#lhfg_jd_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_jd_1").is(':checked')) {
+
+
+                    add_vector_BJ_JD_lhfg_layer_1(0,0.1);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_JD_lhfg_layer_1);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_lhfg_layer_1);
+                    delete_layer(vector_BJ_JD_lhfg_layer_clusters_1);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_jd_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_jd_2").is(':checked')) {
+
+
+                    add_vector_BJ_JD_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_JD_lhfg_layer_2);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_lhfg_layer_2);
+                    delete_layer(vector_BJ_JD_lhfg_layer_clusters_2);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_jd_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_jd_3").is(':checked')) {
+
+
+                    add_vector_BJ_JD_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_JD_lhfg_layer_3);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_lhfg_layer_3);
+                    delete_layer(vector_BJ_JD_lhfg_layer_clusters_3);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_jd_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_jd_4").is(':checked')) {
+
+
+                    add_vector_BJ_JD_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_JD_lhfg_layer_4);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_lhfg_layer_4);
+                    delete_layer(vector_BJ_JD_lhfg_layer_clusters_4);
+
+                }
+
+
+
+
+
+            })
+    $("#lhfg_jd_5")
+        .click(
+            function() {
+
+
+
+
+                if ($("#lhfg_jd_5").is(':checked')) {
+
+
+                    add_vector_BJ_JD_lhfg_layer_5(0.9,4);
+                    // add_vector_BJ_lhfg_layer_2(0.1,0.3);
+                    // add_vector_BJ_lhfg_layer_3(0.3,0.6);
+                    // add_vector_BJ_lhfg_layer_4(0.6,0.9);
+                    // add_vector_BJ_lhfg_layer_5(0.9,4);
+                    map.addLayer(image_BJ_JD_lhfg_layer_5);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_lhfg_layer_5);
+                    delete_layer(vector_BJ_JD_lhfg_layer_clusters_5);
+
+                }
+
+
+
+
+
+            })
 
 	// 绿地率
 	$("#BJ_ldl")
@@ -991,6 +1542,28 @@ $(function() {
 
                         document.getElementById("BJ_ldl_box").style.display = "inline";
 
+
+                        $("#ldl_1").prop("checked", true);
+                        $("#ldl_2").prop("checked", true);
+
+                        $("#ldl_3").prop("checked", true);
+                        $("#ldl_4").prop("checked", true);
+                        $("#ldl_5").prop("checked", true);
+
+
+
+                        $("#ldl_tb_1").prop("checked", true);
+                        $("#ldl_tb_2").prop("checked", true);
+
+                        $("#ldl_tb_3").prop("checked", true);
+                        $("#ldl_tb_4").prop("checked", true);
+                        $("#ldl_tb_5").prop("checked", true);
+                        $("#ldl_jd_1").prop("checked", true);
+                        $("#ldl_jd_2").prop("checked", true);
+
+                        $("#ldl_jd_3").prop("checked", true);
+                        $("#ldl_jd_4").prop("checked", true);
+                        $("#ldl_jd_5").prop("checked", true);
 
                         $("#vector_BJ_ldl_layer").prop("checked", true);
                         $("#vector_BJ_ldl_TB_layer").prop("checked", false);
@@ -1014,6 +1587,24 @@ $(function() {
 							add_BJ_ldl_layer();
 							document.getElementById("BJ_ldl_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_ldl").style.display = "inline";
+                            $("#ldl_1").prop("checked", true);
+                            $("#ldl_2").prop("checked", true);
+
+                            $("#ldl_3").prop("checked", true);
+                            $("#ldl_4").prop("checked", true);
+                            $("#ldl_5").prop("checked", true);
+                            $("#ldl_tb_1").prop("checked", true);
+                            $("#ldl_tb_2").prop("checked", true);
+
+                            $("#ldl_tb_3").prop("checked", true);
+                            $("#ldl_tb_4").prop("checked", true);
+                            $("#ldl_tb_5").prop("checked", true);
+                            $("#ldl_jd_1").prop("checked", true);
+                            $("#ldl_jd_2").prop("checked", true);
+
+                            $("#ldl_jd_3").prop("checked", true);
+                            $("#ldl_jd_4").prop("checked", true);
+                            $("#ldl_jd_5").prop("checked", true);
 
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
@@ -1026,6 +1617,147 @@ $(function() {
                         }
 
 					})
+
+    $("#ldl_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_1").is(':checked')) {
+
+                    add_vector_BJ_ldl_layer_1(0,0.07);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_ldl_layer_1);
+
+                }
+                else{
+                    delete_layer(image_BJ_ldl_layer_1);
+                    delete_layer(vector_BJ_ldl_layer_clusters_1);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_2").is(':checked')) {
+
+                    add_vector_BJ_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_ldl_layer_2);
+
+                }
+                else{
+                    delete_layer(image_BJ_ldl_layer_2);
+                    delete_layer(vector_BJ_ldl_layer_clusters_2);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_3").is(':checked')) {
+
+                    add_vector_BJ_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_ldl_layer_3);
+
+                }
+                else{
+                    delete_layer(image_BJ_ldl_layer_3);
+                    delete_layer(vector_BJ_ldl_layer_clusters_3);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_4").is(':checked')) {
+
+                    add_vector_BJ_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_ldl_layer_4);
+
+                }
+                else{
+                    delete_layer(image_BJ_ldl_layer_4);
+                    delete_layer(vector_BJ_ldl_layer_clusters_4);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_5")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_5").is(':checked')) {
+
+                    add_vector_BJ_ldl_layer_5(0.7,1);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_ldl_layer_5);
+
+                }
+                else{
+                    delete_layer(image_BJ_ldl_layer_5);
+                    delete_layer(vector_BJ_ldl_layer_clusters_5);
+
+                }
+
+
+
+
+
+            })
 	$("#vector_BJ_ldl_TB_layer")
 			.click(
 					function() {
@@ -1034,8 +1766,14 @@ $(function() {
 							deleteallLayer();// 清空图层
 
 							add_BJ_TB_ldl_layer();
-							document.getElementById("BJ_ldl_legend").style.display = "inline";
+							document.getElementById("BJ_ldl_tb_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_ldl").style.display = "inline";
+                            $("#ldl_tb_1").prop("checked", true);
+                            $("#ldl_tb_2").prop("checked", true);
+
+                            $("#ldl_tb_3").prop("checked", true);
+                            $("#ldl_tb_4").prop("checked", true);
+                            $("#ldl_tb_5").prop("checked", true);
 
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
@@ -1048,6 +1786,147 @@ $(function() {
                         }
 
 					})
+
+    $("#ldl_tb_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_tb_1").is(':checked')) {
+
+                    add_vector_BJ_TB_ldl_layer_1(0,0.07);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_TB_ldl_layer_1);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_ldl_layer_1);
+                    delete_layer(vector_BJ_TB_ldl_layer_clusters_1);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_tb_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_tb_2").is(':checked')) {
+
+                    add_vector_BJ_TB_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_TB_ldl_layer_2);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_ldl_layer_2);
+                    delete_layer(vector_BJ_TB_ldl_layer_clusters_2);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_tb_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_tb_3").is(':checked')) {
+
+
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    add_vector_BJ_TB_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_TB_ldl_layer_3);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_ldl_layer_3);
+                    delete_layer(vector_BJ_TB_ldl_layer_clusters_3);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_tb_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_tb_4").is(':checked')) {
+
+                    add_vector_BJ_TB_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_TB_ldl_layer_4);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_ldl_layer_4);
+                    delete_layer(vector_BJ_TB_ldl_layer_clusters_4);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_tb_5")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_tb_5").is(':checked')) {
+
+                    add_vector_BJ_TB_ldl_layer_5(0.7,1);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_TB_ldl_layer_5);
+
+                }
+                else{
+                    delete_layer(image_BJ_TB_ldl_layer_5);
+                    delete_layer(vector_BJ_TB_ldl_layer_clusters_5);
+
+                }
+
+
+
+
+
+            })
 	$("#vector_BJ_ldl_JD_layer")
 			.click(
 					function() {
@@ -1056,9 +1935,17 @@ $(function() {
 							deleteallLayer();// 清空图层
 
 							add_BJ_JD_ldl_layer();
-							document.getElementById("BJ_ldl_legend").style.display = "inline";
+							document.getElementById("BJ_ldl_jd_legend").style.display = "inline";
 							document.getElementById("greentitleSelect_ldl").style.display = "inline";
 
+
+
+                            $("#ldl_jd_1").prop("checked", true);
+                            $("#ldl_jd_2").prop("checked", true);
+
+                            $("#ldl_jd_3").prop("checked", true);
+                            $("#ldl_jd_4").prop("checked", true);
+                            $("#ldl_jd_5").prop("checked", true);
 							map.getView().setCenter(
 									ol.proj.transform([ 116.409, 39.923 ],
 											'EPSG:4326', 'EPSG:3857'));
@@ -1069,10 +1956,150 @@ $(function() {
                             deleteallLayer();// 清空图层
                         }
 
-					})	
-					
-					
+					})
 
+
+
+    $("#ldl_jd_1")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_jd_1").is(':checked')) {
+
+                    add_vector_BJ_JD_ldl_layer_1(0,0.07);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_JD_ldl_layer_1);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_ldl_layer_1);
+                    delete_layer(vector_BJ_JD_ldl_layer_clusters_1);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_jd_2")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_jd_2").is(':checked')) {
+
+                    add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_JD_ldl_layer_2);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_ldl_layer_2);
+                    delete_layer(vector_BJ_JD_ldl_layer_clusters_2);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_jd_3")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_jd_3").is(':checked')) {
+
+
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_JD_ldl_layer_3);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_ldl_layer_3);
+                    delete_layer(vector_BJ_JD_ldl_layer_clusters_3);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_jd_4")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_jd_4").is(':checked')) {
+
+                    add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_JD_ldl_layer_4);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_ldl_layer_4);
+                    delete_layer(vector_BJ_JD_ldl_layer_clusters_4);
+
+                }
+
+
+
+
+
+            })
+    $("#ldl_jd_5")
+        .click(
+            function() {
+
+
+
+
+                if ($("#ldl_jd_5").is(':checked')) {
+
+                    add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    // add_vector_BJ_JD_ldl_layer_2(0.07,0.2);
+                    // add_vector_BJ_JD_ldl_layer_3(0.2,0.4);
+                    // add_vector_BJ_JD_ldl_layer_4(0.4,0.7);
+                    // add_vector_BJ_JD_ldl_layer_5(0.7,1);
+                    map.addLayer(image_BJ_JD_ldl_layer_5);
+
+                }
+                else{
+                    delete_layer(image_BJ_JD_ldl_layer_5);
+                    delete_layer(vector_BJ_JD_ldl_layer_clusters_5);
+
+                }
+
+
+
+
+
+            })
 	// 公园绿地500米辐射范围
 	$("#BJ_Graden_500mbuffer").click(
 			function() {

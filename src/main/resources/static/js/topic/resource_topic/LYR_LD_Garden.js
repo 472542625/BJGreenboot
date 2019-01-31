@@ -81,7 +81,7 @@ function add_LYR_LD_Garden_layer(greentype) {
 // map.addLayer(vector_LYR_LD_GardenP_layer);
 // }
 
-var vector_LYR_LD_GardenP_layer;
+var vector_LYR_LD_GardenP_layer_clusters;
 function add_LYR_LD_GardenP_layer(greentype1) {
 
 	var featurearray = [];
@@ -155,11 +155,68 @@ function add_LYR_LD_GardenP_layer(greentype1) {
 			var source = new ol.source.Vector({
 				features : featurearray
 			});
-			vector_LYR_LD_GardenP_layer = new ol.layer.Vector({
-				source : source,
-				zIndex : 1002
-			});
-			map.addLayer(vector_LYR_LD_GardenP_layer);
+
+            /******聚类分析*******/
+
+
+            var clusterSource = new ol.source.Cluster({
+                distance: 40,
+                source: source
+            });
+            var styleCache = {};
+            vector_LYR_LD_GardenP_layer_clusters =  new ol.layer.Vector({
+                source: clusterSource,
+                style: function(feature) {
+                    var size = feature.get('features').length;
+                    feature.set("绿地名称",feature.get('features')[0].N.绿地名称);
+                    feature.set("绿地性质",feature.get('features')[0].N.绿地性质);
+                    feature.set("图斑面积",feature.get('features')[0].N.图斑面积);
+                    feature.set("绿化面积",feature.get('features')[0].N.绿化面积);
+                    feature.set("绿化覆盖面积",feature.get('features')[0].N.绿化覆盖面积);
+                    feature.set("屋顶绿化面积",feature.get('features')[0].N.屋顶绿化面积);
+                    feature.set("其他面积",feature.get('features')[0].N.其他面积);
+                    feature.set("所属街道",feature.get('features')[0].N.所属街道);
+                    feature.set("居委会",feature.get('features')[0].N.居委会);
+                    feature.set("绿地归属",feature.get('features')[0].N.绿地归属);
+                    feature.set("建成时间",feature.get('features')[0].N.建成时间);
+                    feature.set("产权单位",feature.get('features')[0].N.产权单位);
+                    feature.set("管养单位",feature.get('features')[0].N.管养单位);
+                    feature.set("管养性质",feature.get('features')[0].N.管养性质);
+                    var style = styleCache[size];
+                    if (!style) {
+                        style = new ol.style.Style({
+                            image: new ol.style.Circle({
+                                radius: 10,
+                                stroke: new ol.style.Stroke({
+                                    color: '#fff'
+                                }),
+                                fill: new ol.style.Fill({
+                                    color: '#3399CC'
+                                })
+                            }),
+                            text: new ol.style.Text({
+                                text: size.toString(),
+                                fill: new ol.style.Fill({
+                                    color: '#fff'
+                                })
+                            })
+                        });
+                        styleCache[size] = style;
+                    }
+                    return style;
+                },
+                zIndex : 1002
+            });
+
+
+
+
+            // map.addLayer(vector_BJ_JD_ldl_layer);
+            map.addLayer(vector_LYR_LD_GardenP_layer_clusters);
+            clusterSource.setDistance(parseInt(100, 10));
+
+
+
 		},
 		error : function() {
 			alert('error');
@@ -181,5 +238,5 @@ function addLYR_LD_Garden_layer(greentype_wms,greentype1) {
 function deleteBJ_LYR_LD_Garden_layer() {
 
 	delete_layer(vector_LYR_LD_Garden_layer);
-	delete_layer(vector_LYR_LD_GardenP_layer);
+	delete_layer(vector_LYR_LD_GardenP_layer_clusters);
 }

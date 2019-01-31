@@ -28,7 +28,7 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principalCollection) {
-		System.out.println("执行了授权方法");
+		//System.out.println("执行了授权方法");
 
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
@@ -49,7 +49,7 @@ public class UserRealm extends AuthorizingRealm {
 			for (String perm : perms) {
 				if (!org.springframework.util.StringUtils.isEmpty(perm)) {
 					info.addStringPermission(perm);
-					System.out.println(perm);
+					//System.out.println(perm);
 					// info.addStringPermission("spdata:list");// 进行 资源权限赋予"spdata:list"
 					// info.addRole("admin");// 进行角色权限赋予"admin"
 				}
@@ -64,14 +64,14 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authenticationToken)
 			throws AuthenticationException {
-		System.out.println("执行了认证方法");
+		//System.out.println("执行了认证方法");
 		// 1.获取用户输入的账户信息
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
 		user user = null;
 		try {
 			user = userservice.findUser(token.getUsername());
-			System.out.print(user.getAccount());
+			//System.out.print(user.getAccount());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

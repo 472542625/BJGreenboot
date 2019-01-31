@@ -1,12 +1,14 @@
-<!DOCTYPE >
+<!DOCTYPE HTML>
 <html xmlns:th="http:/www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-<head th:include="/index/common-layui-js-css :: div">
+<head th:include="index/common-layui-js-css :: div">
 
 
 
 
 
 </head>
+
+
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <!-- popup ------------------------------------------->
@@ -60,8 +62,8 @@
             <tr>
                 <!--<th><input type="checkbox" id="check_all"/></th>-->
                 <th style="width: 80px">树种</th>
-                <th style="width: 100px">类型</th>
-                <th style="width: 100px">面积(m<sup>2</sup>)</th>
+                <th style="width: 60px">类型</th>
+                <th style="width: 60px">面积(m<sup>2</sup>)</th>
                 <th>株数</th>
                 <th>径阶</th>
                 <th style="width: 100px">蓄积量(m<sup>3</sup>)</th>
@@ -77,9 +79,9 @@
     </div>
 
     <!-- header -->
-    <div th:replace="/index/header :: header"></div>
+    <div th:replace="index/header :: header"></div>
     <!-- leftside -->
-    <div th:replace="/index/left_index :: div"></div>
+    <div th:replace="index/left_index :: div"></div>
     <div class="layui-body" style="background-color: #393D49;height: 100%">
         <!-- 内容主体区域 -->
         <div id="map" class="map"
@@ -152,14 +154,14 @@
 
 
 <!--监测专题右侧栏-->
-<div th:replace="/topic/monitoring_topic/monitoring_topic :: div"></div>
+<div th:replace="topic/monitoring_topic/monitoring_topic :: div"></div>
 <!--气象专题栏------------------------------------------->
-<div th:replace="/topic/climate_topic/climate :: div"></div>
+<div th:replace="topic/climate_topic/climate :: div"></div>
 <!-- 应急管理 -->
-<div th:replace="/topic/emergency_management/alarm_warning :: div"></div>
-<div th:replace="/topic/emergency_management/emergency_plan :: div"></div>
+<div th:replace="topic/emergency_management/alarm_warning :: div"></div>
+<div th:replace="topic/emergency_management/emergency_plan :: div"></div>
 <!-- 绿化指标专题选择 -->
-<div th:replace="/topic/greening_topic/greening_topic :: div"></div>
+<div th:replace="topic/greening_topic/greening_topic :: div"></div>
 <!-- cesium三维可视化 -->
 <!--<div id="3D_load_box"-->
      <!--style="position:absolute;left:200px;top:300px;z-index: 1200;height: 500px;width: 400px;display: none">-->
