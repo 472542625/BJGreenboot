@@ -28,4 +28,6 @@ public interface lyr_waterpMapper {
     int updateByPrimaryKeySelective(lyr_waterp record);
 
     int updateByPrimaryKey(lyr_waterp record);
+
+    List<lyr_waterp> selectByExampleLikeGreenNameLimit(String greenname);
 }

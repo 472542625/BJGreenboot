@@ -23,4 +23,19 @@ public class bj_ld_roofServiceImpl implements bj_ld_roofService {
 		return dao.selectByExample(example);
 	}
 
+	@Override
+	public List<bj_ld_roof> selectByExampleLikeGreenName(String greenname) {
+		bj_ld_roofExample example = new bj_ld_roofExample();
+
+		bj_ld_roofExample.Criteria criteria = example.createCriteria();
+		criteria.andGreennameEqualTo(greenname);
+		return dao.selectByExample(example);
+	}
+
+	@Override
+	public List<bj_ld_roof> selectByExampleLikeGreenNameLimit(String greenname) {
+		return dao.selectByExampleLikegreenNameLimit(greenname);
+	}
+
+
 }

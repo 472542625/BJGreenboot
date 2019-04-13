@@ -21,7 +21,7 @@ public interface bj_ld_gsmmMapper {
 
 	bj_ld_gsmm selectByPrimaryKey(Integer gid);
 
-	List<bj_ld_gsmm> selectByLimit1000();
+	List<bj_ld_gsmm> selectall();
 
 	int updateByExampleSelective(@Param("record") bj_ld_gsmm record,
                                  @Param("example") bj_ld_gsmmExample example);
@@ -32,4 +32,5 @@ public interface bj_ld_gsmmMapper {
 	int updateByPrimaryKeySelective(bj_ld_gsmm record);
 
 	int updateByPrimaryKey(bj_ld_gsmm record);
+	List<bj_ld_gsmm> selectByExampleLikeoldTreeLimit(String treetype);
 }

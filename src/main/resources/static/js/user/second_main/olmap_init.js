@@ -321,26 +321,27 @@ $(function() {
     })
     function deleteallLayer() {
 
-        delete_layer(image_BJ_green84_layer);// 绿视率
-
+       // delete_layer(image_BJ_green84_layer);// 绿视率
+        delete_BJ_green84_layer();
         document.getElementById("green_rate_legend").style.display = "none";
 
+        delete_BJ_lhfg_layer();
         //
         // delete_BJ_JD_lhfg_layer();// 街道绿化覆盖率
         // delete_BJ_TB_lhfg_layer();// 图斑绿化覆盖率
-        delete_layer(image_BJ_lhfg_layer);// 单位绿化覆盖率
+        //delete_layer(image_BJ_lhfg_layer);// 单位绿化覆盖率
         document.getElementById("BJ_lhfg_legend").style.display = "none";// 绿化覆盖率
 
-
+        delete_BJ_ldl_layer();
         // delete_BJ_JD_ldl_layer();// 街道绿地率
         // delete_BJ_TB_ldl_layer();// 图斑绿地率
 
 
-        delete_layer(image_BJ_ldl_layer);// 单位绿地率
+      //  delete_layer(image_BJ_ldl_layer);// 单位绿地率
         document.getElementById("BJ_ldl_legend").style.display = "none";// 绿地率
 
-
-        deleteBJ_Graden_500mbuffer_layer();// 公园绿地500米辐射范围
+        deleteBJ_Graden_500mbuffer_layer();
+        //deleteBJ_Graden_500mbuffer_layer();// 公园绿地500米辐射范围
 
         delete_layer(green_count_layer);// 绿量
 
@@ -356,7 +357,7 @@ $(function() {
 
             if($("#green_count").is(':checked')) {
 
-
+                deleteallLayer();// 清空图层
                 add_green_count_layer();
 
                 map.getView().setCenter(
@@ -379,8 +380,8 @@ $(function() {
 
                 if($("#green_rate").is(':checked')) {
                     deleteallLayer();// 清空图层
-
-                    map.addLayer(image_BJ_green84_layer);
+                    add_BJ_green84_layer()
+                    // map.addLayer(image_BJ_green84_layer);
                     document.getElementById("green_rate_legend").style.display = "inline";
 
                     map.getView().setCenter(
@@ -402,7 +403,7 @@ $(function() {
                 if($("#BJ_lhfg").is(':checked')) {
                     deleteallLayer();// 清空图层
 
-                    map.addLayer(image_BJ_lhfg_layer);
+                    add_BJ_lhfg_layer();
                     document.getElementById("BJ_lhfg_legend").style.display = "inline";
 
 
@@ -431,7 +432,7 @@ $(function() {
                 if($("#BJ_ldl").is(':checked')) {
                     deleteallLayer();// 清空图层
 
-                    map.addLayer(image_BJ_ldl_layer);
+                    add_BJ_ldl_layer();
                     document.getElementById("BJ_ldl_legend").style.display = "inline";
 
 

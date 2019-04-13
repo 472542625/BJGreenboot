@@ -524,23 +524,35 @@
                             id="greenname">
                     </select>
                 </div>
-                <label for="areaselect"
-                       class="col-md-1 control-label text-center" style="position:relative;top: 10px;right: 20px;">面积</label>
-                <div class="col-md-2" style="position:relative;top: 10px;">
-                    <select class="form-control" name="areaselect"
-                            id="areaselect">
-                    </select>
-                </div>
+                <!--<label for="sum_tub"-->
+                       <!--class="col-md-1 control-label text-center" style="position:relative;top: 10px;right: 20px;">面积</label>-->
+                <!--<div class="col-md-2" style="position:relative;top: 10px;">-->
+                    <!--<select class="form-control" name="sum_tub"-->
+                            <!--id="sum_tub">-->
+                        <!--<option>全选</option>-->
+                        <!--<option>200000</option>-->
+                        <!--<option>300000</option>-->
+                        <!--<option>500000</option>-->
+                        <!--<option>1000000</option>-->
+                        <!--<option>1500000</option>-->
+                        <!--<option>2000000</option>-->
+                        <!--<option>3000000</option>-->
+                    <!--</select>-->
+                <!--</div>-->
             </div>
 
 
 
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-11 "></div>
+                    <div class="col-md-10 "></div>
 
                     <div class="col-md-1 ">
                         <button type="button"  class="btn btn-primary" id="statics_select_Btn">查询</button>
+                    </div>
+
+                    <div class="col-md-1 " style="position: relative;right: 40px" >
+                        <a class="btn btn-default" id="statics_out_a" href="javascript:poiexcel_GreenResource();"   role="button">导出统计结果</a>
                     </div>
                 </div>
             </div>
@@ -728,7 +740,9 @@
                 <!-- 分页 -->
                 <div class="row">
                     <div class="col-md-3" id="page_info_area" style="position: relative;top: 24px;"></div>
-                    <div class="col-md-3" style="position: relative;top: 20px;left: 140px;">   <button type="button"  class="btn btn-primary" >批量导出</button></div>
+                    <div class="col-md-3" style="position: relative;top: 20px;left: 140px;">
+                        <a class="btn btn-default" id="statics_out_a_greenresource_detail" href="javascript:poiexcel_GreenResource_detail();"   role="button">导出统计结果详情</a>
+                    </div>
                     <div class="col-md-6" id="page_info_nav" style="cursor:pointer"></div>
                 </div>
             </div>

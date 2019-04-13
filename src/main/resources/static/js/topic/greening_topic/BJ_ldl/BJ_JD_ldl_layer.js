@@ -81,19 +81,15 @@ function add_vector_BJ_JD_ldl_layer_1(ldl1,ldl2) {
             //     zIndex : 1002
             // });
            /******聚类分析*******/
-
-
             var clusterSource = new ol.source.Cluster({
                 distance: 40,
                 source: source
             });
-
             var styleCache = {};
              vector_BJ_JD_ldl_layer_clusters_1 =  new ol.layer.Vector({
                 source: clusterSource,
                 style: function(feature) {
                     var size = feature.get('features').length;
-
                     //console.log(feature.get('features')[0].N)
                     feature.set("绿地名称",feature.get('features')[0].N.绿地名称);
                     feature.set("绿地率",feature.get('features')[0].N.绿地率);
@@ -120,8 +116,9 @@ function add_vector_BJ_JD_ldl_layer_1(ldl1,ldl2) {
                     }
                     return style;
                 },
-                zIndex : 1002
-            });
+                 zIndex : 1002
+             });
+
 
 
 

@@ -27,9 +27,26 @@ public class bj_ld_gsmmServiceImpl implements bj_ld_gsmmService {
 	}
 
 	@Override
-	public List<bj_ld_gsmm> selectByLimit1000() {
+	public List<bj_ld_gsmm> selectall() {
 		// TODO Auto-generated method stub
-		return dao.selectByLimit1000();
+		return dao.selectall();
+	}
+
+	@Override
+	public List<bj_ld_gsmm> selectByExampleoldTree(String treetype) {
+		bj_ld_gsmmExample example = new bj_ld_gsmmExample();
+
+		Criteria criteria = example.createCriteria();
+		criteria.andTreetypeLike(treetype);
+		return dao.selectByExample(example);
+
+	}
+	@Override
+	public List<bj_ld_gsmm> selectByExampleLikeoldTreeLimit(String treetype) {
+
+
+		return dao.selectByExampleLikeoldTreeLimit(treetype);
+
 	}
 
 }

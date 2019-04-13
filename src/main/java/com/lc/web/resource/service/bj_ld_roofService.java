@@ -8,4 +8,8 @@ public interface bj_ld_roofService {
 	// public List<lyr_ld_gardenp> selectByExample(String greentype1)
 
 	public List<bj_ld_roof> selectByExample();
+
+
+	public List<bj_ld_roof> selectByExampleLikeGreenName(String greenname);
+	public List<bj_ld_roof> selectByExampleLikeGreenNameLimit(String greenname);
 }

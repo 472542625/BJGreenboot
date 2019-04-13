@@ -8,5 +8,8 @@ public interface bj_ld_gsmmService {
 
 	public List<bj_ld_gsmm> selectByExample();
 
-	List<bj_ld_gsmm> selectByLimit1000();
+	List<bj_ld_gsmm> selectall();
+	public List<bj_ld_gsmm> selectByExampleoldTree(String treetype);
+	public List<bj_ld_gsmm> selectByExampleLikeoldTreeLimit(String treetype);
+
 }

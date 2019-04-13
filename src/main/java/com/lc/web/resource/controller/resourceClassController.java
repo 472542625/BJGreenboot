@@ -22,6 +22,13 @@ public class resourceClassController {
 
 	@Autowired
 	lyr_ld_gardenpServiceImpl lyr_ld_gardenppointService;
+	@Autowired
+	bj_ld_gsmmServiceImpl bj_ld_gsmmServiceImpl;
+
+	@Autowired
+	bj_ld_roofServiceImpl bj_ld_roofServiceImpl;
+	@Autowired
+	lyr_waterServiceImpl lyr_waterServiceImpl;
     /*根据绿地类型查询*/
 	@RequestMapping(value = "/selectByExamplegreentype1/{greentype1}", method = RequestMethod.GET)
 	public @ResponseBody
@@ -39,6 +46,35 @@ public class resourceClassController {
 		return lyr_ld_gardenppointService
 				.selectByExampleLikeGreenName(greenname);
 	}
+	/*根据古树名称查询*/
+	@RequestMapping(value = "/selectByExampleoldTree/{treetype}", method = RequestMethod.GET)
+	public @ResponseBody
+	List<bj_ld_gsmm> selectByExampleoldTree(
+			@PathVariable("treetype") String treetype) {
+
+		return bj_ld_gsmmServiceImpl
+				.selectByExampleoldTree(treetype);
+	}
+	/*根据屋顶绿化查询*/
+	@RequestMapping(value = "/selectByExampleroofGreen/{greenname}", method = RequestMethod.GET)
+	public @ResponseBody
+	List<bj_ld_roof> selectByExampleroofGreen(
+			@PathVariable("greenname") String greenname) {
+
+		return bj_ld_roofServiceImpl
+				.selectByExampleLikeGreenName(greenname);
+	}
+	/*根据水资源查询*/
+	@RequestMapping(value = "/selectByExamplewaterResource/{greenname}", method = RequestMethod.GET)
+	public @ResponseBody
+	List<lyr_waterp> selectByExamplewaterResource(
+			@PathVariable("greenname") String greenname) {
+
+		return lyr_waterServiceImpl
+				.selectByExampleLikeGreenName(greenname);
+	}
+
+
 	/*根据绿地名称查询下拉菜单信息，类似百度搜索功能*/
 	@RequestMapping(value = "/selectByExampleLikeGreenNameLimit/{greenname}", method = RequestMethod.GET)
 	public @ResponseBody
@@ -48,6 +84,36 @@ public class resourceClassController {
 		return lyr_ld_gardenppointService
 				.selectByExampleLikeGreenNameLimit(greenname);
 	}
+	/*根据古树名称查询下拉菜单信息，类似百度搜索功能*/
+	@RequestMapping(value = "/selectByExampleLikeoldTreeLimit/{treetype}", method = RequestMethod.GET)
+	public @ResponseBody
+	List<bj_ld_gsmm> selectByExampleLikeoldTreeLimit(
+			@PathVariable("treetype") String treetype) {
+
+		return bj_ld_gsmmServiceImpl
+				.selectByExampleLikeoldTreeLimit(treetype);
+	}
+	/*根据屋顶绿化查询下拉菜单信息，类似百度搜索功能*/
+	@RequestMapping(value = "/selectByExampleLikeGreenNameLimit_bj_ld_roof/{greenname}", method = RequestMethod.GET)
+
+	public @ResponseBody
+	List<bj_ld_roof> selectByExampleLikeGreenNameLimit_bj_ld_roof(
+			@PathVariable("greenname") String greenname) {
+
+		return bj_ld_roofServiceImpl
+				.selectByExampleLikeGreenNameLimit(greenname);
+	}
+	/*根据水资源查询下拉菜单信息，类似百度搜索功能*/
+	@RequestMapping(value = "/selectByExampleLikeGreenNameLimit_waterResource/{greenname}", method = RequestMethod.GET)
+
+	public @ResponseBody
+	List<lyr_waterp> selectByExampleLikeGreenNameLimit_waterResource(
+			@PathVariable("greenname") String greenname) {
+
+		return lyr_waterServiceImpl
+				.selectByExampleLikeGreenNameLimit(greenname);
+	}
+
 
 
 	/*分页*/
@@ -86,7 +152,7 @@ public class resourceClassController {
 	public @ResponseBody
 	List<bj_ld_gsmm> selectByExamplebj_ld_gsmm() {
 
-		return bj_ld_gsmmpointService.selectByLimit1000();
+		return bj_ld_gsmmpointService.selectall();
 	}
 
 	@Autowired

@@ -123,6 +123,15 @@ function add_vector_BJ_green84_layer_select_1(greenrate) {
                         scale : 0.5
                     }),
 
+                    // image: new ol.style.Circle({
+                    //     radius: 10,
+                    //     stroke: new ol.style.Stroke({
+                    //         color: '#fff'
+                    //     }),
+                    //     fill: new ol.style.Fill({
+                    //         color: '#3399CC'
+                    //     })
+                    // }),
                     //text : new ol.style.Text({
                     //	text : "  " + features[i].greenname + "  ",
                     //	fill : new ol.style.Fill({

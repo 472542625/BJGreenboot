@@ -1,6 +1,6 @@
 var vector_BJ_travel_layer;
-function add_BJ_travel_layer(cql_filter_age) {
-
+function add_BJ_travel_layer() {
+    deleteBJ_travel_layer();
     //矢量图层 获取gejson数据
     //&cql_filter=age between 0 and 60
     var heatData;

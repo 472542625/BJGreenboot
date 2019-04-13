@@ -108,10 +108,10 @@
     where gid = #{gid,jdbcType=INTEGER}
   </select>
   
-    <select id="selectByLimit1000" resultMap="BaseResultMap">
+    <select id="selectall" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from bj_ld_gsmm limit 1000;
+    from bj_ld_gsmm ;
  
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -481,4 +481,11 @@
       geom = #{geom,jdbcType=OTHER}
     where gid = #{gid,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByExampleLikeoldTreeLimit" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bj_ld_gsmm
+    where  treetype like '%'||#{_parameter}||'%'  limit 5
+  </select>
 </mapper>

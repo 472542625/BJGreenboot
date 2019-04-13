@@ -134,13 +134,6 @@ function add_shpmap_layer_beijing() {
 // ///wms地图服务--------------------------------------------------------------------------------------------------->
 // ///wms地图服务--------------------------------------------------------------------------------------------------->
 var map;
-var baiduMapLayer;
-var baiduMapLayerLabel;
-var baiduRasterLayer;
-var googleMapLayer;
-var googleMapLayer;
-var googleRasterLayer;
-var gaodeMapLayer;
 var osmLayer;
 var pixel_coordinates = [];// 鼠标点击的坐标
 var vector_bj_yj_jkd_layer_buffer_circle;// /缓冲区圆图层
@@ -304,9 +297,10 @@ $(function() {
 				fill : null,
 				stroke : new ol.style.Stroke({
 					color : 'red',
-					width : 1
+					width : 10
 				})
-			})
+			}),
+			zIndex:9999
 		})
 	});
 	var highlight;
@@ -317,13 +311,34 @@ $(function() {
 			return feature;
 		});
 
+
+
 		if (feature) {
 			// info.innerHTML = feature.getId() + '<br>';
 			var keys = feature.getKeys();
 			var properties = feature.getProperties();
 
 			/** ***判断是绿视率图层**** */
+
 			if (keys[1] == "BJ_green84") {
+
+
+
+                //
+                // feature.setStyle(new ol.style.Style({
+                //     image : new ol.style.Icon({
+                //         // color: '#4271AE',
+                //         src : '/images/topic/resource_topic/park.png',
+                //         scale : 0.5
+                //     }),
+                //     fill : new ol.style.Fill({
+                //         color : '#ff0000'
+                //     }),
+                //     stroke : new ol.style.Stroke({
+                //         color : '#ff0000'
+                //     })
+                //
+                // }));
 
 				document.getElementById("greerate_r_box").style.display = "inline";// 如果是绿视图就显示视屏
 				// ****popup
@@ -343,6 +358,10 @@ $(function() {
                 document.getElementById("BJ_green84_video").play();
 
                 document.getElementById("other_click_property").style.display = "inline";
+
+
+
+
 			}
             /** ***判断是监测专题的视频监测图层**** */
             else if (keys[1] == "bj_dt_video") {
@@ -501,11 +520,18 @@ $(function() {
 			document.getElementById("greerate_r_box").style.display = "none";// 如果没点击绿视图的视屏影藏
 		}
 
+
+
+        //feature没有赋值得话是返回false
 		if (feature !== highlight) {
 			if (highlight) {
 				featureOverlay.getSource().removeFeature(highlight);
+
+
+
 			}
 			if (feature) {
+
 				featureOverlay.getSource().addFeature(feature);
 			}
 			highlight = feature;
@@ -614,6 +640,7 @@ $(function() {
         document.getElementById("bj_tb_volp_plant_click_property").style.display = "none";
 		// ***************************************监测专题
 		deleteBJ_travel_layer();// 游人监测
+        clearInterval(Interval_BJ_travel);// 游人监测清除
 		deleteBJ_JC_Air_layer();// 气象监测
         delete_bj_dt_video_layer();//视频监测
 		document.getElementById("monitor").style.display = "none";
@@ -637,7 +664,39 @@ $(function() {
 
     }
 
+    var flag ="greenResource";
+
+
+
    	/** 搜索* */
+
+
+   	/**搜索前先选择是搜索哪一个**/
+    $("#greenResource_btn").click(
+        function() {
+            flag ="greenResource";
+
+        })
+    $("#oldTree_btn").click(
+        function() {
+            flag ="oldTree";
+
+        })
+    $("#roofGreen_btn").click(
+        function() {
+            flag ="roofGreen";
+
+        })
+    $("#waterResource_btn").click(
+        function() {
+            flag ="waterResource";
+
+        })
+
+
+
+
+    /**搜索**/
 	$("#searchOk").click(
 			function() {
 			
@@ -646,10 +705,24 @@ $(function() {
  
 				deleteallLayer();// 清空图层
 
-				 add_search_layer();
 
-			 
-				  }
+
+              if(flag=="greenResource"){
+                  add_search_layer_greenResource();
+              }
+              if(flag=="oldTree"){
+
+                  add_search_layer_oldTree();
+              }
+              if(flag=="roofGreen"){
+                  add_search_layer_roofGreen();
+              }
+              if(flag=="waterResource"){
+                  add_search_layer_waterResource();
+              }
+
+
+          }
 			})
 			
  
@@ -658,9 +731,24 @@ $(function() {
         
         	
 		  if($("#likeInputVal").val()!=""){
-			
- 
-				 list_search_result();
+
+
+		  	  if(flag=="greenResource"){
+                  list_search_result_greenResource();
+			  }
+              if(flag=="oldTree"){
+                  list_search_result_oldTree();
+              }
+              if(flag=="roofGreen"){
+                  list_search_result_roofGreen();
+              }
+              if(flag=="waterResource"){
+                  list_search_result_waterResource();
+              }
+
+
+
+
 
 			 
 				 
@@ -685,7 +773,7 @@ $(function() {
     $(document).on("click", ".search_list_result_li", function() {
         //"  "
 	
-       $("#likeInputVal").val($(this).text().split("  ")[0]);
+       $("#likeInputVal").val($(this).text());
 
 });
     
@@ -2131,11 +2219,15 @@ $(function() {
         })
 
 	/** 监测专题* */
+
+    var Interval_BJ_travel;
 	$("#BJ_travel").click(
 			function() {
 				deleteallLayer();// 清空图层
 
-				add_BJ_travel_layer(60);
+
+                 Interval_BJ_travel =  setInterval(add_BJ_travel_layer,1000);
+
 
 				map.getView().setCenter(
 						ol.proj.transform([ 116.409, 39.923 ], 'EPSG:4326',

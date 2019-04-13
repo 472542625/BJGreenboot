@@ -3,6 +3,7 @@
  */
 
 var vector_BJ_JC_Air_layer;
+
 function add_BJ_JC_Air_layer() {
 
 	var featurearray = [];
@@ -39,9 +40,9 @@ function add_BJ_JC_Air_layer() {
 									state : features[i].properties.state,
 
 								});
-						console.log(ol.proj
-								.fromLonLat(features[i].geometry.coordinates));
-						console.log(features[i].geometry.coordinates);
+						// console.log(ol.proj
+						// 		.fromLonLat(features[i].geometry.coordinates));
+						// console.log(features[i].geometry.coordinates);
 
 						point
 								.setStyle(new ol.style.Style(
@@ -85,11 +86,11 @@ function add_BJ_JC_Air_layer() {
 					var source = new ol.source.Vector({
 						features : featurearray
 					});
-					vector_LYR_LD_GardenP_layer = new ol.layer.Vector({
+                    vector_BJ_JC_Air_layer = new ol.layer.Vector({
 						source : source,
 						zIndex : 1002
 					});
-					map.addLayer(vector_LYR_LD_GardenP_layer);
+					map.addLayer(vector_BJ_JC_Air_layer);
 				},
 				error : function() {
 					alert('error');

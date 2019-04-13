@@ -87,7 +87,7 @@ public class lyr_ld_gardenpServiceImpl implements lyr_ld_gardenpService {
 		lyr_ld_gardenpExample lyr_ld_gardenpExample = new lyr_ld_gardenpExample();
 		lyr_ld_gardenpExample.Criteria criteria =  lyr_ld_gardenpExample.createCriteria();
 
-
+System.out.println(lyr_ld_gardenp.getSumTub());
 
 		if(!lyr_ld_gardenp.getGreentype1().equals("全选")){
 
@@ -105,8 +105,13 @@ public class lyr_ld_gardenpServiceImpl implements lyr_ld_gardenpService {
 
 			criteria.andStreetEqualTo(lyr_ld_gardenp.getStreet());
 		}
+//		if(!lyr_ld_gardenp.getSumTub().equals("全选")){
+//
+//
+//			criteria.andSumTubGreaterThan(lyr_ld_gardenp.getSumTub());
+//		}
 
-
+//
 		return pointmapper.selectStatisticalAnalysis(lyr_ld_gardenpExample);
 
 

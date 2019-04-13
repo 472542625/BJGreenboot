@@ -430,4 +430,11 @@
       geom = #{geom,jdbcType=OTHER}
     where gid = #{gid,jdbcType=INTEGER}
   </update>
+  <select id="selectByExampleLikegreenNameLimit" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bj_ld_roof
+    where  greenname like '%'||#{_parameter}||'%'  limit 10
+  </select>
+
 </mapper>

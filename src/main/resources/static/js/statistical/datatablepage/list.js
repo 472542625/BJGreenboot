@@ -1,5 +1,17 @@
 var totalpage, currentpage;
+var street_detail ;//点击详情按钮后记录当前点击的街道名称
+//poi导出excel表格，导出绿地资源分类统计结果
+function poiexcel_GreenResource(){
+    window.location="/Select_PoiExcel_GreenResource?"+$("#statics_select_form").serialize();
 
+}
+//poi导出excel表格，导出绿地资源分类详情统计结果
+function poiexcel_GreenResource_detail(street) {
+    var greentype1 =  $("#greentype1").find("option:selected").text();//绿地类型
+    var greentype =  $("#greentype").find("option:selected").text();//绿地性质
+    window.location = "/Select_PoiExcel_GreenResource_detail?greentype1="+greentype1+"&greentype="+greentype+"&street="+street_detail;
+
+}
 
 $(function () {
 
@@ -31,8 +43,10 @@ $(function () {
 
 
     // 点击跳转到详情页面事件
+
     $(document).on("click", ".view_btn", function() {
         var street = $(this).attr("view-id");
+        street_detail = street;
         to_page_statistical_detail(1,street);
         // alert(street+","+greentype1+","+greentype);
         $('#myTab a[href="#statistical_details"]').tab('show');
@@ -42,6 +56,7 @@ $(function () {
     });
     $(document).on("click", ".view_all_btn", function() {
 
+        street_detail = "全选";
         to_page_statistical_detail(1,"全选");
         // alert(street+","+greentype1+","+greentype);
         $('#myTab a[href="#statistical_details"]').tab('show');
@@ -63,6 +78,11 @@ $(function () {
          // to_page_statistical_detail
 
     });
+
+
+
+
+
 
 })
 

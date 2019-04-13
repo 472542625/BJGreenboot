@@ -28,4 +28,6 @@ public interface bj_ld_roofMapper {
     int updateByPrimaryKeySelective(bj_ld_roof record);
 
     int updateByPrimaryKey(bj_ld_roof record);
+    List<bj_ld_roof> selectByExampleLikegreenNameLimit(String treetype);
+
 }
