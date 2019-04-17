@@ -58,6 +58,9 @@ function add_imagemap_layer_beijing() {
         source : wmsSource
     });
 
+
+
+
     map.addLayer(imagelayer_beijing);
 
     map.getView().setCenter(
