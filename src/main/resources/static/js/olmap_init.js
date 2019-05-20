@@ -354,7 +354,7 @@ $(function() {
 							"#other_feeature_properties_talbe_tbody");
 
 				}
-			 document.getElementById("BJ_green84_video").src="/data/topic/BJ_green84P/"+ properties['path'];
+			    document.getElementById("BJ_green84_video").src="/data/topic/BJ_green84P/"+ properties['path'];
                 document.getElementById("BJ_green84_video").play();
 
                 document.getElementById("other_click_property").style.display = "inline";
