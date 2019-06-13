@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+		<title>北京市园林绿化生态环境指标大数据服务平台</title>
+		<link rel="stylesheet" href="css/app.css" />
+		<!-- jq-->
+		<script type="text/javascript"
+				src="lib/jquery/jquery-3.3.1.min.js"></script>
+		<!--openlayer4 -->
+		<script src="lib/ol4/v4.6.4/v4.6.4/build/ol.js"></script>
+		<link rel="stylesheet" href="lib/ol4/v4.6.4/v4.6.4/css/ol.css">
+		<!--echarts-->
+		<script type="text/javascript"
+				src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+		<script type="text/javascript"
+				src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+		<script type="text/javascript"
+				src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+		<script type="text/javascript"
+				src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+		<script type="text/javascript"
+				src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+		<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>-->
+		<script type="text/javascript"
+				src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+		<script type="text/javascript" src="lib/echarts/echarts.min.js"></script>
+		<script type="text/javascript" src="js/echarts.js" charset="utf-8"></script>
+
+
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	
+	<body style="background-color: #0b0f34">
+
+		<div class="header">
+			<h1 class="header-title">北京市园林绿化生态环境指标大数据服务平台</h1>
+			<div class="weather"><!--<img src="picture/weather.png"><span>多云转小雨</span>--><span id="showTime"></span></div>
+		</div>
+		<div class="wrapper">
+
+			<div class="content">
+				<div class="col col-l">
+					<div class="xpanel-wrapper xpanel-wrapper-25">
+						<div class="xpanel xpanel-l-t">
+
+							<div class="title">各类绿地面积及数量</div>
+							<!--class="table-l-t"-->
+							<div  style="width: 100%;height:75%;color: white; overflow-y: auto; overflow-x:hidden;" >
+
+								<table class="table table-condensed" >
+									<tbody>
+
+									<tr style="color: rgb(255,217,102) !important;">
+										<td style="border: 1px solid transparent !important;text-align: center !important;">绿地类型</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">面积</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">个数</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">面积占比</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"></td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">附属绿地</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">449.24</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">2263</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+
+											<div style="width: 55%;height: 10px;background-color: red"></div>
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">
+
+											<div style="color: red;">56.89</div>
+
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">公园绿地</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">628.06</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">170</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+
+											<div style="width: 55%;height: 10px;background-color:rgb(237,125,49);"></div>
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">
+
+											<div style="color: rgb(237,125,49);">40.69</div>
+
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">广场绿地</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">22.59</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">19</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+
+											<div style="width: 2.04%;height: 10px;background-color:  rgb(255,192,0)"></div>
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">
+
+											<div style="color: rgb(255,192,0);">2.04%</div>
+
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">区域绿地</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">4.03</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">3</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+
+											<div style="width: 0.37%;height: 10px;background-color: rgb(112,173,71)"></div>
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">
+
+											<div style="color: rgb(112,173,71);">0.37%</div>
+
+										</td>
+									</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+					<div class="xpanel-wrapper xpanel-wrapper-25">
+						<div class="xpanel xpanel-l-t">
+							<div class="title">林木资源分布</div>
+							<!---->
+							<div   style="width: 100%;height: 75%;color: white; overflow-y: auto; overflow-x:hidden;";>
+								<table class="table table-condensed" border="0" cellpadding="0" cellspacing="0">
+									<tbody style="font-size: 14px">
+
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><span style="margin-right: 30px;"><img src="img/l-c-1.png"></span>古树名木<br>   <span style="color: rgb(255,217,102);margin-left: 60px;font-size: 18px">6735</span><span style="font-size: 10px;margin-left: 2px">株</span></td>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><span style="margin-right: 30px;"><img src="img/l-c-2.png"></span>实有树木<br>   <span style="color: rgb(255,217,102);margin-left: 60px;font-size: 18px">286.09</span><span style="font-size: 10px;margin-left: 2px">万株</span></td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><span style="margin-right: 30px;"><img src="img/l-c-3.png"></span>森林面积<br>   <span style="color: rgb(255,217,102);margin-left: 60px;font-size: 18px">552.44</span><span style="font-size: 10px;margin-left: 2px">ha</span></td>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><span style="margin-right: 30px;"><img src="img/l-c-4.png"></span>林木面积<br>   <span style="color: rgb(255,217,102);margin-left: 60px;font-size: 18px">800.74</span><span style="font-size: 10px;margin-left: 2px">ha</span></td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><span style="margin-right: 30px;"><img src="img/l-c-5.png"></span>湿地面积<br>  <span style="color: rgb(255,217,102);margin-left: 60px;font-size: 18px">108.70</span><span style="font-size: 10px;margin-left: 2px">ha</span></td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><span style="margin-right: 30px;"><img src="img/l-c-6.png"></span>活立木蓄积量<br>  <span style="color: rgb(255,217,102);margin-left: 60px;font-size: 18px">36700</span><span style="font-size: 10px;margin-left: 2px">m<sup>3</sup></span></td>
+
+									</tr>
+
+
+
+									</tbody>
+								</table>
+
+							</div>
+
+						</div>
+					</div>
+					<div class="xpanel-wrapper xpanel-wrapper-50">
+						<div class="xpanel xpanel-l-b">
+							<div class="title">绿地指标</div>
+							<div style="width: 45%;height: 28%;float: left" id="left-bottom1"></div>
+							<div style="width: 45%;height: 28%;float: left" id="left-bottom2"></div>
+							<div style="width: 45%;height: 28%;float: left" id="left-bottom3"></div>
+							<div style="width: 45%;height: 28%;float: left" id="left-bottom4"></div>
+							<div style="width: 45%;height: 28%;float: left" id="left-bottom5"></div>
+							<div style="width: 45%;height: 28%;float: left" id="left-bottom6"></div>
+							<!--<div style="width: 90%;height: 45%;" id="left-bottom56"></div>-->
+
+
+
+
+						</div>
+					</div>
+				</div>
+				<div class="col col-c">
+					<div class="xpanel-wrapper xpanel-wrapper-75">
+						<div class="xpanel no-bg" id ="map" style="margin-top: 20px">
+
+						</div>
+					</div>
+					<div class="xpanel-wrapper xpanel-wrapper-25">
+						<div class="xpanel xpanel-c-b" >
+							<div class="title title-long" >各街道绿化水平评价</div>
+
+							<div style="width: 100%;height:80%" id="center-bottom"></div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col col-r">
+					<div class="xpanel-wrapper xpanel-wrapper-25">
+						<div class="xpanel xpanel-r-t">
+							<div class="title">应急管理</div>
+							<div  style="width: 100%;height:77%;color: white; overflow-y: auto; overflow-x:hidden;" >
+								<table class="table table-condensed" >
+									<tbody>
+
+									<tr style="color: rgb(255,217,102) !important;">
+										<td style="border: 1px solid transparent !important;text-align: center !important;">避难场所名称</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">总面积/万平方米</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">容纳人数/万人</td>
+
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">地坛公园园外园</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">5.40</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">2.70</td>
+
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">皇城根遗址公园</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">5.40</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">2.70</td>
+
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">名城墙遗址公园</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">5.40</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">2.70</td>
+
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">玉蜓公园</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">5.40</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">2.70</td>
+
+									</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+					<div class="xpanel-wrapper xpanel-wrapper-30">
+						<div class="xpanel xpanel-r-m">
+							<div class="title">实时环境监测</div>
+ 							<div  style="width: 100%;height:75%;color: white; overflow-y: auto; overflow-x:hidden;margin-top:10px;margin-left: 20px " >
+
+								<table class="table table-condensed"   >
+									<tbody>
+
+
+									<tr>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;width: 30%">
+
+											<div style=" float: left;margin-left: 10px;"><img style="margin-bottom: 5px" src="img/r-c-1.png"><span style="margin-left: 10px">149</span></div>
+
+
+										</td>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;width: 50%">
+
+											<div style="float: left">PM2.5</div>
+											<div style="float:right;color: red;font-size: 2px;margin-left: 10px">中度</div><div style="float: right;font-size:15px;color: rgb(166,166,166)">119</div>
+											<div style="float: left;width: 100%;height: 3px;background-color: rgb(166,166,166)">
+												<div style="width: 55%;height: 3px;background-color:red "></div>
+											</div>
+
+
+
+										</td>
+
+									</tr>
+									<tr>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;width: 30%">
+
+											<div style=" float: left;margin-left: 10px;"><img style="margin-bottom: 5px" src="img/r-c-2.png"><span style="margin-left: 10px">晴</span></div>
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+
+											<div style="float: left">PM10</div>
+											<div style="float:right;color: red;font-size: 2px;margin-left: 10px">轻度</div><div style="float: right;font-size:15px;color: rgb(166,166,166)">191</div>
+											<div style="float: left;width: 100%;height: 3px;background-color: rgb(166,166,166)">
+												<div style="width: 55%;height: 3px;background-color:rgb(237,125,49) "></div>
+											</div>
+
+
+										</td>
+
+									</tr>
+									<tr>
+
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;width: 30%">
+
+											<div style=" float: left;margin-left: 13px;"><img style="margin-bottom: 5px" src="img/r-c-3.png"><span style="margin-left: 10px">25摄氏度</span></div>
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+											<div style="float: left">O<sub>3</sub></div>
+											<div style="float:right;color: red;font-size: 2px;margin-left: 10px">中度</div><div style="float: right;font-size:15px;color: rgb(166,166,166)">119</div>
+											<div style="float: left;width: 100%;height: 3px;background-color: rgb(166,166,166)">
+												<div style="width: 30%;height: 3px;background-color:rgb(112,173,71) "></div>
+											</div>
+
+
+
+										</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">
+
+
+
+										</td>
+									</tr>
+									<tr>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;width: 30%">
+
+											<div style=" float: left;margin-left: 10px;"><img style="margin-bottom: 5px" src="img/r-c-4.png"><span style="margin-left: 10px">西南风2级</span></div>
+
+
+										</td>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+
+											<div style="float: left">NO<sub>2</sub></div>
+											<div style="float:right;color: red;font-size: 2px;margin-left: 10px">中度</div><div style="float: right;font-size:15px;color: rgb(166,166,166)">119</div>
+											<div style="float: left;width: 100%;height: 3px;background-color: rgb(166,166,166)">
+												<div style="width: 18%;height: 3px;background-color:rgb(112,173,71) "></div>
+											</div>
+
+
+										</td>
+
+									</tr>
+									<tr>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;width: 30%">
+
+											<div style=" float: left;margin-left: 10px;"><img style="margin-bottom: 5px" src="img/r-c-5.png"><span style="margin-left: 10px">湿度25%</span></div>
+
+
+										</td>
+
+										<td style="border: 1px solid transparent !important;text-align: center !important; vertical-align: middle;">
+											<div style="float: left">SO<sub>2</sub></div>
+											<div style="float:right;color: red;font-size: 2px;margin-left: 10px">中度</div><div style="float: right;font-size:15px;color: rgb(166,166,166)">119</div>
+											<div style="float: left;width: 100%;height: 3px;background-color: rgb(166,166,166)">
+												<div style="width: 15%;height: 3px;background-color:rgb(112,173,71) "></div>
+											</div>
+
+
+										</td>
+
+									</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+
+						</div>
+					</div>
+					<div class="xpanel-wrapper xpanel-wrapper-45">
+						<div class="xpanel xpanel-r-b">
+							<div class="title">景区排行（Top8）</div>
+							<div  style="width: 100%;height:79%;color: white; overflow-y: auto; overflow-x:hidden;" >
+								<table class="table table-condensed" >
+									<tbody>
+
+									<tr style="color: rgb(255,217,102) !important;">
+										<td style="border: 1px solid transparent !important;text-align: center !important;">景点</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">实时客流量</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">视频监控</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">热度</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">故宫博物馆</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">123</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><img src="img/r-b-1.png"></td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">40.69%</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">故宫博物馆</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">628.06</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><img src="img/r-b-1.png"></td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">56.89%</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">故宫博物馆</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">22.59</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><img src="img/r-b-1.png"></td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">2.04%</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">故宫博物馆</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">4.03</td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;"><img src="img/r-b-1.png"></td>
+										<td style="border: 1px solid transparent !important;text-align: center !important;">0.37%</td>
+									</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+
+            $(function() {
+
+
+                var  osmLayer = new ol.layer.Tile({
+                    source : new ol.source.OSM()
+                })
+
+                var googleMapLayer = new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        url:'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'
+                    })
+                });
+
+                // 地图初始化
+
+                var   map = new ol.Map({
+                    target : 'map',
+                    layers : [ googleMapLayer ],
+                    view : new ol.View({
+                        center : ol.proj.fromLonLat([  116.409, 39.923 ]),
+                        // center: [121.48, 31.22],
+                        zoom : 10,
+                        minZoom : 0,
+                        projection : 'EPSG:3857',
+                    }),
+
+                    // 在默认控件的基础上，再加上其他内置的控件
+                    controls : ol.control.defaults().extend(
+                        [
+
+                            // new ol.control.MousePosition(),
+                            new ol.control.OverviewMap(), new ol.control.ScaleLine(),
+                            new ol.control.ZoomSlider(),
+                            new ol.control.ZoomToExtent() ]),
+                });
+
+
+//                var dom = document.getElementById("center-bottom");
+//                var myChart = echarts.init(dom);
+//                var app = {};
+//                var option = null;
+//                option = {
+//                    title: {
+//                        text: ''
+//                    },
+//                    tooltip: {
+//                        trigger: 'axis',
+//
+//                    },
+//                    legend: {
+//                        data:['总面积','绿地率','绿化覆盖率'],
+//                        textStyle:{//图例文字的样式
+//                            color:'#ccc',
+//                            fontSize:16
+//                        }
+//                    },
+//                    grid: {
+//                        left: '3%',
+//                        right: '4%',
+//                        bottom: '10%',
+//                        containLabel: true,
+//
+//                    },
+//                    toolbox: {
+//                        feature: {
+//                            saveAsImage: {}
+//                        }
+//                    },
+//
+//
+//
+//                    xAxis: {
+//                        type: 'category',
+//                        boundaryGap: false,
+//                        data: ['东华门','景山','交道门','安定门','北新门','东四','朝阳门'],
+//                        axisLine:{
+//                            lineStyle:{
+//                                color:'#ccc',
+//                                width:2
+//                                    }
+//                                },
+//                        splitLine: { //网格线
+//                            show: false
+//                        }
+//                    },
+//                    yAxis: {
+//                        type: 'value',
+//                        axisLine:{
+//                            lineStyle:{
+//                                color:'#ccc',
+//                                width:2
+//                            }
+//                        },
+//                        splitLine: { //网格线
+//                            show: false
+//                        }
+//                    },
+//                    series: [
+//                        {
+//                            name:'总面积',
+//                            type:'line',
+//                            stack: '总量',
+//                            data:[120, 132, 101, 134, 90, 230, 210]
+//                        },
+//                        {
+//                            name:'绿地率',
+//                            type:'line',
+//                            stack: '总量',
+//                            data:[220, 182, 191, 234, 290, 330, 310]
+//                        },
+//                        {
+//                            name:'绿化覆盖率',
+//                            type:'line',
+//                            stack: '总量',
+//                            data:[150, 232, 201, 154, 190, 330, 410]
+//                        }
+//
+//                    ]
+//                };
+//                ;
+//                if (option && typeof option === "object") {
+//                    myChart.setOption(option, true);
+//                }
+//
+
+//				var dom = document.getElementById("center-bottom");
+//                var myChart = echarts.init(dom);
+//
+//                var option = {
+//                    tooltip : {
+//                        trigger: 'axis'
+//                    },
+//                    grid: {
+//                        x: 46,
+//                        y:30,
+//                        x2:32,
+//                        y2:40,
+//                        borderWidth: 0
+//                    },
+//                    calculable : true,
+//                    xAxis : [
+//                        {
+//                            type : 'category',
+//                            boundaryGap : false,
+//                            data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+//                            splitLine: {
+//                                show: false
+//                            },
+//                            axisLabel: {
+//                                show: true,
+//                                textStyle: {
+//                                    color: '#a4a7ab'
+//                                }
+//                            }
+//                        }
+//                    ],
+//                    yAxis : [
+//                        {
+//                            type : 'value',
+//                            splitLine: {
+//                                show: false
+//                            },
+//                            axisLabel: {
+//                                show: true,
+//                                textStyle: {
+//                                    color: '#a4a7ab'
+//                                }
+//                            }
+//
+//                        }
+//                    ],
+//                    series : [
+//                        {
+//                            name:'安保部',
+//                            type:'line',
+//                            stack: '人',
+//                            data:[120, 132, 101, 134, 90, 230, 210,230,245,256,278,300],
+//                            itemStyle: {
+//                                normal: {
+//                                    color:"#45c0ff"
+//                                }
+//                            }
+//                        },
+//                        {
+//                            name:'售票部',
+//                            type:'line',
+//                            stack: '人',
+//                            data:[220, 182, 191, 234, 290, 330, 310,230,245,256,278,300],
+//                            itemStyle: {
+//                                normal: {
+//                                    color:"#0ad5ff"
+//                                }
+//                            }
+//                        },
+//                        {
+//                            name:'保洁部',
+//                            type:'line',
+//                            stack: '人',
+//                            data:[220, 182, 191, 234, 290, 330, 310,230,245,256,278,300],
+//                            itemStyle: {
+//                                normal: {
+//                                    color:"#005ea1"
+//                                }
+//                            }
+//                        },
+//                        {
+//                            name:'后勤部',
+//                            type:'line',
+//                            stack: '人',
+//                            data:[220, 182, 191, 234, 290, 330, 310,230,245,256,278,300],
+//                            itemStyle: {
+//                                normal: {
+//                                    color:"#ffcb89"
+//                                }
+//                            }
+//                        },
+//                        {
+//                            name:'指导部',
+//                            type:'line',
+//                            stack: '人',
+//                            data:[220, 182, 191, 234, 290, 330, 310,230,245,256,278,300],
+//                            itemStyle: {
+//                                normal: {
+//                                    color:"#2e7cff"
+//                                }
+//                            }
+//                        },
+//                        {
+//                            name:'急救部',
+//                            type:'line',
+//                            stack: '人',
+//                            data:[220, 182, 191, 234, 290, 330, 310,230,245,256,278,300],
+//                            itemStyle: {
+//                                normal: {
+//                                    color:"#1afffd"
+//                                }
+//                            }
+//                        }
+//                    ]
+//                };
+//                myChart.setOption(option);
+                /**
+                 * Created by Administrator on 2019/5/7/007.
+                 */
+                function echarts_c_b() {
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('center-bottom'));
+
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                lineStyle: {
+                                    color: '#dddc6b'
+                                }
+                            }
+                        },
+                        legend: {
+                            top:'0%',
+                            data:['绿地率','绿化覆盖率'],
+                            textStyle: {
+                                color: 'rgba(255,255,255,.5)',
+                                fontSize:'12',
+                            }
+                        },
+                        grid: {
+                            left: '10',
+                            top: '30',
+                            right: '10',
+                            bottom: '10',
+                            containLabel: true
+                        },
+
+                        xAxis: [{
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLabel:  {
+                                textStyle: {
+                                    color: "rgba(255,255,255,.6)",
+                                    fontSize:10,
+                                },
+                                interval:0,//横轴信息全部显示
+                                rotate:50,//-30度角倾斜显示
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgba(255,255,255,.2)'
+                                }
+
+                            },
+
+                            data: ['东华门', '景山', '交道口', '安定门', '北新桥', '东四', '朝阳门', '建国门', '东直门', '和平里', '前门', '崇文门外', '东花市', '龙潭', '体育馆路', '天坛', '永定门外']
+
+                        }, {
+
+                            axisPointer: {show: false},
+                            axisLine: {  show: false},
+                            position: 'bottom',
+                            offset: 20,
+
+
+
+                        }],
+
+                        yAxis: [{
+                            type: 'value',
+                            axisTick: {show: false},
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgba(255,255,255,.1)'
+                                }
+                            },
+                            axisLabel:  {
+                                textStyle: {
+                                    color: "rgba(255,255,255,.6)",
+                                    fontSize:12,
+                                },
+                            },
+
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgba(255,255,255,.1)'
+                                }
+                            }
+                        }],
+                        series: [
+                            {
+                                name: '绿地率',
+                                type: 'line',
+                                smooth: true,
+                                symbol: 'circle',
+                                symbolSize: 5,
+                                showSymbol: false,
+                                lineStyle: {
+
+                                    normal: {
+                                        color: '#0184d5',
+                                        width: 2
+                                    }
+                                },
+                                areaStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: 'rgba(1, 132, 213, 0.4)'
+                                        }, {
+                                            offset: 0.8,
+                                            color: 'rgba(1, 132, 213, 0.1)'
+                                        }], false),
+                                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        color: '#0184d5',
+                                        borderColor: 'rgba(221, 220, 107, .1)',
+                                        borderWidth: 12
+                                    }
+                                },
+                                data: [3, 4, 3, 4, 3, 4, 3, 6, 2, 4, 2, 4,3, 4, 3, 4, 3, 4]
+
+                            },
+                            {
+                                name: '绿化覆盖率',
+                                type: 'line',
+                                smooth: true,
+                                symbol: 'circle',
+                                symbolSize: 5,
+                                showSymbol: false,
+                                lineStyle: {
+
+                                    normal: {
+                                        color: '#00d887',
+                                        width: 2
+                                    }
+                                },
+                                areaStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: 'rgba(0, 216, 135, 0.4)'
+                                        }, {
+                                            offset: 0.8,
+                                            color: 'rgba(0, 216, 135, 0.1)'
+                                        }], false),
+                                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        color: '#00d887',
+                                        borderColor: 'rgba(221, 220, 107, .1)',
+                                        borderWidth: 12
+                                    }
+                                },
+                                data: [5, 3, 5, 6, 1, 5, 3, 5, 6, 4, 6, 4, 8, 3, 5, 6, 1, 5]
+
+                            },
+
+                        ]
+
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    window.addEventListener("resize",function(){
+                        myChart.resize();
+                    });
+                }
+
+
+                function echarts_l_b_1234() {
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('left-bottom1234'));
+
+                    option = {
+                        //  backgroundColor: '#00265f',
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: { type: 'shadow'}
+                        },
+                        grid: {
+                            left: '5%',
+                            top:'15px',
+                            right: '0%',
+                            bottom: '4%',
+                            containLabel: true
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: ['绿视率(%)', '绿地率(%)', '绿化覆盖率(%)', '公园500米(%)'],
+                            axisLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: "rgba(255,255,255,.1)",
+                                    width: 1,
+                                    type: "solid"
+                                },
+                            },
+
+                            axisTick: {
+                                show: false,
+                            },
+                            axisLabel:  {
+                                interval: 0,
+                                // rotate:50,
+                                show: true,
+                                splitNumber: 15,
+                                textStyle: {
+                                    color: "rgba(255,255,255,.6)",
+                                    fontSize: '12',
+                                },
+                            },
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            axisLabel: {
+                                //formatter: '{value} %'
+                                show:true,
+                                textStyle: {
+                                    color: "rgba(255,255,255,.6)",
+                                    fontSize: '12',
+                                },
+                            },
+                            axisTick: {
+                                show: false,
+                            },
+                            axisLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: "rgba(255,255,255,.1	)",
+                                    width: 1,
+                                    type: "solid"
+                                },
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: "rgba(255,255,255,.1)",
+                                }
+                            }
+                        }],
+                        series: [
+                            {
+
+                                type: 'bar',
+                                data: [19.72, 26.31, 33.08, 90.45],
+                                barWidth:'20%', //柱子宽度
+                                // barGap: 1, //柱子之间间距
+                                itemStyle: {
+                                    normal: {
+                                        color:'#2f89cf',
+                                        opacity: 1,
+                                        barBorderRadius: 5,
+                                    }
+                                }
+                            }
+
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    window.addEventListener("resize",function(){
+                        myChart.resize();
+                    });
+                }
+                function echarts_l_b_56() {
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('left-bottom56'));
+
+                    option = {
+                        //  backgroundColor: '#00265f',
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: { type: 'shadow'}
+                        },
+                        grid: {
+                            left: '5%',
+                            top:'15px',
+                            right: '0%',
+                            bottom: '4%',
+                            containLabel: true
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: [' 人均公园面积', '人均绿地面积'],
+                            axisLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: "rgba(255,255,255,.1)",
+                                    width: 1,
+                                    type: "solid"
+                                },
+                            },
+
+                            axisTick: {
+                                show: false,
+                            },
+                            axisLabel:  {
+                                interval: 0,
+                                // rotate:50,
+                                show: true,
+                                splitNumber: 15,
+                                textStyle: {
+                                    color: "rgba(255,255,255,.6)",
+                                    fontSize: '12',
+                                },
+                            },
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            axisLabel: {
+                                //formatter: '{value} %'
+                                show:true,
+                                textStyle: {
+                                    color: "rgba(255,255,255,.6)",
+                                    fontSize: '12',
+                                },
+                            },
+                            axisTick: {
+                                show: false,
+                            },
+                            axisLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: "rgba(255,255,255,.1	)",
+                                    width: 1,
+                                    type: "solid"
+                                },
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: "rgba(255,255,255,.1)",
+                                }
+                            }
+                        }],
+                        series: [
+                            {
+
+                                type: 'bar',
+                                data: [7.38, 12.94],
+                                barWidth:'10%', //柱子宽度
+                                // barGap: 1, //柱子之间间距
+                                itemStyle: {
+                                    normal: {
+//                                        #27d08a
+                                        color:'#2f89cf',
+                                        opacity: 1,
+                                        barBorderRadius: 5,
+                                    }
+                                }
+                            }
+
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    window.addEventListener("resize",function(){
+                        myChart.resize();
+                    });
+                }
+
+                echarts_c_b();
+//                echarts_l_b_1234();
+//                echarts_l_b_56();
+                /**
+                 * 时钟
+                 */
+                function time() {
+                    clearTimeout(t);//清除定时器
+                    dt = new Date();
+                    var y=dt.getFullYear();
+                    var mt=dt.getMonth()+1;
+                    var day=dt.getDate();
+                    var h=dt.getHours();//获取时
+                    var m=dt.getMinutes();//获取分
+                    var s=dt.getSeconds();//获取秒
+                    document.getElementById("showTime").innerHTML = y+"年"+mt+"月"+day+"日-"+h+"时"+m+"分"+s+"秒";
+                    t = setTimeout(time,1000); //设定定时器，循环运行
+                }
+                var t = null;
+                t = setTimeout(time,1000);//開始运行
+
+				function echarts_l_b_1(){
+                    var dom = document.getElementById("left-bottom1");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    option = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        tooltip : {
+                            formatter: "{a} <br/>{c} {b}"
+                        },
+
+                        series : [
+                            {
+                                title:'绿视率',
+                                name:'绿视率',
+                                type:'gauge',
+                                min:0,
+                                max:100,
+                                splitNumber:5,
+                                radius: '100%',
+                                center: ["60%", "60%"],
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+                                        width: 1,
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 1
+                                    },
+
+
+                                },
+                                axisLabel: {            // 坐标轴小标记
+                                    textStyle: {       // 属性lineStyle控制线条样式
+                                        fontWeight: 'normal',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        fontSize:10
+                                    }
+                                },
+                                pointer:{
+                                    width:1
+								},
+                                axisTick: {            // 坐标轴小标记
+                                    length :5,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                splitLine: {           // 分隔线
+                                    length :0,         // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                        width:3,
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                pointer: {           // 分隔线
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5
+                                },
+                                title : {
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'bolder',
+                                        fontSize: 10,
+                                        fontStyle: 'italic',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+										show:false
+                                    }
+                                },
+                                detail : {
+//                                    backgroundColor: 'rgba(30,144,255,0.0)',
+
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5,
+                                    offsetCenter: ['-5%', '50%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'border',
+                                        color: '#fff'
+                                    },
+                                },
+
+                                data:[{value: 40, name: '%'}]
+                            },
+
+                        ]
+                    };
+
+
+
+
+
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+				}
+                function echarts_l_b_2(){
+                    var dom = document.getElementById("left-bottom2");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    option = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        tooltip : {
+                            formatter: "{a} <br/>{c} {b}"
+                        },
+
+                        series : [
+                            {
+                                name:'绿视率',
+                                type:'gauge',
+                                min:0,
+                                max:100,
+                                splitNumber:5,
+                                radius: '100%',
+                                center: ["60%", "60%"],
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+                                        width: 1,
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 1
+                                    },
+
+
+                                },
+                                axisLabel: {            // 坐标轴小标记
+                                    textStyle: {       // 属性lineStyle控制线条样式
+                                        fontWeight: 'normal',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        fontSize:10
+                                    }
+                                },
+                                pointer:{
+                                    width:1
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    length :5,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                splitLine: {           // 分隔线
+                                    length :0,         // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                        width:3,
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                pointer: {           // 分隔线
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5
+                                },
+                                title : {
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'bolder',
+                                        fontSize: 10,
+                                        fontStyle: 'italic',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        show:false
+                                    }
+                                },
+                                detail : {
+//                                    backgroundColor: 'rgba(30,144,255,0.0)',
+
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5,
+                                    offsetCenter: ['-5%', '50%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'border',
+                                        color: '#fff'
+                                    },
+                                },
+
+                                data:[{value: 40, name: '%'}]
+                            },
+
+                        ]
+                    };
+
+
+
+
+
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+                }
+                function echarts_l_b_3(){
+                    var dom = document.getElementById("left-bottom3");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    option = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        tooltip : {
+                            formatter: "{a} <br/>{c} {b}"
+                        },
+
+                        series : [
+                            {
+                                name:'绿视率',
+                                type:'gauge',
+                                min:0,
+                                max:100,
+                                splitNumber:5,
+                                radius: '100%',
+                                center: ["60%", "60%"],
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+                                        width: 1,
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 1
+                                    },
+
+
+                                },
+                                axisLabel: {            // 坐标轴小标记
+                                    textStyle: {       // 属性lineStyle控制线条样式
+                                        fontWeight: 'normal',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        fontSize:10
+                                    }
+                                },
+                                pointer:{
+                                    width:1
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    length :5,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                splitLine: {           // 分隔线
+                                    length :0,         // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                        width:3,
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                pointer: {           // 分隔线
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5
+                                },
+                                title : {
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'bolder',
+                                        fontSize: 10,
+                                        fontStyle: 'italic',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        show:false
+                                    }
+                                },
+                                detail : {
+//                                    backgroundColor: 'rgba(30,144,255,0.0)',
+
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5,
+                                    offsetCenter: ['-5%', '50%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'border',
+                                        color: '#fff'
+                                    },
+                                },
+
+                                data:[{value: 40, name: '%'}]
+                            },
+
+                        ]
+                    };
+
+
+
+
+
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+                }
+                function echarts_l_b_4(){
+                    var dom = document.getElementById("left-bottom4");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    option = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        tooltip : {
+                            formatter: "{a} <br/>{c} {b}"
+                        },
+
+                        series : [
+                            {
+                                name:'绿视率',
+                                type:'gauge',
+                                min:0,
+                                max:100,
+                                splitNumber:5,
+                                radius: '100%',
+                                center: ["60%", "60%"],
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+                                        width: 1,
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 1
+                                    },
+
+
+                                },
+                                axisLabel: {            // 坐标轴小标记
+                                    textStyle: {       // 属性lineStyle控制线条样式
+                                        fontWeight: 'normal',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        fontSize:10
+                                    }
+                                },
+                                pointer:{
+                                    width:1
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    length :5,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                splitLine: {           // 分隔线
+                                    length :0,         // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                        width:3,
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                pointer: {           // 分隔线
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5
+                                },
+                                title : {
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'bolder',
+                                        fontSize: 10,
+                                        fontStyle: 'italic',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        show:false
+                                    }
+                                },
+                                detail : {
+//                                    backgroundColor: 'rgba(30,144,255,0.0)',
+
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5,
+                                    offsetCenter: ['-5%', '50%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'border',
+                                        color: '#fff'
+                                    },
+                                },
+
+                                data:[{value: 40, name: '%'}]
+                            },
+
+                        ]
+                    };
+
+
+
+
+
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+                }
+                function echarts_l_b_5(){
+                    var dom = document.getElementById("left-bottom5");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    option = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        tooltip : {
+                            formatter: "{a} <br/>{c} {b}"
+                        },
+
+                        series : [
+                            {
+                                name:'绿视率',
+                                type:'gauge',
+                                min:0,
+                                max:100,
+                                splitNumber:5,
+                                radius: '100%',
+                                center: ["60%", "60%"],
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+                                        width: 1,
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 1
+                                    },
+
+
+                                },
+                                axisLabel: {            // 坐标轴小标记
+                                    textStyle: {       // 属性lineStyle控制线条样式
+                                        fontWeight: 'normal',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        fontSize:10
+                                    }
+                                },
+                                pointer:{
+                                    width:1
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    length :5,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                splitLine: {           // 分隔线
+                                    length :0,         // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                        width:3,
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                pointer: {           // 分隔线
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5
+                                },
+                                title : {
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'bolder',
+                                        fontSize: 10,
+                                        fontStyle: 'italic',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        show:false
+                                    }
+                                },
+                                detail : {
+//                                    backgroundColor: 'rgba(30,144,255,0.0)',
+
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5,
+                                    offsetCenter: ['-5%', '50%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'border',
+                                        color: '#fff'
+                                    },
+                                },
+
+                                data:[{value: 40, name: '%'}]
+                            },
+
+                        ]
+                    };
+
+
+
+
+
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+                }
+                function echarts_l_b_6(){
+                    var dom = document.getElementById("left-bottom6");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+                    option = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        tooltip : {
+                            formatter: "{a} <br/>{c} {b}"
+                        },
+
+                        series : [
+                            {
+                                name:'绿视率',
+                                type:'gauge',
+                                min:0,
+                                max:100,
+                                splitNumber:5,
+                                radius: '100%',
+                                center: ["60%", "60%"],
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#ff4500']],
+                                        width: 1,
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 1
+                                    },
+
+
+                                },
+                                axisLabel: {            // 坐标轴小标记
+                                    textStyle: {       // 属性lineStyle控制线条样式
+                                        fontWeight: 'normal',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        fontSize:10
+                                    }
+                                },
+                                pointer:{
+                                    width:1
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    length :5,        // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        color: 'auto',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                splitLine: {           // 分隔线
+                                    length :0,         // 属性length控制线长
+                                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                        width:3,
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10
+                                    }
+                                },
+                                pointer: {           // 分隔线
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5
+                                },
+                                title : {
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'bolder',
+                                        fontSize: 10,
+                                        fontStyle: 'italic',
+                                        color: '#fff',
+                                        shadowColor : '#fff', //默认透明
+                                        shadowBlur: 10,
+                                        show:false
+                                    }
+                                },
+                                detail : {
+//                                    backgroundColor: 'rgba(30,144,255,0.0)',
+
+                                    shadowColor : '#fff', //默认透明
+                                    shadowBlur: 5,
+                                    offsetCenter: ['-5%', '50%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontWeight: 'border',
+                                        color: '#fff'
+                                    },
+                                },
+
+                                data:[{value: 40, name: '%'}]
+                            },
+
+                        ]
+                    };
+
+
+
+
+
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+                }
+                echarts_l_b_1();
+                echarts_l_b_2();
+                echarts_l_b_3();
+                echarts_l_b_4();
+                echarts_l_b_5();
+                echarts_l_b_6();
+
+            })
+
+		</script>
+	</body>
+</html>

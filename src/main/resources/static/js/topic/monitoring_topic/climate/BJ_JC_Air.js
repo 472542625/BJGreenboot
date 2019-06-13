@@ -20,6 +20,7 @@ function add_BJ_JC_Air_layer() {
 					for (var i = 0; i < features.length; i++) {
 						var point = new ol.Feature(
 								{
+
 									geometry : new ol.geom.Point(
 											ol.proj
 													.fromLonLat(features[i].geometry.coordinates)),
@@ -309,5 +310,97 @@ function setInterval_Point_info_change() {
 		// alert( text.slice(0, 2));
 	}, 1000);
 	;
+
+}
+
+
+
+///专业版气象服务（cityid）-墨迹天气
+function aliyun(name){
+
+	var dataobj ;
+    $.ajax({
+
+        type : "GET",
+        url:'http://ali-pm25.showapi.com/pm25-detail',//url就是api请求接口
+        data:{
+            'city':'北京'  //传入参数：area获取areaid必须选一个
+        },
+
+        beforeSend:function(request){	//向接口发送身份认证
+            request.setRequestHeader("Authorization","APPCODE "+"ad46edb496a74883aadb28499f26d392");//注意这里APPCODE后面有一个空格，不能删掉
+        },
+        dataType:"json",//请求返回数据格式
+        success: function (data) {
+
+
+           // console.log(data.showapi_res_body.siteList);
+            var obj;
+			for (var i=0;i<data.showapi_res_body.siteList.length;i++)
+			{
+
+				if(name==data.showapi_res_body.siteList[i].site_name){
+                    obj=data.showapi_res_body.siteList[i];
+                    dataobj = obj;
+
+                    var NAME = $("<td></td>").append(name);
+                    var aqi = $("<td></td>").append(dataobj.aqi);
+                    var co = $("<td></td>").append(dataobj.co);
+                    var no2 = $("<td></td>").append(dataobj.no2);
+                    var o3 = $("<td></td>").append(dataobj.o3);
+                    var pm2_5 = $("<td></td>").append(dataobj.pm2_5);
+                    var pm10 = $("<td></td>").append(dataobj.pm10);
+                    var so2 = $("<td></td>").append(dataobj.so2);
+                    var primary_pollutant = $("<td></td>").append(dataobj.primary_pollutant);
+                    var quality = $("<td></td>").append(dataobj.quality);
+
+
+                    $("<tr></tr>").append('站点名称').append(NAME).appendTo(
+                    	"#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('AQI').append(aqi).appendTo(
+                    	"#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('空气质量').append(quality).appendTo(
+                    	"#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('pm2_5').append(pm2_5).appendTo(
+                    	"#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('pm10').append(pm10).appendTo(
+                        "#feeature_properties_talbe_tbody");
+
+                    $("<tr></tr>").append('so2').append(so2).appendTo(
+                        "#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('no2').append(no2).appendTo(
+                        "#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('co').append(co).appendTo(
+                        "#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('o3').append(o3).appendTo(
+                        "#feeature_properties_talbe_tbody");
+                    $("<tr></tr>").append('主要污染物').append(primary_pollutant).appendTo(
+                        "#feeature_properties_talbe_tbody");
+                    //
+                    // $("#aqi").text(data.showapi_res_body.pm.aqi);
+                    // $("#so2").text(data.showapi_res_body.pm.so2);
+                    // $("#pm2_5").text(data.showapi_res_body.pm.pm2_5);
+                    // $("#primary_pollutant").text(data.showapi_res_body.pm.primary_pollutant);
+                    // $("#co").text(data.showapi_res_body.pm.co);
+                    // $("#no2").text(data.showapi_res_body.pm.no2);
+                    // $("#quality").text(data.showapi_res_body.pm.quality);
+                    // $("#pm10").text(data.showapi_res_body.pm.pm10);
+                    // $("#o3").text(data.showapi_res_body.pm.pm10);
+
+                     
+				}
+			}
+			
+			//console.log(data.showapi_res_body.pm);
+
+        },
+        error:function(e){
+            console.log(e.message);
+        }
+
+    })
+
+
+
 
 }

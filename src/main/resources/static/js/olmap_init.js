@@ -380,36 +380,26 @@ $(function() {
 				// ****popup
 				pixel_coordinates = properties['geometry'].getCoordinates();
 				popup(pixel_coordinates);
-				var Id = $("<td></td>").append(properties['Id']);
-				var xy = $("<td></td>").append(
-						"经纬度：" + ("" + properties['x']).slice(0, 5) + " "
-								+ ("" + properties['y']).slice(0, 5));
-				var y = $("<td></td>").append(
-						("" + properties['y']).slice(0, 6));
 
-				var AQIstr = "";
-				if (properties['AQI'] < 50) {
-					AQIstr = properties['AQI'] + "优";
-				}
 
-				var owner = $("<td></td>").append(properties['owner']);
-				var state = $("<td></td>").append(properties['state']);
-				$("<tr></tr>").append('站点编号').append(Id).appendTo(
-						"#feeature_properties_talbe_tbody");
-				$("<tr></tr>").append('站址').append(xy).appendTo(
-						"#feeature_properties_talbe_tbody");
-				$("<tr></tr>").append('负责人').append(owner).appendTo(
-						"#feeature_properties_talbe_tbody");
-				$("<tr></tr>").append('站点状态').append(state).appendTo(
-						"#feeature_properties_talbe_tbody");
-				$("#temper").text(properties['temper']);
-				$("#AQI").text(AQIstr);
-				$("#PM2_5").text(properties['PM2_5']);
-				$("#PM10").text(properties['PM10']);
-				$("#O3").text(properties['O3']);
-				$("#NO2").text(properties['NO2']);
-				$("#SO2").text(properties['SO2']);
-				$("#CO").text(properties['CO']);
+
+
+                // properties['NAME']
+
+
+               aliyun(properties['NAME']);
+
+
+
+
+				// $("#temper").text(properties['temper']);
+                //
+				// $("#PM2_5").text(properties['PM2_5']);
+				// $("#PM10").text(properties['PM10']);
+				// $("#O3").text(properties['O3']);
+				// $("#NO2").text(properties['NO2']);
+				// $("#SO2").text(properties['SO2']);
+				// $("#CO").text(properties['CO']);
 				document.getElementById("click_property").style.display = "inline";
 
 			}
@@ -491,7 +481,9 @@ $(function() {
                 document.getElementById("other_click_property").style.display = "inline";
 
             }
-            //
+
+
+
             /** ***其他面专题图层**** */
 			else {
 				for (var i = 1; i < keys.length; i++) {
@@ -2240,8 +2232,38 @@ $(function() {
 			function() {
 				deleteallLayer();// 清空图层
 
+
 				add_BJ_JC_Air_layer();
 
+                $.ajax({
+
+                    type : "GET",
+                    url:'http://ali-pm25.showapi.com/pm25-detail',//url就是api请求接口
+                    data:{
+                        'city':'北京'  //传入参数：area获取areaid必须选一个
+                    },
+
+                    beforeSend:function(request){	//向接口发送身份认证
+                        request.setRequestHeader("Authorization","APPCODE "+"ad46edb496a74883aadb28499f26d392");//注意这里APPCODE后面有一个空格，不能删掉
+                    },
+                    dataType:"json",//请求返回数据格式
+                    success: function (data) {
+                                $("#aqi").text(data.showapi_res_body.pm.aqi);
+                                $("#so2").text(data.showapi_res_body.pm.so2);
+                                $("#pm2_5").text(data.showapi_res_body.pm.pm2_5);
+                                $("#primary_pollutant").text(data.showapi_res_body.pm.primary_pollutant);
+                                $("#co").text(data.showapi_res_body.pm.co);
+                                $("#no2").text(data.showapi_res_body.pm.no2);
+                                $("#quality").text(data.showapi_res_body.pm.quality);
+                                $("#pm10").text(data.showapi_res_body.pm.pm10);
+                                $("#o3").text(data.showapi_res_body.pm.pm10);
+
+                    },
+                    error:function(e){
+                        console.log(e.message);
+                    }
+
+                })
 				document.getElementById("monitor").style.display = "inline";
 				init_monitor_table();
 				map.getView().setCenter(
