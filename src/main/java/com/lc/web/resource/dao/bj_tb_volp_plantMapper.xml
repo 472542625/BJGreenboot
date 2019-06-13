@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.web.resource.dao.bj_tb_volp_plantMapper">
+  <resultMap id="BaseResultMap" type="com.lc.web.resource.entity.bj_tb_volp_plant">
+    <result column="green_id" jdbcType="VARCHAR" property="greenId" />
+    <result column="plant" jdbcType="INTEGER" property="plant" />
+    <result column="plantname" jdbcType="VARCHAR" property="plantname" />
+    <result column="planttype" jdbcType="VARCHAR" property="planttype" />
+    <result column="plant_ar" jdbcType="VARCHAR" property="plantAr" />
+    <result column="plant_num" jdbcType="INTEGER" property="plantNum" />
+    <result column="plant_id" jdbcType="INTEGER" property="plantId" />
+    <result column="dbh" jdbcType="VARCHAR" property="dbh" />
+    <result column="plant_vol" jdbcType="VARCHAR" property="plantVol" />
+    <result column="greenr_id" jdbcType="VARCHAR" property="greenrId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    green_id, plant, plantname, planttype, plant_ar, plant_num, plant_id, dbh, plant_vol, 
+    greenr_id
+  </sql>
+  <select id="selectByExample" parameterType="com.lc.web.resource.entity.bj_tb_volp_plantExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bj_tb_volp_plant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.lc.web.resource.entity.bj_tb_volp_plantExample">
+    delete from bj_tb_volp_plant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lc.web.resource.entity.bj_tb_volp_plant">
+    insert into bj_tb_volp_plant (green_id, plant, plantname, 
+      planttype, plant_ar, plant_num, 
+      plant_id, dbh, plant_vol, 
+      greenr_id)
+    values (#{greenId,jdbcType=VARCHAR}, #{plant,jdbcType=INTEGER}, #{plantname,jdbcType=VARCHAR}, 
+      #{planttype,jdbcType=VARCHAR}, #{plantAr,jdbcType=VARCHAR}, #{plantNum,jdbcType=INTEGER}, 
+      #{plantId,jdbcType=INTEGER}, #{dbh,jdbcType=VARCHAR}, #{plantVol,jdbcType=VARCHAR}, 
+      #{greenrId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.web.resource.entity.bj_tb_volp_plant">
+    insert into bj_tb_volp_plant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="greenId != null">
+        green_id,
+      </if>
+      <if test="plant != null">
+        plant,
+      </if>
+      <if test="plantname != null">
+        plantname,
+      </if>
+      <if test="planttype != null">
+        planttype,
+      </if>
+      <if test="plantAr != null">
+        plant_ar,
+      </if>
+      <if test="plantNum != null">
+        plant_num,
+      </if>
+      <if test="plantId != null">
+        plant_id,
+      </if>
+      <if test="dbh != null">
+        dbh,
+      </if>
+      <if test="plantVol != null">
+        plant_vol,
+      </if>
+      <if test="greenrId != null">
+        greenr_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="greenId != null">
+        #{greenId,jdbcType=VARCHAR},
+      </if>
+      <if test="plant != null">
+        #{plant,jdbcType=INTEGER},
+      </if>
+      <if test="plantname != null">
+        #{plantname,jdbcType=VARCHAR},
+      </if>
+      <if test="planttype != null">
+        #{planttype,jdbcType=VARCHAR},
+      </if>
+      <if test="plantAr != null">
+        #{plantAr,jdbcType=VARCHAR},
+      </if>
+      <if test="plantNum != null">
+        #{plantNum,jdbcType=INTEGER},
+      </if>
+      <if test="plantId != null">
+        #{plantId,jdbcType=INTEGER},
+      </if>
+      <if test="dbh != null">
+        #{dbh,jdbcType=VARCHAR},
+      </if>
+      <if test="plantVol != null">
+        #{plantVol,jdbcType=VARCHAR},
+      </if>
+      <if test="greenrId != null">
+        #{greenrId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lc.web.resource.entity.bj_tb_volp_plantExample" resultType="java.lang.Long">
+    select count(*) from bj_tb_volp_plant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bj_tb_volp_plant
+    <set>
+      <if test="record.greenId != null">
+        green_id = #{record.greenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plant != null">
+        plant = #{record.plant,jdbcType=INTEGER},
+      </if>
+      <if test="record.plantname != null">
+        plantname = #{record.plantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planttype != null">
+        planttype = #{record.planttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantAr != null">
+        plant_ar = #{record.plantAr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantNum != null">
+        plant_num = #{record.plantNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.plantId != null">
+        plant_id = #{record.plantId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dbh != null">
+        dbh = #{record.dbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantVol != null">
+        plant_vol = #{record.plantVol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.greenrId != null">
+        greenr_id = #{record.greenrId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bj_tb_volp_plant
+    set green_id = #{record.greenId,jdbcType=VARCHAR},
+      plant = #{record.plant,jdbcType=INTEGER},
+      plantname = #{record.plantname,jdbcType=VARCHAR},
+      planttype = #{record.planttype,jdbcType=VARCHAR},
+      plant_ar = #{record.plantAr,jdbcType=VARCHAR},
+      plant_num = #{record.plantNum,jdbcType=INTEGER},
+      plant_id = #{record.plantId,jdbcType=INTEGER},
+      dbh = #{record.dbh,jdbcType=VARCHAR},
+      plant_vol = #{record.plantVol,jdbcType=VARCHAR},
+      greenr_id = #{record.greenrId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
